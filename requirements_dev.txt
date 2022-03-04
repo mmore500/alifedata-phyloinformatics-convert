@@ -22,6 +22,8 @@ certifi==2021.10.8
     # via requests
 charset-normalizer==2.0.12
     # via requests
+click==7.0
+    # via -r requirements_dev.in
 coverage==4.5.4
     # via -r requirements_dev.in
 dendropy==4.5.2

@@ -1,6 +1,6 @@
-=====================================
+==================================
 alifedata-phyloinformatics-convert
-=====================================
+==================================
 
 
 .. image:: https://img.shields.io/pypi/v/alifedata-phyloinformatics-convert.svg
@@ -25,14 +25,41 @@ alifedata-phyloinformatics-convert helps apply traditional phyloinformatics soft
 
 Built using the :code:`dendropy` library.
 
-Installation
+Use it as a command line tool to convert to alife standard phylogenetics data
 
-.. code-block:: bash
+.. code-block::
 
-  pip3 install alifedata-phyloinformatics-converters
+  Usage: alifedata-phyloinformatics-convert toalifedata [OPTIONS]
+
+    convert standard alife phylogeny data to phloinformatics format
+
+  Options:
+    --input-file FILENAME   phyloinformatics data file path; default stdin
+    --input-schema TEXT     phyloinformatics data format schema; options include
+                            newick, nexml, and nexus  [required]
+    --output-file FILENAME  alife data file path; default stdout
+    --output-format TEXT    alife data file format; default csv
+    --help                  Show this message and exit.
 
 
-Use it as a Python module:
+Use it as a command line tool to convert from alife standard phylogenetics data
+
+.. code-block::
+
+  Usage: alifedata-phyloinformatics-convert fromalifedata [OPTIONS]
+
+    convert phloinformatics data to standard alife phylogeny format
+
+  Options:
+    --input-file FILENAME   alife data file path; default stdin
+    --input-format TEXT     alife data file format; default csv
+    --output-file FILENAME  phyloinformatics data file path; default stdout
+    --output-schema TEXT    phyloinformatics data format schema; options include
+                            newick, nexml, and nexus  [required]
+    --help                  Show this message and exit.
+
+
+Use it as a Python module
 
 .. code-block:: python3
 
@@ -48,6 +75,12 @@ Use it as a Python module:
   # get a alife-standardized phylogeny dataframe from a dendropy Tree
   reconverted_alife_df = apc.dendropy_tree_to_alife_dataframe(tree)
 
+
+Install from PyPi
+
+.. code-block:: bash
+
+  pip3 install alifedata-phyloinformatics-convert
 
 
 Credits

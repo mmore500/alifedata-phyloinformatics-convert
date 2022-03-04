@@ -11,6 +11,7 @@ with open('HISTORY.rst') as history_file:
     history = history_file.read()
 
 requirements = [
+    "click>=7.0",
     "dendropy>=4.5.2",
     "iterpop>=0.4.0",
     "lyncs-utils>=0.3.2",
@@ -38,6 +39,10 @@ setup(
         'Programming Language :: Python :: 3.9',
     ],
     description="alifedata-phyloinformatics-convert helps apply traditional phyloinformatics software to alife standardized data",
+    entry_points='''
+    [console_scripts]
+    alifedata-phyloinformatics-convert=alifedata_phyloinformatics_convert.cli:cli
+    ''',
     install_requires=requirements,
     license="MIT license",
     long_description=readme + '\n\n' + history,
