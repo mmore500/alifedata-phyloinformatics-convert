@@ -43,7 +43,7 @@ setup(
     include_package_data=True,
     keywords='alifedata-phyloinformatics-conversion',
     name='alifedata-phyloinformatics-conversion',
-    packages=find_packages(include=['alifedata-phyloinformatics-conversion', 'alifedata-phyloinformatics-conversion.*']),
+    packages=find_packages(include=['alifedata_phyloinformatics_conversion', 'alifedata_phyloinformatics_conversion.*']),
     setup_requires=setup_requirements,
     test_suite='tests',
     tests_require=test_requirements,
