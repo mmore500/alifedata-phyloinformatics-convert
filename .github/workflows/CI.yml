@@ -1,4 +1,4 @@
-name: alifedata-phyloinformatics-conversion
+name: alifedata-phyloinformatics-convert
 
 on:
   - push

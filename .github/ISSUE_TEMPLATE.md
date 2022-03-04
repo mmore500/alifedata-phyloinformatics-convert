@@ -1,4 +1,4 @@
-* alifedata-phyloinformatics-conversion version:
+* alifedata-phyloinformatics-convert version:
 * Python version:
 * Operating System:
 

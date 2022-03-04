@@ -4,7 +4,7 @@
 # You can set these variables from the command line.
 SPHINXOPTS    =
 SPHINXBUILD   = python -msphinx
-SPHINXPROJ    = alifedata-phyloinformatics-conversion
+SPHINXPROJ    = alifedata-phyloinformatics-convert
 SOURCEDIR     = .
 BUILDDIR      = _build
 

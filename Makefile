@@ -48,7 +48,7 @@ clean-test: ## remove test and coverage artifacts
 	rm -fr .pytest_cache
 
 lint: ## check style with flake8
-	flake8 alifedata-phyloinformatics-conversion tests
+	flake8 alifedata-phyloinformatics-convert tests
 
 test: ## run tests quickly with the default Python
 	pytest
@@ -57,15 +57,15 @@ test-all: ## run tests on every Python version with tox
 	tox
 
 coverage: ## check code coverage quickly with the default Python
-	coverage run --source alifedata-phyloinformatics-conversion -m pytest
+	coverage run --source alifedata-phyloinformatics-convert -m pytest
 	coverage report -m
 	coverage html
 	$(BROWSER) htmlcov/index.html
 
 docs: ## generate Sphinx HTML documentation, including API docs
-	rm -f docs/alifedata-phyloinformatics-conversion.rst
+	rm -f docs/alifedata-phyloinformatics-convert.rst
 	rm -f docs/modules.rst
-	sphinx-apidoc -o docs/ alifedata-phyloinformatics-conversion
+	sphinx-apidoc -o docs/ alifedata-phyloinformatics-convert
 	$(MAKE) -C docs clean
 	$(MAKE) -C docs html
 	$(BROWSER) docs/_build/html/index.html

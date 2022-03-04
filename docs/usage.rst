@@ -2,6 +2,6 @@
 Usage
 =====
 
-To use alifedata-phyloinformatics-conversion in a project::
+To use alifedata-phyloinformatics-convert in a project::
 
-    import alifedata-phyloinformatics-conversion as opyt
+    import alifedata-phyloinformatics-convert as opyt

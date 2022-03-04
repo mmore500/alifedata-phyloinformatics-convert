@@ -1,4 +1,4 @@
-"""Top-level package for alifedata-phyloinformatics-conversion."""
+"""Top-level package for alifedata-phyloinformatics-convert."""
 
 __author__ = """Matthew Andres Moreno"""
 __email__ = 'm.more500@gmail.com'

@@ -8,7 +8,7 @@
 from os.path import dirname, realpath
 import pandas as pd
 
-import alifedata_phyloinformatics_conversion as apc
+import alifedata_phyloinformatics_convert as apc
 
 
 def _setify(df):

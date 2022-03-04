@@ -8,13 +8,13 @@ Installation
 Stable release
 --------------
 
-To install alifedata-phyloinformatics-conversion, run this command in your terminal:
+To install alifedata-phyloinformatics-convert, run this command in your terminal:
 
 .. code-block:: console
 
-    $ pip install alifedata-phyloinformatics-conversion
+    $ pip install alifedata-phyloinformatics-convert
 
-This is the preferred method to install alifedata-phyloinformatics-conversion, as it will always install the most recent stable release.
+This is the preferred method to install alifedata-phyloinformatics-convert, as it will always install the most recent stable release.
 
 If you don't have `pip`_ installed, this `Python installation guide`_ can guide
 you through the process.
@@ -26,19 +26,19 @@ you through the process.
 From sources
 ------------
 
-The sources for alifedata-phyloinformatics-conversion can be downloaded from the `Github repo`_.
+The sources for alifedata-phyloinformatics-convert can be downloaded from the `Github repo`_.
 
 You can either clone the public repository:
 
 .. code-block:: console
 
-    $ git clone git://github.com/mmore500/alifedata-phyloinformatics-conversion
+    $ git clone git://github.com/mmore500/alifedata-phyloinformatics-convert
 
 Or download the `tarball`_:
 
 .. code-block:: console
 
-    $ curl -OJL https://github.com/mmore500/alifedata-phyloinformatics-conversion/tarball/master
+    $ curl -OJL https://github.com/mmore500/alifedata-phyloinformatics-convert/tarball/master
 
 Once you have a copy of the source, you can install it with:
 
@@ -47,5 +47,5 @@ Once you have a copy of the source, you can install it with:
     $ python setup.py install
 
 
-.. _Github repo: https://github.com/mmore500/alifedata-phyloinformatics-conversion
-.. _tarball: https://github.com/mmore500/alifedata-phyloinformatics-conversion/tarball/master
+.. _Github repo: https://github.com/mmore500/alifedata-phyloinformatics-convert
+.. _tarball: https://github.com/mmore500/alifedata-phyloinformatics-convert/tarball/master

@@ -2,14 +2,14 @@
 
 '''
 `dendropy_tree_to_alife_dataframe` tests for
-`alifedata-alifedata_phyloinformatics_conversion` package.
+`alifedata-alifedata_phyloinformatics_convert` package.
 '''
 
 import dendropy
 from dendropy.calculate import treecompare
 from os.path import dirname, realpath
 
-import alifedata_phyloinformatics_conversion as apc
+import alifedata_phyloinformatics_convert as apc
 
 
 def test_newick1():

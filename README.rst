@@ -1,26 +1,26 @@
 =====================================
-alifedata-phyloinformatics-conversion
+alifedata-phyloinformatics-convert
 =====================================
 
 
-.. image:: https://img.shields.io/pypi/v/alifedata-phyloinformatics-conversion.svg
-        :target: https://pypi.python.org/pypi/alifedata-phyloinformatics-conversion
+.. image:: https://img.shields.io/pypi/v/alifedata-phyloinformatics-convert.svg
+        :target: https://pypi.python.org/pypi/alifedata-phyloinformatics-convert
 
-.. image:: https://img.shields.io/travis/mmore500/alifedata-phyloinformatics-conversion.svg
-        :target: https://travis-ci.com/mmore500/alifedata-phyloinformatics-conversion
+.. image:: https://img.shields.io/travis/mmore500/alifedata-phyloinformatics-convert.svg
+        :target: https://travis-ci.com/mmore500/alifedata-phyloinformatics-convert
 
-.. image:: https://readthedocs.org/projects/alifedata-phyloinformatics-conversion/badge/?version=latest
-        :target: https://alifedata-phyloinformatics-conversion.readthedocs.io/en/latest/?badge=latest
+.. image:: https://readthedocs.org/projects/alifedata-phyloinformatics-convert/badge/?version=latest
+        :target: https://alifedata-phyloinformatics-convert.readthedocs.io/en/latest/?badge=latest
         :alt: Documentation Status
 
 
 
 
-alifedata-phyloinformatics-conversion helps apply traditional phyloinformatics software to alife standardized data
+alifedata-phyloinformatics-convert helps apply traditional phyloinformatics software to alife standardized data
 
 
 * Free software: MIT license
-* Documentation: https://alifedata-phyloinformatics-conversion.readthedocs.io.
+* Documentation: https://alifedata-phyloinformatics-convert.readthedocs.io.
 
 
 Built using the :code:`dendropy` library.
@@ -36,7 +36,7 @@ Use it as a Python module:
 
 .. code-block:: python3
 
-  import alifedata-phyloinformatics-conversion as apc
+  import alifedata-phyloinformatics-convert as apc
   import dendropy
   import pandas as pd
 

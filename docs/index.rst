@@ -1,4 +1,4 @@
-Welcome to alifedata-phyloinformatics-conversion's documentation!
+Welcome to alifedata-phyloinformatics-convert's documentation!
 ======================================
 
 .. toctree::
