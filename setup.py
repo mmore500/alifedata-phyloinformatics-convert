@@ -16,7 +16,7 @@ requirements = [
     "lyncs-utils>=0.3.2",
     "nanto>=0.1.1",
     "opytional>=0.1.0",
-    "pandas>=1.1.2",
+    "pandas>=1.1.0",
 ]
 
 setup_requirements = ['pytest-runner', ]
@@ -33,9 +33,9 @@ setup(
         'License :: OSI Approved :: MIT License',
         'Natural Language :: English',
         'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7',
         'Programming Language :: Python :: 3.8',
+        'Programming Language :: Python :: 3.9',
     ],
     description="alifedata-phyloinformatics-conversion helps apply traditional phyloinformatics software to alife standardized data",
     install_requires=requirements,
