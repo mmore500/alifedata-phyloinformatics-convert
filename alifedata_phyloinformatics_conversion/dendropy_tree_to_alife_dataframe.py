@@ -1,5 +1,4 @@
 import dendropy
-import math
 from nanto import isanan
 import opytional as opyt
 import pandas as pd

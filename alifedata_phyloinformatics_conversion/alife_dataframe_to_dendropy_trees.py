@@ -1,7 +1,6 @@
 import dendropy
 from iterpop import iterpop as ip
 from lyncs_utils import keydefaultdict
-import math
 from nanto import isanan, nantonone
 import pandas as pd
 import string
