@@ -64,6 +64,8 @@ mccabe==0.6.1
     # via flake8
 more-itertools==8.12.0
     # via pytest
+nanto==0.1.1
+    # via -r requirements_dev.in
 numpy==1.22.2
     # via pandas
 opytional==0.1.0

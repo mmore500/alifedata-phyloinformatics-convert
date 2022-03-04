@@ -2,6 +2,7 @@ import dendropy
 from iterpop import iterpop as ip
 from lyncs_utils import keydefaultdict
 import math
+from nanto import isanan, nantonone
 import pandas as pd
 import string
 import typing
@@ -25,21 +26,12 @@ def alife_dataframe_to_dendropy_trees(
     for __, row in df.iterrows():
         node = nodes[row['id']]
 
-        node.origin_time = row.get('origin_time', default=None)
-        if (
-            isinstance(node.origin_time, float)
-            and math.isnan(node.origin_time)
-        ):
-            node.origin_time = None
+        node.origin_time = nantonone(row.get('origin_time', default=None))
         node.label = row.get('label', default=None)
         taxon_label = row.get('taxon_label', default=None)
         if taxon_label not in ('None', None):
             node.taxon = dendropy.Taxon(label=taxon_label)
-        if 'edge_length' in row and not (
-            isinstance(row['edge_length'], float)
-            and math.isnan(row['edge_length'])
-        ):
-            node.edge_length = row['edge_length']
+        node.edge_length = nantonone(row.get('edge_length', None))
         try:
             ancestor_list = eval(row['ancestor_list'])
             assert len(ancestor_list) < 2, "Sexual lineages not supported."
@@ -74,10 +66,7 @@ def alife_dataframe_to_dendropy_trees(
                 root_node.edge_length is None
                 and getattr(root_node, 'origin_time', None) is not None
             ):
-                assert not (
-                    isinstance(root_node.origin_time, float)
-                    and math.isnan(root_node.origin_time)
-                )
+                assert not isanan(root_node.origin_time)
                 root_node.edge_length = root_node.origin_time
 
     return([

@@ -1,5 +1,6 @@
 import dendropy
 import math
+from nanto import isanan
 import opytional as opyt
 import pandas as pd
 
@@ -21,10 +22,7 @@ def dendropy_tree_to_alife_dataframe(tree: dendropy.Tree) -> pd.DataFrame:
                 if None not in (
                     getattr(parent, 'origin_time', None),
                     node.edge_length,
-                ) and (
-                    not isinstance(parent.origin_time, float)
-                    or not math.isnan(parent.origin_time)
-                ):
+                ) and not isanan(parent.origin_time):
                     node.origin_time = parent.origin_time + node.edge_length
 
     # attach ids to nodes, if needed
