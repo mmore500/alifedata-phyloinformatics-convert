@@ -63,7 +63,7 @@ Use it as a Python module
 
 .. code-block:: python3
 
-  import alifedata-phyloinformatics-convert as apc
+  import alifedata_phyloinformatics_convert as apc
   import dendropy
   import pandas as pd
 
