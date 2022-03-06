@@ -74,7 +74,9 @@ more-itertools==8.12.0
 nanto==0.1.1
     # via -r requirements_dev.in
 numpy==1.21.5
-    # via pandas
+    # via
+    #   -r requirements_dev.in
+    #   pandas
 opytional==0.1.0
     # via -r requirements_dev.in
 packaging==21.3
@@ -143,6 +145,8 @@ smmap==5.0.0
     # via gitdb
 snowballstemmer==2.2.0
     # via sphinx
+sortedcontainers==2.4.0
+    # via -r requirements_dev.in
 sphinx==1.8.5
     # via -r requirements_dev.in
 sphinxcontrib-serializinghtml==1.1.5

@@ -16,8 +16,10 @@ requirements = [
     "iterpop>=0.4.0",
     "lyncs-utils>=0.3.2",
     "nanto>=0.1.1",
+    "numpy>=1.21.5",
     "opytional>=0.1.0",
     "pandas>=1.1.0",
+    "sortedcontainers>=2.4.0",
 ]
 
 setup_requirements = ['pytest-runner', ]
