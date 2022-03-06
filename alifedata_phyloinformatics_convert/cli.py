@@ -124,7 +124,6 @@ def fromalifedata(
         input_file,
     )
 
-
     converted_tree = alife_dataframe_to_dendropy_tree(
         df,
         setup_edge_lengths=True,

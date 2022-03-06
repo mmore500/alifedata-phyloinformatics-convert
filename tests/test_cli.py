@@ -156,6 +156,7 @@ def test_fromalifedata_minimal_nexml():
             f'{tempdir}/alifedata_minimal.nexml',
         )
 
+
 def test_fromalifedata_nexus():
     runner = CliRunner()
     scriptdir = dirname(realpath(__file__))
