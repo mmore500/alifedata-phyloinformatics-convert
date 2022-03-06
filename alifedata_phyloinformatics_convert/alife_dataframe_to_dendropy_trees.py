@@ -7,10 +7,32 @@ import string
 import typing
 
 
+def _parse_ancestor_list(raw: str) -> typing.List[int]:
+    assert not any(
+        c in raw for c in string.whitespace
+    ), "Whitespace separated ancestor list not supported."
+    try:
+        ancestor_list = eval(raw)
+        if ancestor_list == [None]:
+            return []
+        else:
+            assert None not in ancestor_list
+            return ancestor_list
+    except NameError:
+        # if ancestor list contains a placeholder string like NONE,
+        # it will trigger a NameError when eval'ed
+        return []
+
+
 def alife_dataframe_to_dendropy_trees(
     df: pd.DataFrame,
     setup_edge_lengths: bool = False,
 ) -> typing.List[dendropy.Tree]:
+
+    df = df.copy()
+
+    df['parsed_ancestor_list'] \
+        = df['ancestor_list'].apply(_parse_ancestor_list)
 
     # maps id to node
     def setup_node(id: int) -> dendropy.Node:
@@ -31,21 +53,11 @@ def alife_dataframe_to_dendropy_trees(
         if taxon_label not in ('None', None):
             node.taxon = dendropy.Taxon(label=taxon_label)
         node.edge_length = nantonone(row.get('edge_length', None))
-        try:
-            ancestor_list = eval(row['ancestor_list'])
-            assert len(ancestor_list) < 2, "Sexual lineages not supported."
-            assert not any(c in ancestor_list for c in string.whitespace), \
-                "Whitespace separated ancestor list not supported."
-            if ip.poursingleton(ancestor_list) is not None:
-                ancestor_id = ip.popsingleton(ancestor_list)
-                nodes[ancestor_id].add_child(node)
-            else:
-                # ancestor_list is empty... trigger exeption handler below
-                # to execute root node case logic
-                raise NameError
-        except NameError:
-            # if ancestor list contains a placeholder string like NONE,
-            # it will trigger a NameError when eval'ed
+
+        if row['parsed_ancestor_list']:
+            ancestor_id = ip.popsingleton(row['parsed_ancestor_list'])
+            nodes[ancestor_id].add_child(node)
+        else:
             root_nodes.append(node)
 
     # set up edge lengths
