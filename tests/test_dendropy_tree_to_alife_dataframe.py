@@ -2,7 +2,7 @@
 
 '''
 `dendropy_tree_to_alife_dataframe` tests for
-`alifedata-alifedata_phyloinformatics_convert` package.
+`alifedata-phyloinformatics-convert` package.
 '''
 
 import dendropy

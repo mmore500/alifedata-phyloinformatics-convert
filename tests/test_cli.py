@@ -2,7 +2,7 @@
 
 '''
 `alife_dataframe_to_dendropy_tree` tests for
-`alifedata-phyloinformatics-converters` package.
+`alifedata-phyloinformatics-convert` package.
 '''
 
 from click.testing import CliRunner
