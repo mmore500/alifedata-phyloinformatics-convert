@@ -6,6 +6,7 @@
 '''
 
 import dendropy
+from dendropy.calculate import treecompare
 import numpy as np
 
 import alifedata_phyloinformatics_convert as apc
@@ -52,3 +53,42 @@ def test():
     assert node(18).edge_length == 1.92353841 / 2
     assert node(19).edge_length == 1.92353841 / 2
     assert node(20).parent_node is None
+
+
+def test_leaf_taxon_labels():
+
+    # from https://stackoverflow.com/a/40983611/17332200
+    linkage_matrix = np.array([
+        [7.0, 9.0, 0.3, 2.0],
+        [4.0, 6.0, 0.5, 2.0],
+        [5.0, 12.0, 0.5, 3.0],
+        [2.0, 13.0, 0.53851648, 4.0],
+        [3.0, 14.0, 0.58309519, 5.0],
+        [1.0, 15.0, 0.64031242, 6.0],
+        [10.0, 11.0, 0.72801099, 3.0],
+        [8.0, 17.0, 1.2083046, 4.0],
+        [0.0, 16.0, 1.5132746, 7.0],
+        [18.0, 19.0, 1.92353841, 11.0],
+    ])
+
+    tree1 = apc.scipy_linkage_matrix_to_dendropy_tree(
+        linkage_matrix,
+        [*range(11)],
+    )
+
+    for node in tree1.leaf_node_iter():
+        assert node.taxon is not None
+        assert node.taxon.label is not None
+        assert node.cluster_id == node.taxon.label
+
+    for node in tree1.preorder_internal_node_iter():
+        assert node.taxon is None
+
+    tree2 = apc.scipy_linkage_matrix_to_dendropy_tree(
+        linkage_matrix,
+        [*range(11)],
+    )
+
+    tree2.migrate_taxon_namespace(tree1.taxon_namespace)
+
+    assert treecompare.symmetric_difference(tree1, tree2) == 0
