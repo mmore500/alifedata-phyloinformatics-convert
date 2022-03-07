@@ -11,6 +11,7 @@ with open('HISTORY.rst') as history_file:
     history = history_file.read()
 
 requirements = [
+    "biopython>=1.79",
     "click>=7.0",
     "dendropy>=4.5.2",
     "iterpop>=0.4.0",
