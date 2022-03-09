@@ -64,16 +64,22 @@ Use it as a Python module
 .. code-block:: python3
 
   import alifedata_phyloinformatics_convert as apc
-  import dendropy
-  import pandas as pd
 
   alife_df = pd.read_csv('alifedata.csv')
 
-  # get a dendropy Tree from alife-standardized phylogeny dataframe
-  tree = apc.alife_dataframe_to_dendropy_tree(converted_df)
 
-  # get a alife-standardized phylogeny dataframe from a dendropy Tree
-  reconverted_alife_df = apc.dendropy_tree_to_alife_dataframe(tree)
+  # get a dendropy Tree from alife-standardized phylogeny pandas dataframe
+  dendropy_tree = apc.alife_dataframe_to_dendropy_tree(alife_df)
+
+  # get a alife-standardized phylogeny pandas dataframe from a dendropy Tree
+  reconverted_alife_df = apc.dendropy_tree_to_alife_dataframe(dendropy_tree)
+
+
+  # get a biopython Tree from alife-standardized phylogeny pandas dataframe
+  biopython_tree = apc.alife_dataframe_to_biopython_tree(alife_df)
+
+  # get a alife-standardized phylogeny pandas dataframe from a biopython Tree
+  reconverted_alife_df = apc.dendropy_tree_to_alife_dataframe(biopython_tree)
 
 
 Install from PyPi
