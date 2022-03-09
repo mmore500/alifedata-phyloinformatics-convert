@@ -7,6 +7,7 @@
 
 from Bio import Phylo
 import dendropy
+from iterpop import iterpop as ip
 from os.path import dirname, realpath
 
 import alifedata_phyloinformatics_convert as apc
@@ -57,3 +58,58 @@ def test_nexml():
     assert len(dendropy_df) == len(biopython_df)
 
     assert len(dendropy_df) == len(biopython_df)
+
+
+def test_exportattrs_iterable():
+
+    original_tree = Phylo.read(
+        f'{dirname(realpath(__file__))}/assets/APG_Angiosperms.newick',
+        'newick',
+    )
+
+    for node in original_tree.get_terminals():
+        node.fish = 'Salmon'
+
+    for node in original_tree.get_nonterminals():
+        node.fish = 'Tilapia'
+
+    converted_df = apc.biopython_tree_to_alife_dataframe(
+        original_tree,
+        exportattrs=['fish'],
+    )
+
+    assert 'fish' in converted_df
+    assert sum(converted_df['fish'] == 'Salmon') \
+        == len(original_tree.get_terminals())
+    assert sum(converted_df['fish'] == 'Tilapia') \
+        == len(original_tree.get_nonterminals())
+
+
+def test_exportattrs_mapping():
+
+    original_tree = Phylo.read(
+        f'{dirname(realpath(__file__))}/assets/APG_Angiosperms.newick',
+        'newick',
+    )
+
+    for clade in original_tree.get_terminals():
+        clade.fish = 'Salmon'
+        clade.soup = None
+
+    for clade in original_tree.get_nonterminals():
+        clade.fish = 'Tilapia'
+        clade.soup = None
+
+    converted_df = apc.biopython_tree_to_alife_dataframe(
+        original_tree,
+        exportattrs={'fish': 'The Fish', 'soup': 'soup'},
+    )
+
+    assert 'The Fish' in converted_df
+    assert sum(converted_df['The Fish'] == 'Salmon') \
+        == len(original_tree.get_terminals())
+    assert sum(converted_df['The Fish'] == 'Tilapia') \
+        == len(original_tree.get_nonterminals())
+
+    assert 'soup' in converted_df
+    assert ip.popsingleton(converted_df['soup'].unique()) is None
