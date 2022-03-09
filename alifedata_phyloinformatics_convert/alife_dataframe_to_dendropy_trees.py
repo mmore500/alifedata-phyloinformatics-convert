@@ -26,8 +26,36 @@ def _parse_ancestor_list(raw: str) -> typing.List[int]:
 
 def alife_dataframe_to_dendropy_trees(
     df: pd.DataFrame,
+    setattrs: typing.Optional[typing.Union[
+        typing.Iterable[str],
+        typing.Mapping[str, str],
+    ]] = None,
     setup_edge_lengths: bool = False,
 ) -> typing.List[dendropy.Tree]:
+    """Open a phylogeny dataframe formatted to the artificial life community
+    data format standards as zero or more dendropy trees, depending on the
+    number of clades with no common ancestor.
+
+    The following columns will automatically be applied as attributes to
+    generated Node objects:
+        * edge_length,
+        * id,
+        * label,
+        * origin_time, and
+        * taxon_label.
+
+    Parameters
+    ----------
+    df:
+        Pandas DataFrame to convert.
+    setattrs: optional
+        Dataframe columns that should be attached as attributes to Node
+        objects within the trees. If a map is provided, values at columns in
+        keys will be attached with the corresponding value as the attr name.
+    setup_edge_lengths: bool, optional
+        Should we try to set up edge lengths using the origin_time column?
+        Will not override if edge_length is provided as a column of df.
+    """
 
     df = df.copy()
 
@@ -46,6 +74,22 @@ def alife_dataframe_to_dendropy_trees(
 
     for __, row in df.iterrows():
         node = nodes[row['id']]
+
+        if setattrs is not None:
+            for col_name in setattrs:
+                attr_name: str
+                try:
+                    attr_name = setattrs[col_name]
+                except TypeError:
+                    attr_name = col_name
+                assert attr_name not in (
+                    'edge_length',
+                    'origin_time',
+                    'taxon',
+                    'taxon_label',
+                )
+                assert not hasattr(node, attr_name)
+                setattr(node, attr_name, row[col_name])
 
         node.origin_time = nantonone(row.get('origin_time', default=None))
         node.label = row.get('label', default=None)
