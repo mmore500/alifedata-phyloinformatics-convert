@@ -47,14 +47,12 @@ def test_nexml():
         path=f'{script_directory}/assets/pythonidae.annotated.nexml',
         schema='nexml',
     )
-    # print(dendropy_tree)
     dendropy_df = apc.dendropy_tree_to_alife_dataframe(dendropy_tree)
 
     biopython_tree = Phylo.read(
         f'{script_directory}/assets/pythonidae.annotated.nexml',
         'nexml',
     )
-    # print(biopython_tree)
     biopython_df = apc.biopython_tree_to_alife_dataframe(biopython_tree)
     assert len(dendropy_df) == len(biopython_df)
 
