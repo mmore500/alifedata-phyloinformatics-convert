@@ -28,15 +28,13 @@ def scipy_linkage_matrix_to_dendropy_tree(
         assert len(leaf_taxon_labels) == num_rows + 1
         for cluster_id, label in enumerate(leaf_taxon_labels):
             nodes[cluster_id].taxon = dendropy.Taxon(label=label)
+            nodes[cluster_id].label = label
 
     for row_idx, row in enumerate(matrix):
         parent_cluster = row_idx + num_rows + 1
         joined_cluster1, joined_cluster2, cluster_distance, cluster_size = row
 
         nodes[parent_cluster].cluster_id = parent_cluster
-        # store labels if given
-        if leaf_taxon_labels:
-            nodes[row_idx].label = leaf_taxon_labels[row_idx]
         for child_cluster in joined_cluster1, joined_cluster2:
             nodes[parent_cluster].add_child(nodes[child_cluster])
             nodes[child_cluster].cluster_id = child_cluster
