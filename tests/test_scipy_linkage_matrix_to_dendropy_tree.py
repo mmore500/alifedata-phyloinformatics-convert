@@ -77,9 +77,14 @@ def test_leaf_taxon_labels():
     )
 
     for node in tree1.leaf_node_iter():
+        # check that all nodes have a corresponding taxon
         assert node.taxon is not None
+        # check that the taxons have the right labels
         assert node.taxon.label is not None
         assert node.cluster_id == node.taxon.label
+        # check that the nodes themselves have the right labels
+        assert node.label is not None
+        assert node.cluster_id == node.label
 
     for node in tree1.preorder_internal_node_iter():
         assert node.taxon is None
@@ -92,3 +97,31 @@ def test_leaf_taxon_labels():
     tree2.migrate_taxon_namespace(tree1.taxon_namespace)
 
     assert treecompare.symmetric_difference(tree1, tree2) == 0
+
+    tree3 = apc.scipy_linkage_matrix_to_dendropy_tree(
+        linkage_matrix,
+        leaf_labels=[*range(11)],
+        label_leaf_nodes=False,
+    )
+
+    for node in tree3.leaf_node_iter():
+        # check that all nodes have a corresponding taxon
+        assert node.taxon is not None
+        # check that the taxons have the right labels
+        assert node.taxon.label is not None
+        assert node.cluster_id == node.taxon.label
+        # check that the nodes themselves have the right labels
+        assert node.label is None
+
+    tree4 = apc.scipy_linkage_matrix_to_dendropy_tree(
+        linkage_matrix,
+        leaf_labels=[*range(11)],
+        label_leaf_taxa=False,
+    )
+
+    for node in tree4.leaf_node_iter():
+        # check that all nodes don't have corresponding taxon labels
+        assert not hasattr(node.taxon, "label")
+        # check that the nodes themselves have the right labels
+        assert node.label is not None
+        assert node.cluster_id == node.label

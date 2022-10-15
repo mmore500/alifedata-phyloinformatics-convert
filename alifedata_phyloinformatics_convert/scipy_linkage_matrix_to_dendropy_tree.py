@@ -7,14 +7,20 @@ import typing
 
 def scipy_linkage_matrix_to_dendropy_tree(
     matrix: np.array,
-    leaf_taxon_labels: typing.Optional[typing.List] = None,
+    leaf_labels: typing.Optional[typing.List] = None,
+    label_leaf_nodes: bool = True,
+    label_leaf_taxa: bool = True,
 ) -> dendropy.Tree:
     """
     Parameters
     ----------
-    leaf_taxon_labels: list, optional
-        Taxon labels for leaf nodes of tree. If provided, must exactly equal
-        the number of leaf nodes (i.e., num matrix rows + 1).
+    leaf_labels: list, optional
+        Labels for leaves of tree. If provided, must exactly equal the number
+        of leaf nodes (i.e., num matrix rows + 1).
+    label_leaf_nodes: bool, default True
+        Apply leaf labels directly to leaf nodes.
+    label_leaf_taxa: bool, default True
+        Apply leaf labels to leaf node taxa.
     """
 
     # scipy linkage format
@@ -24,10 +30,13 @@ def scipy_linkage_matrix_to_dendropy_tree(
     # cluster id -> node
     nodes = defaultdict(dendropy.Node)
 
-    if leaf_taxon_labels is not None:
-        assert len(leaf_taxon_labels) == num_rows + 1
-        for label, cluster_id in enumerate(leaf_taxon_labels):
-            nodes[cluster_id].taxon = dendropy.Taxon(label=label)
+    if leaf_labels is not None:
+        assert len(leaf_labels) == num_rows + 1
+        for cluster_id, label in enumerate(leaf_labels):
+            if label_leaf_taxa:
+                nodes[cluster_id].taxon = dendropy.Taxon(label=label)
+            if label_leaf_nodes:
+                nodes[cluster_id].label = label
 
     for row_idx, row in enumerate(matrix):
         parent_cluster = row_idx + num_rows + 1
