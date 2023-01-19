@@ -78,7 +78,11 @@ def biopython_tree_to_alife_dataframe(
             assert isinstance(clade.id, int)
 
     assert not any((
-        attr in opyt.or_value(exportattrs, [])
+        attr in (
+            exportattrs.values()
+            if isinstance(exportattrs, Mapping)
+            else opyt.or_value(exportattrs, [])
+        )
         for attr in ('origin_time', 'id', 'branch_length', 'name')
     ))
     return pd.DataFrame.from_records([

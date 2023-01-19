@@ -68,9 +68,12 @@ def dendropy_tree_to_alife_dataframe(
             assert isinstance(node.id, int)
 
     assert not any((
-        attr in opyt.or_value(exportattrs, [])
-        for attr
-        in ('origin_time', 'id', 'edge_length', 'label', 'taxon.label')
+        attr in (
+            exportattrs.values()
+            if isinstance(exportattrs, Mapping)
+            else opyt.or_value(exportattrs, [])
+        )
+        for attr in ('origin_time', 'id', 'edge_length', 'label', 'taxon.label')
     ))
     return pd.DataFrame.from_records([
         {
