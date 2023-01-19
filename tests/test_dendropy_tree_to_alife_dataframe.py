@@ -121,6 +121,9 @@ def test_exportattrs_mapping():
         path=f'{script_directory}/assets/pythonidae.annotated.nexml',
         schema='nexml',
     )
+    for i, node in enumerate(original_tree):
+        if node.taxon is None:
+            node.taxon = original_tree.taxon_namespace.new_taxon(str(i))
 
     for node in original_tree.leaf_node_iter():
         node.fish = 'Salmon'
@@ -132,7 +135,7 @@ def test_exportattrs_mapping():
 
     converted_df = apc.dendropy_tree_to_alife_dataframe(
         original_tree,
-        exportattrs={'fish': 'The Fish', 'soup': 'soup'},
+        exportattrs={'fish': 'The Fish', 'soup': 'soup', 'taxon.label': 'name'},
     )
 
     assert 'The Fish' in converted_df
@@ -143,3 +146,7 @@ def test_exportattrs_mapping():
 
     assert 'soup' in converted_df
     assert ip.popsingleton(converted_df['soup'].unique()) is None
+
+    assert 'name' in converted_df
+    assert {*converted_df['name']} ==  {node.taxon.label for node in original_tree}
+    assert len(converted_df['name'].unique()) > 1

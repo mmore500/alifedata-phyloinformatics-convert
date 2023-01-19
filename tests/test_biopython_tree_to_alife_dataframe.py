@@ -102,7 +102,7 @@ def test_exportattrs_mapping():
 
     converted_df = apc.biopython_tree_to_alife_dataframe(
         original_tree,
-        exportattrs={'fish': 'The Fish', 'soup': 'soup'},
+        exportattrs={'fish': 'The Fish', 'soup': 'soup', 'name': 'taxon_label'},
     )
 
     assert 'The Fish' in converted_df
@@ -113,3 +113,10 @@ def test_exportattrs_mapping():
 
     assert 'soup' in converted_df
     assert ip.popsingleton(converted_df['soup'].unique()) is None
+
+    assert 'taxon_label' in converted_df
+    assert (
+        {*converted_df['taxon_label']}
+        == {node.name for node in original_tree.find_clades()}
+    )
+    assert len(converted_df['taxon_label'].unique()) > 1
