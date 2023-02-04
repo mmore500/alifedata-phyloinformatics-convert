@@ -55,7 +55,7 @@ class ALifeTree():
             # is a biopython tree
             return biopython_tree_to_alife_dataframe(tree, {'name': 'taxon_label'})
 
-        except ValueError("Unsupported tree format")
+        raise ValueError("Unsupported tree format")
 
     def _is_valid_alife_tree(self, tree):
         return 'id' in tree and 'ancestor_list' in tree
