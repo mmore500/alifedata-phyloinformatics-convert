@@ -18,7 +18,7 @@ from .dendropy_tree_to_scipy_linkage_matrix \
     import dendropy_tree_to_scipy_linkage_matrix
 from .scipy_linkage_matrix_to_dendropy_tree \
     import scipy_linkage_matrix_to_dendropy_tree
-from ALifeTree import ALifeTree
+from .ALifeTree import ALifeTree
 
 # adapted from https://stackoverflow.com/a/31079085
 __all__ = [
