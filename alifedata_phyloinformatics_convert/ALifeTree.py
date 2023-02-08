@@ -48,14 +48,14 @@ class ALifeTree():
         if isinstance(tree, dendropy.Tree):
             # is a Dendropy Tree
             return dendropy_tree_to_alife_dataframe(tree) #, {'name': 'taxon_label'})
-        if isinstance(tree, pandas.DataFrame) and self._is_valid_alife_tree(tree):
+        elif isinstance(tree, pandas.DataFrame) and self._is_valid_alife_tree(tree):
             # is an Alife Dataframe
             return tree
-        if isinstance(tree, Bio.Phylo.BaseTree.Tree):
+        elif isinstance(tree, Bio.Phylo.BaseTree.Tree):
             # is a biopython tree
             return biopython_tree_to_alife_dataframe(tree, {'name': 'taxon_label'})
-
-        raise ValueError("Unsupported tree format")
+        else:
+            raise ValueError("Unsupported tree format")
 
     def _is_valid_alife_tree(self, tree):
         return 'id' in tree and 'ancestor_list' in tree
