@@ -21,25 +21,13 @@ class ALifeTree():
     def biopython(self):
         return alife_dataframe_to_biopython_tree(self._tree, setup_edge_lengths=True)
 
-    @biopython.setter
-    def biopython(self, tree):
-        self._tree = self._alife_dispatcher(tree)
-
     @property
     def dendropy(self):
         return alife_dataframe_to_dendropy_tree(self._tree, setup_edge_lengths=True)
 
-    @dendropy.setter
-    def dendropy(self, tree):
-        self._tree = self._alife_dispatcher(tree)
-
     @property
     def alife(self):
         return self._tree
-
-    @alife.setter
-    def alife(self, tree):
-        self._tree = self._alife_dispatcher(tree)
 
     def _alife_dispatcher(self, tree):
         """
