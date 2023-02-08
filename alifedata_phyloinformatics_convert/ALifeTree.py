@@ -1,3 +1,8 @@
+import Bio
+import dendropy
+from functools import cached_property
+import pandas
+
 from .alife_dataframe_to_biopython_tree \
     import alife_dataframe_to_biopython_tree
 from .alife_dataframe_to_dendropy_tree \
@@ -7,12 +12,7 @@ from .biopython_tree_to_alife_dataframe \
 from .dendropy_tree_to_alife_dataframe \
     import dendropy_tree_to_alife_dataframe
 
-import pandas
-import dendropy
-import Bio
-from functools import cached_property
 
-# auxiliary tree class to allow for inter-format conversions
 class ALifeTree:
     def __init__(self, tree):
         # convert any supported tree format to ALife format,
