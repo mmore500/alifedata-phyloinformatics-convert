@@ -2,6 +2,7 @@ import Bio
 import dendropy
 from functools import cached_property
 import pandas
+import typing
 
 from .alife_dataframe_to_biopython_tree \
     import alife_dataframe_to_biopython_tree
@@ -23,7 +24,11 @@ class RosettaTree:
     tree:
         Tree to convert from. Can be any of the three supported by this library.
     """
-    def __init__(self, tree):
+    def __init__(self, tree: typing.Union[
+            dendropy.Tree,
+            pandas.DataFrame,
+            Bio.Phylo.BaseTree.Tree
+        ]):
         """Construct the library-agnostic tree.
 
         Parameters
