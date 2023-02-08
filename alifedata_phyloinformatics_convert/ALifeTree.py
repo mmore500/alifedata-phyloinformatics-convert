@@ -10,6 +10,7 @@ from .dendropy_tree_to_alife_dataframe \
 import pandas
 import dendropy
 import Bio
+from functools import cached_property
 
 # auxiliary tree class to allow for inter-format conversions
 class ALifeTree:
@@ -28,15 +29,15 @@ class ALifeTree:
         else:
             raise ValueError("Unsupported tree format")
 
-    @property
+    @cached_property
     def biopython(self):
         return alife_dataframe_to_biopython_tree(self._tree, setup_edge_lengths=True)
 
-    @property
+    @cached_property
     def dendropy(self):
         return alife_dataframe_to_dendropy_tree(self._tree, setup_edge_lengths=True)
 
-    @property
+    @cached_property
     def alife(self):
         return self._tree
 
