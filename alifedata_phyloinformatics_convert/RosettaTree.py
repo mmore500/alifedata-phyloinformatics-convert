@@ -13,7 +13,7 @@ from .dendropy_tree_to_alife_dataframe \
     import dendropy_tree_to_alife_dataframe
 
 
-class ALifeTree:
+class RosettaTree:
     """Simple class for seamless interoperability between phylogenetic libraries.
     Enables user to translate across tree implementations without repeatedly calling
     the individual conversion functions.
