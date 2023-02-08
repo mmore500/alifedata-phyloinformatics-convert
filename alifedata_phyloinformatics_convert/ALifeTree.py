@@ -14,7 +14,23 @@ from .dendropy_tree_to_alife_dataframe \
 
 
 class ALifeTree:
+    """Simple class for seamless interoperability between phylogenetic libraries.
+    Enables user to translate across tree implementations without repeatedly calling
+    the individual conversion functions.
+
+    Attributes
+    ----------
+    tree:
+        Tree to convert from. Can be any of the three supported by this library.
+    """
     def __init__(self, tree):
+        """Construct the library-agnostic tree.
+
+        Parameters
+        ----------
+            tree:
+                Tree to convert from. Can be any of the three supported by this library.
+        """
         # convert any supported tree format to ALife format,
         # as this is our interal representation
         if isinstance(tree, dendropy.Tree):
@@ -31,14 +47,20 @@ class ALifeTree:
 
     @cached_property
     def biopython(self):
+        """Return stored tree as a biopython tree.
+        """
         return alife_dataframe_to_biopython_tree(self._tree, setup_edge_lengths=True)
 
     @cached_property
     def dendropy(self):
+        """Return stored tree as a dendropy tree.
+        """
         return alife_dataframe_to_dendropy_tree(self._tree, setup_edge_lengths=True)
 
     @cached_property
     def alife(self):
+        """Return stored tree as an alife-standardized phylogeny pandas dataframe.
+        """
         return self._tree
 
     def _is_valid_alife_tree(self, tree):
