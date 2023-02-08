@@ -12,7 +12,7 @@ import dendropy
 import Bio
 
 # auxiliary tree class to allow for inter-format conversions
-class ALifeTree():
+class ALifeTree:
     def __init__(self, tree):
         # internal tree representation is an alife-formatted tree
         self._tree = self._alife_dispatcher(tree)
