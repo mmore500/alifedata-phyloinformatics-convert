@@ -4,6 +4,8 @@ from functools import cached_property
 import pandas
 import typing
 
+from ._aux._alifestd_validate \
+    import alifestd_validate
 from .alife_dataframe_to_biopython_tree \
     import alife_dataframe_to_biopython_tree
 from .alife_dataframe_to_dendropy_tree \
@@ -41,7 +43,7 @@ class RosettaTree:
         if isinstance(tree, dendropy.Tree):
             # is a Dendropy Tree
             self._tree = dendropy_tree_to_alife_dataframe(tree) #, {'name': 'taxon_label'})
-        elif isinstance(tree, pandas.DataFrame) and self._is_valid_alife_tree(tree):
+        elif isinstance(tree, pandas.DataFrame) and alifestd_validate(tree):
             # is an Alife Dataframe
             self._tree = tree
         elif isinstance(tree, Bio.Phylo.BaseTree.Tree):
@@ -67,6 +69,3 @@ class RosettaTree:
         """Return stored tree as an alife-standardized phylogeny pandas dataframe.
         """
         return self._tree
-
-    def _is_valid_alife_tree(self, tree):
-        return 'id' in tree and 'ancestor_list' in tree
