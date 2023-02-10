@@ -1,6 +1,6 @@
 import Bio
 import dendropy
-from functools import cached_property
+from functools import lru_cache
 import pandas
 import typing
 
@@ -52,19 +52,22 @@ class RosettaTree:
         else:
             raise ValueError("Unsupported tree format")
 
-    @cached_property
+    @property
+    @lru_cache(maxsize=None)
     def biopython(self):
         """Return stored tree as a biopython tree.
         """
         return alife_dataframe_to_biopython_tree(self._tree, setup_edge_lengths=True)
 
-    @cached_property
+    @property
+    @lru_cache(maxsize=None)
     def dendropy(self):
         """Return stored tree as a dendropy tree.
         """
         return alife_dataframe_to_dendropy_tree(self._tree, setup_edge_lengths=True)
 
-    @cached_property
+    @property
+    @lru_cache(maxsize=None)
     def alife(self):
         """Return stored tree as an alife-standardized phylogeny pandas dataframe.
         """
