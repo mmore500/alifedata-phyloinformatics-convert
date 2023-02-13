@@ -28,6 +28,8 @@ click==7.0
     # via -r requirements_dev.in
 coverage==4.5.4
     # via -r requirements_dev.in
+decorator==5.1.1
+    # via networkx
 dendropy==4.5.2
     # via -r requirements_dev.in
 distlib==0.3.4
@@ -74,6 +76,8 @@ mccabe==0.6.1
 more-itertools==8.12.0
     # via pytest
 nanto==0.1.1
+    # via -r requirements_dev.in
+networkx==2.5
     # via -r requirements_dev.in
 numpy==1.21.5
     # via
