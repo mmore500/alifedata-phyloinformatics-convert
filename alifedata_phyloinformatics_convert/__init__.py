@@ -8,6 +8,7 @@ from .alife_dataframe_to_biopython_tree \
     import alife_dataframe_to_biopython_tree
 from .alife_dataframe_to_biopython_trees \
     import alife_dataframe_to_biopython_trees
+from .alife_dataframe_to_dict_of_lists import alife_dataframe_to_dict_of_lists
 from .alife_dataframe_to_dendropy_tree import alife_dataframe_to_dendropy_tree
 from .alife_dataframe_to_dendropy_trees \
     import alife_dataframe_to_dendropy_trees
