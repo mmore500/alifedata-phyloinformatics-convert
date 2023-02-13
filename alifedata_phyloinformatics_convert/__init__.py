@@ -2,7 +2,7 @@
 
 __author__ = """Matthew Andres Moreno"""
 __email__ = 'm.more500@gmail.com'
-__version__ = '0.7.1'
+__version__ = '0.8.1'
 
 from .alife_dataframe_to_biopython_tree \
     import alife_dataframe_to_biopython_tree
