@@ -7,12 +7,7 @@ import opytional as opyt
 import pandas as pd
 import typing
 
-
-# adapted from https://stackoverflow.com/a/31174427/17332200
-def _rgetattr(obj, attr, *args):
-    def _getattr(obj, attr):
-        return getattr(obj, attr, *args)
-    return functools.reduce(_getattr, [obj] + attr.split('.'))
+from ._impl import rgetattr as _rgetattr
 
 
 def biopython_tree_to_alife_dataframe(
