@@ -6,6 +6,8 @@
 #
 alabaster==0.7.12
     # via sphinx
+anytree==2.8.0
+    # via -r requirements_dev.in
 argh==0.26.2
     # via watchdog
 atomicwrites==1.4.0
@@ -142,6 +144,7 @@ requests-toolbelt==0.9.1
     # via twine
 six==1.16.0
     # via
+    #   anytree
     #   bleach
     #   pytest
     #   python-dateutil
