@@ -11,6 +11,7 @@ with open('HISTORY.rst') as history_file:
     history = history_file.read()
 
 requirements = [
+    "anytree>=2.8.0",
     "biopython>=1.79",
     "click>=7.0",
     "dendropy>=4.5.2",
