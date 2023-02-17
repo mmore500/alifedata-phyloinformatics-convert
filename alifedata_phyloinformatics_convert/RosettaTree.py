@@ -50,21 +50,21 @@ class RosettaTree:
 
     @property
     @lru_cache(maxsize=None)
-    def biopython(self):
+    def as_biopython(self):
         """Return stored tree as a biopython tree.
         """
         return alife_dataframe_to_biopython_tree(self._tree, setup_edge_lengths=True)
 
     @property
     @lru_cache(maxsize=None)
-    def dendropy(self):
+    def as_dendropy(self):
         """Return stored tree as a dendropy tree.
         """
         return alife_dataframe_to_dendropy_tree(self._tree, setup_edge_lengths=True)
 
     @property
     @lru_cache(maxsize=None)
-    def alife(self):
+    def as_alife(self):
         """Return stored tree as an alife-standardized phylogeny pandas dataframe.
         """
         return self._tree
