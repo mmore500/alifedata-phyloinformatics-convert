@@ -1,9 +1,5 @@
 import numpy as np
 
-from ._jit import jit
-
-
-@jit(nopython=True)
 def all_unique(array: np.array) -> bool:
     """Are all values in `array` unique?"""
     seen_unique = set()
