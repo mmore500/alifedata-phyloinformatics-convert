@@ -11,12 +11,14 @@ with open('HISTORY.rst') as history_file:
     history = history_file.read()
 
 requirements = [
+    "anytree>=2.8.0",
     "biopython>=1.79",
     "click>=7.0",
     "dendropy>=4.5.2",
     "iterpop>=0.4.0",
     "lyncs-utils>=0.3.2",
     "nanto>=0.1.1",
+    "networkx>=2.5",
     "numpy>=1.21.5",
     "opytional>=0.1.0",
     "pandas>=1.1.0",
@@ -57,6 +59,6 @@ setup(
     test_suite='tests',
     tests_require=test_requirements,
     url='https://github.com/mmore500/alifedata-phyloinformatics-convert',
-    version='0.7.1',
+    version='0.9.0',
     zip_safe=False,
 )

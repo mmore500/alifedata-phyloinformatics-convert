@@ -12,11 +12,13 @@ importlib-metadata==1.6.1
 pytest==4.6.5
 pytest-runner==5.1
 
+anytree==2.8.0
 click==7.0
 dendropy==4.5.2
 iterpop==0.4.0
 lyncs-utils==0.3.2
 nanto==0.1.1
+networkx==2.5
 numpy==1.21.5
 opytional==0.1.0
 pandas==1.1.2
