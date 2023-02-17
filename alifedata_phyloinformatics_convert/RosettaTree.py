@@ -31,12 +31,7 @@ class RosettaTree:
             pandas.DataFrame,
             Bio.Phylo.BaseTree.Tree
         ]):
-        """Construct the library-agnostic tree.
-
-        Parameters
-        ----------
-            tree:
-                Tree to convert from. Can be any of the three supported by this library.
+        """Construct tree from dendropy tree, alife standard dataframe, or biopython tree.
         """
         # convert any supported tree format to ALife format,
         # as this is our interal representation
