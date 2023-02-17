@@ -39,12 +39,12 @@ class RosettaTree:
         if isinstance(tree, dendropy.Tree):
             # is a Dendropy Tree
             self._tree = dendropy_tree_to_alife_dataframe(tree) #, {'name': 'taxon_label'})
-        elif isinstance(tree, pandas.DataFrame) and alifestd_validate(tree):
-            # is an Alife Dataframe
-            self._tree = tree
         elif isinstance(tree, Bio.Phylo.BaseTree.Tree):
             # is a biopython tree
             self._tree = biopython_tree_to_alife_dataframe(tree, {'name': 'taxon_label'})
+        elif isinstance(tree, pandas.DataFrame) and alifestd_validate(tree):
+            # is an Alife Dataframe
+            self._tree = tree
         else:
             raise ValueError("Unsupported tree format")
 
