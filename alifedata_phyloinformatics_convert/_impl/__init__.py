@@ -3,7 +3,7 @@ from ._alifestd_is_sexual import alifestd_is_sexual
 from ._alifestd_make_ancestor_id_col import alifestd_make_ancestor_id_col
 from ._alifestd_make_ancestor_list_col import alifestd_make_ancestor_list_col
 from ._alifestd_parse_ancestor_ids import alifestd_parse_ancestor_ids
-from .__try_alifestd_validate import _try_alifestd_validate
+from ._try_alifestd_validate import _try_alifestd_validate
 from ._all_unique import all_unique
 from ._is_in_coverage_run import is_in_coverage_run
 from ._is_subset import is_subset
