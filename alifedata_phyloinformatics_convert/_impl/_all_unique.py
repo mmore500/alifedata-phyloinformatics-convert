@@ -1,5 +1,6 @@
 import numpy as np
 
+
 def all_unique(array: np.array) -> bool:
     """Are all values in `array` unique?"""
     seen_unique = set()
