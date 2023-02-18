@@ -4,8 +4,8 @@ from functools import lru_cache
 import pandas
 import typing
 
-from ._aux._alifestd_validate \
-    import alifestd_validate
+from ._impl import alifestd_validate as alifestd_validate
+
 from .alife_dataframe_to_biopython_tree \
     import alife_dataframe_to_biopython_tree
 from .alife_dataframe_to_dendropy_tree \
