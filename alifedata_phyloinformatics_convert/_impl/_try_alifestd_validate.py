@@ -46,7 +46,7 @@ def _validate_ancestors_sexual(phylogeny_df: pd.DataFrame) -> bool:
     )
 
 
-def _alifestd_validate(
+def __try_alifestd_validate(
     phylogeny_df: pd.DataFrame,
     mutate: bool,
 ) -> bool:
@@ -79,7 +79,7 @@ def _alifestd_validate(
     )
 
 
-def alifestd_validate(
+def _try_alifestd_validate(
     phylogeny_df: pd.DataFrame,
     mutate: bool = False,
 ) -> bool:
@@ -88,6 +88,6 @@ def alifestd_validate(
     """
 
     try:
-        return _alifestd_validate(phylogeny_df, mutate)
+        return __try_alifestd_validate(phylogeny_df, mutate)
     except:
         return False

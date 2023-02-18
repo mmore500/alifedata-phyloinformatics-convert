@@ -4,7 +4,7 @@ from functools import lru_cache
 import pandas
 import typing
 
-from ._impl import alifestd_validate as alifestd_validate
+from ._impl import _try_alifestd_validate as _try_alifestd_validate
 
 from .alife_dataframe_to_biopython_tree \
     import alife_dataframe_to_biopython_tree
@@ -42,7 +42,7 @@ class RosettaTree:
         elif isinstance(tree, Bio.Phylo.BaseTree.Tree):
             # is a biopython tree
             self._tree = biopython_tree_to_alife_dataframe(tree, {'name': 'taxon_label'})
-        elif isinstance(tree, pandas.DataFrame) and alifestd_validate(tree):
+        elif isinstance(tree, pandas.DataFrame) and _try_alifestd_validate(tree):
             # is an Alife Dataframe
             self._tree = tree
         else:
