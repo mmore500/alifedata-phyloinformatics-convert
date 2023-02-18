@@ -8,7 +8,7 @@ import pandas as pd
 from ._alifestd_is_asexual import alifestd_is_asexual
 from ._alifestd_make_ancestor_id_col import alifestd_make_ancestor_id_col
 from ._alifestd_make_ancestor_list_col import alifestd_make_ancestor_list_col
-from ._alifestd_parse_ancestor_ids import alifestd_parse_ancestor_ids
+from .parse_ancestor_list import parse_ancestor_list
 from ._all_unique import all_unique
 from ._is_subset import is_subset
 
@@ -41,7 +41,7 @@ def _validate_ancestors_sexual(phylogeny_df: pd.DataFrame) -> bool:
     return all(
         ancestor_id in ids
         for ancestor_list_str in phylogeny_df["ancestor_list"]
-        for ancestor_id in alifestd_parse_ancestor_ids(ancestor_list_str)
+        for ancestor_id in parse_ancestor_list(ancestor_list_str)
         if ancestor_id is not None
     )
 
