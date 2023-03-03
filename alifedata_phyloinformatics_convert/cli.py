@@ -98,11 +98,17 @@ def toalifedata(
     ),
     required=True,
 )
+@click.option(
+    '--suppress-unifurcations/--keep-unifurcations',
+    default=False,
+    help="Compress sequences of nodes with single descendants"
+)
 def fromalifedata(
     input_file,
     input_format,
     output_file,
     output_schema,
+    suppress_unifurcations
 ):
     df = {
         'csv': pd.read_csv,
@@ -128,6 +134,9 @@ def fromalifedata(
         df,
         setup_edge_lengths=True,
     )
+
+    if suppress_unifurcations:
+        converted_tree.suppress_unifurcations()
 
     converted_tree.write(
         file=output_file,
