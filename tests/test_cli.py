@@ -12,6 +12,7 @@ import tempfile
 
 from alifedata_phyloinformatics_convert import cli
 
+import pytest
 
 def test_toalifedata_nexml_csv():
     runner = CliRunner()
@@ -84,8 +85,14 @@ def test_toalifedata_newick_json():
             f'{tempdir}/APG_Angiosperms.json',
         )
 
-
-def test_fromalifedata_newick():
+@pytest.mark.parametrize(
+    "unifurcations",
+    [
+        "keep",
+        "suppress",
+    ],
+)
+def test_fromalifedata_newick(unifurcations):
     runner = CliRunner()
     scriptdir = dirname(realpath(__file__))
     with tempfile.TemporaryDirectory() as tempdir:
@@ -95,15 +102,22 @@ def test_fromalifedata_newick():
             '--input-format csv '
             f'--output-file {tempdir}/alifedata.newick '
             '--output-schema newick '
+            f'--{unifurcations}-unifurcations'
         )
         assert result.exit_code == 0
         assert filecmp.cmp(
-            f'{scriptdir}/converted_fromalifedata/alifedata.newick',
+            f'{scriptdir}/converted_fromalifedata/{unifurcations}/alifedata.newick',
             f'{tempdir}/alifedata.newick',
         )
 
-
-def test_fromalifedata_minimal_newick():
+@pytest.mark.parametrize(
+    "unifurcations",
+    [
+        "keep",
+        "suppress",
+    ],
+)
+def test_fromalifedata_minimal_newick(unifurcations):
     runner = CliRunner()
     scriptdir = dirname(realpath(__file__))
     with tempfile.TemporaryDirectory() as tempdir:
@@ -113,15 +127,22 @@ def test_fromalifedata_minimal_newick():
             '--input-format csv '
             f'--output-file {tempdir}/alifedata_minimal.newick '
             '--output-schema newick '
+            f'--{unifurcations}-unifurcations'
         )
         assert result.exit_code == 0
         assert filecmp.cmp(
-            f'{scriptdir}/converted_fromalifedata/alifedata_minimal.newick',
+            f'{scriptdir}/converted_fromalifedata/{unifurcations}/alifedata_minimal.newick',
             f'{tempdir}/alifedata_minimal.newick',
         )
 
-
-def test_fromalifedata_nexml():
+@pytest.mark.parametrize(
+    "unifurcations",
+    [
+        "keep",
+        "suppress",
+    ],
+)
+def test_fromalifedata_nexml(unifurcations):
     runner = CliRunner()
     scriptdir = dirname(realpath(__file__))
     with tempfile.TemporaryDirectory() as tempdir:
@@ -131,15 +152,22 @@ def test_fromalifedata_nexml():
             '--input-format csv '
             f'--output-file {tempdir}/alifedata.nexml '
             '--output-schema nexml '
+            f'--{unifurcations}-unifurcations'
         )
         assert result.exit_code == 0
         assert filecmp.cmp(
-            f'{scriptdir}/converted_fromalifedata/alifedata.nexml',
+            f'{scriptdir}/converted_fromalifedata/{unifurcations}/alifedata.nexml',
             f'{tempdir}/alifedata.nexml',
         )
 
-
-def test_fromalifedata_minimal_nexml():
+@pytest.mark.parametrize(
+    "unifurcations",
+    [
+        "keep",
+        "suppress",
+    ],
+)
+def test_fromalifedata_minimal_nexml(unifurcations):
     runner = CliRunner()
     scriptdir = dirname(realpath(__file__))
     with tempfile.TemporaryDirectory() as tempdir:
@@ -149,15 +177,22 @@ def test_fromalifedata_minimal_nexml():
             '--input-format csv '
             f'--output-file {tempdir}/alifedata_minimal.nexml '
             '--output-schema nexml '
+            f'--{unifurcations}-unifurcations'
         )
         assert result.exit_code == 0
         assert filecmp.cmp(
-            f'{scriptdir}/converted_fromalifedata/alifedata_minimal.nexml',
+            f'{scriptdir}/converted_fromalifedata/{unifurcations}/alifedata_minimal.nexml',
             f'{tempdir}/alifedata_minimal.nexml',
         )
 
-
-def test_fromalifedata_nexus():
+@pytest.mark.parametrize(
+    "unifurcations",
+    [
+        "keep",
+        "suppress",
+    ],
+)
+def test_fromalifedata_nexus(unifurcations):
     runner = CliRunner()
     scriptdir = dirname(realpath(__file__))
     with tempfile.TemporaryDirectory() as tempdir:
@@ -167,15 +202,22 @@ def test_fromalifedata_nexus():
             '--input-format csv '
             f'--output-file {tempdir}/alifedata.nexus '
             '--output-schema nexus '
+            f'--{unifurcations}-unifurcations'
         )
         assert result.exit_code == 0
         assert filecmp.cmp(
-            f'{scriptdir}/converted_fromalifedata/alifedata.nexus',
+            f'{scriptdir}/converted_fromalifedata/{unifurcations}/alifedata.nexus',
             f'{tempdir}/alifedata.nexus',
         )
 
-
-def test_fromalifedata_minimal_nexus():
+@pytest.mark.parametrize(
+    "unifurcations",
+    [
+        "keep",
+        "suppress",
+    ],
+)
+def test_fromalifedata_minimal_nexus(unifurcations):
     runner = CliRunner()
     scriptdir = dirname(realpath(__file__))
     with tempfile.TemporaryDirectory() as tempdir:
@@ -185,9 +227,10 @@ def test_fromalifedata_minimal_nexus():
             '--input-format csv '
             f'--output-file {tempdir}/alifedata_minimal.nexus '
             '--output-schema nexus '
+            f'--{unifurcations}-unifurcations'
         )
         assert result.exit_code == 0
         assert filecmp.cmp(
-            f'{scriptdir}/converted_fromalifedata/alifedata_minimal.nexus',
+            f'{scriptdir}/converted_fromalifedata/{unifurcations}/alifedata_minimal.nexus',
             f'{tempdir}/alifedata_minimal.nexus',
         )

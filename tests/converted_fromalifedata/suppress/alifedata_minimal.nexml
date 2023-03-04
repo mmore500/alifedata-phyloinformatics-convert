@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<nex:nexml
+    version="0.9"
+    xsi:schemaLocation="http://www.nexml.org/2009 ../xsd/nexml.xsd"
+    xmlns="http://www.nexml.org/2009"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:xml="http://www.w3.org/XML/1998/namespace"
+    xmlns:nex="http://www.nexml.org/2009"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+>
+    <otus id="d0">
+    </otus>
+    <trees id="d1" otus="d0">
+        <tree id="d2" xsi:type="nex:FloatTree">
+            <node id="d3" />
+            <node id="d4" />
+            <node id="d5" />
+            <node id="d6" />
+            <node id="d7" />
+            <node id="d8" />
+            <node id="d9" />
+            <node id="d10" />
+            <node id="d11" />
+            <node id="d12" />
+            <node id="d13" />
+            <node id="d14" />
+            <node id="d15" />
+            <node id="d16" />
+            <node id="d17" />
+            <node id="d18" />
+            <node id="d19" />
+            <node id="d20" />
+            <node id="d21" />
+            <node id="d22" />
+            <node id="d23" />
+            <node id="d24" />
+            <node id="d25" />
+            <node id="d26" />
+            <node id="d27" />
+            <node id="d28" />
+            <node id="d29" />
+            <node id="d30" />
+            <node id="d31" />
+            <node id="d32" />
+            <node id="d33" />
+            <node id="d34" />
+            <node id="d35" />
+            <node id="d36" />
+            <node id="d37" />
+            <node id="d38" />
+            <node id="d39" />
+            <node id="d40" />
+            <node id="d41" />
+            <node id="d42" />
+            <node id="d43" />
+            <node id="d44" />
+            <node id="d45" />
+            <node id="d46" />
+            <node id="d47" />
+            <node id="d48" />
+            <node id="d49" />
+            <node id="d50" />
+            <node id="d51" />
+            <node id="d52" />
+            <node id="d53" />
+            <node id="d54" />
+            <node id="d55" />
+            <node id="d56" />
+            <node id="d57" />
+            <node id="d58" />
+            <node id="d59" />
+            <node id="d60" />
+            <node id="d61" />
+            <node id="d62" />
+            <node id="d63" />
+            <node id="d64" />
+            <node id="d65" />
+            <node id="d66" />
+            <node id="d67" />
+            <node id="d68" />
+            <node id="d69" />
+            <node id="d70" />
+            <node id="d71" />
+            <node id="d72" />
+            <node id="d73" />
+            <node id="d74" />
+            <node id="d75" />
+            <node id="d76" />
+            <node id="d77" />
+            <node id="d78" />
+            <node id="d79" />
+            <node id="d80" />
+            <node id="d81" />
+            <node id="d82" />
+            <node id="d83" />
+            <node id="d84" />
+            <node id="d85" />
+            <node id="d86" />
+            <node id="d87" />
+            <node id="d88" />
+            <node id="d89" />
+            <node id="d90" />
+            <node id="d91" />
+            <node id="d92" />
+            <node id="d93" />
+            <node id="d94" />
+            <node id="d95" />
+            <node id="d96" />
+            <node id="d97" />
+            <node id="d98" />
+            <node id="d99" />
+            <node id="d100" />
+            <node id="d101" />
+            <node id="d102" />
+            <node id="d103" />
+            <node id="d104" />
+            <node id="d105" />
+            <node id="d106" />
+            <node id="d107" />
+            <node id="d108" />
+            <node id="d109" />
+            <node id="d110" />
+            <node id="d111" />
+            <node id="d112" />
+            <node id="d113" />
+            <node id="d114" />
+            <node id="d115" />
+            <node id="d116" />
+            <node id="d117" />
+            <node id="d118" />
+            <node id="d119" />
+            <node id="d120" />
+            <node id="d121" />
+            <node id="d122" />
+            <node id="d123" />
+            <node id="d124" />
+            <node id="d125" />
+            <node id="d126" />
+            <node id="d127" />
+            <node id="d128" />
+            <node id="d129" />
+            <node id="d130" />
+            <node id="d131" />
+            <node id="d132" />
+            <node id="d133" />
+            <node id="d134" />
+            <node id="d135" />
+            <node id="d136" />
+            <node id="d137" />
+            <node id="d138" />
+            <node id="d139" />
+            <node id="d140" />
+            <node id="d141" />
+            <node id="d142" />
+            <node id="d143" />
+            <node id="d144" />
+            <node id="d145" />
+            <node id="d146" />
+            <node id="d147" />
+            <node id="d148" />
+            <node id="d149" />
+            <node id="d150" />
+            <node id="d151" />
+            <node id="d152" />
+            <rootedge id="d153" target="d3" />
+            <edge id="d154" source="d3" target="d4" />
+            <edge id="d155" source="d4" target="d5" />
+            <edge id="d156" source="d4" target="d6" />
+            <edge id="d157" source="d4" target="d7" />
+            <edge id="d158" source="d4" target="d8" />
+            <edge id="d159" source="d4" target="d9" />
+            <edge id="d160" source="d4" target="d10" />
+            <edge id="d161" source="d4" target="d11" />
+            <edge id="d162" source="d4" target="d12" />
+            <edge id="d163" source="d4" target="d13" />
+            <edge id="d164" source="d4" target="d14" />
+            <edge id="d165" source="d4" target="d15" />
+            <edge id="d166" source="d4" target="d16" />
+            <edge id="d167" source="d4" target="d17" />
+            <edge id="d168" source="d4" target="d18" />
+            <edge id="d169" source="d4" target="d19" />
+            <edge id="d170" source="d4" target="d20" />
+            <edge id="d171" source="d4" target="d21" />
+            <edge id="d172" source="d4" target="d22" />
+            <edge id="d173" source="d4" target="d23" />
+            <edge id="d174" source="d4" target="d24" />
+            <edge id="d175" source="d4" target="d25" />
+            <edge id="d176" source="d4" target="d26" />
+            <edge id="d177" source="d4" target="d27" />
+            <edge id="d178" source="d4" target="d28" />
+            <edge id="d179" source="d4" target="d29" />
+            <edge id="d180" source="d4" target="d30" />
+            <edge id="d181" source="d4" target="d31" />
+            <edge id="d182" source="d4" target="d32" />
+            <edge id="d183" source="d4" target="d33" />
+            <edge id="d184" source="d4" target="d34" />
+            <edge id="d185" source="d4" target="d35" />
+            <edge id="d186" source="d4" target="d36" />
+            <edge id="d187" source="d4" target="d37" />
+            <edge id="d188" source="d4" target="d38" />
+            <edge id="d189" source="d4" target="d39" />
+            <edge id="d190" source="d4" target="d40" />
+            <edge id="d191" source="d4" target="d41" />
+            <edge id="d192" source="d4" target="d42" />
+            <edge id="d193" source="d4" target="d43" />
+            <edge id="d194" source="d4" target="d44" />
+            <edge id="d195" source="d4" target="d45" />
+            <edge id="d196" source="d4" target="d46" />
+            <edge id="d197" source="d4" target="d47" />
+            <edge id="d198" source="d4" target="d48" />
+            <edge id="d199" source="d4" target="d49" />
+            <edge id="d200" source="d4" target="d50" />
+            <edge id="d201" source="d4" target="d51" />
+            <edge id="d202" source="d4" target="d52" />
+            <edge id="d203" source="d4" target="d53" />
+            <edge id="d204" source="d4" target="d54" />
+            <edge id="d205" source="d4" target="d55" />
+            <edge id="d206" source="d4" target="d56" />
+            <edge id="d207" source="d4" target="d57" />
+            <edge id="d208" source="d4" target="d58" />
+            <edge id="d209" source="d3" target="d59" />
+            <edge id="d210" source="d59" target="d60" />
+            <edge id="d211" source="d60" target="d61" />
+            <edge id="d212" source="d60" target="d62" />
+            <edge id="d213" source="d60" target="d63" />
+            <edge id="d214" source="d63" target="d64" />
+            <edge id="d215" source="d63" target="d65" />
+            <edge id="d216" source="d63" target="d66" />
+            <edge id="d217" source="d63" target="d67" />
+            <edge id="d218" source="d63" target="d68" />
+            <edge id="d219" source="d60" target="d69" />
+            <edge id="d220" source="d69" target="d70" />
+            <edge id="d221" source="d69" target="d71" />
+            <edge id="d222" source="d69" target="d72" />
+            <edge id="d223" source="d69" target="d73" />
+            <edge id="d224" source="d69" target="d74" />
+            <edge id="d225" source="d69" target="d75" />
+            <edge id="d226" source="d69" target="d76" />
+            <edge id="d227" source="d69" target="d77" />
+            <edge id="d228" source="d69" target="d78" />
+            <edge id="d229" source="d78" target="d79" />
+            <edge id="d230" source="d78" target="d80" />
+            <edge id="d231" source="d78" target="d81" />
+            <edge id="d232" source="d78" target="d82" />
+            <edge id="d233" source="d69" target="d83" />
+            <edge id="d234" source="d69" target="d84" />
+            <edge id="d235" source="d69" target="d85" />
+            <edge id="d236" source="d69" target="d86" />
+            <edge id="d237" source="d69" target="d87" />
+            <edge id="d238" source="d59" target="d88" />
+            <edge id="d239" source="d88" target="d89" />
+            <edge id="d240" source="d88" target="d90" />
+            <edge id="d241" source="d90" target="d91" />
+            <edge id="d242" source="d90" target="d92" />
+            <edge id="d243" source="d90" target="d93" />
+            <edge id="d244" source="d90" target="d94" />
+            <edge id="d245" source="d90" target="d95" />
+            <edge id="d246" source="d88" target="d96" />
+            <edge id="d247" source="d96" target="d97" />
+            <edge id="d248" source="d96" target="d98" />
+            <edge id="d249" source="d96" target="d99" />
+            <edge id="d250" source="d96" target="d100" />
+            <edge id="d251" source="d96" target="d101" />
+            <edge id="d252" source="d96" target="d102" />
+            <edge id="d253" source="d96" target="d103" />
+            <edge id="d254" source="d96" target="d104" />
+            <edge id="d255" source="d88" target="d105" />
+            <edge id="d256" source="d88" target="d106" />
+            <edge id="d257" source="d106" target="d107" />
+            <edge id="d258" source="d106" target="d108" />
+            <edge id="d259" source="d106" target="d109" />
+            <edge id="d260" source="d106" target="d110" />
+            <edge id="d261" source="d106" target="d111" />
+            <edge id="d262" source="d106" target="d112" />
+            <edge id="d263" source="d106" target="d113" />
+            <edge id="d264" source="d106" target="d114" />
+            <edge id="d265" source="d106" target="d115" />
+            <edge id="d266" source="d106" target="d116" />
+            <edge id="d267" source="d106" target="d117" />
+            <edge id="d268" source="d106" target="d118" />
+            <edge id="d269" source="d106" target="d119" />
+            <edge id="d270" source="d106" target="d120" />
+            <edge id="d271" source="d106" target="d121" />
+            <edge id="d272" source="d106" target="d122" />
+            <edge id="d273" source="d106" target="d123" />
+            <edge id="d274" source="d106" target="d124" />
+            <edge id="d275" source="d106" target="d125" />
+            <edge id="d276" source="d106" target="d126" />
+            <edge id="d277" source="d106" target="d127" />
+            <edge id="d278" source="d106" target="d128" />
+            <edge id="d279" source="d106" target="d129" />
+            <edge id="d280" source="d106" target="d130" />
+            <edge id="d281" source="d106" target="d131" />
+            <edge id="d282" source="d106" target="d132" />
+            <edge id="d283" source="d106" target="d133" />
+            <edge id="d284" source="d106" target="d134" />
+            <edge id="d285" source="d106" target="d135" />
+            <edge id="d286" source="d106" target="d136" />
+            <edge id="d287" source="d106" target="d137" />
+            <edge id="d288" source="d106" target="d138" />
+            <edge id="d289" source="d106" target="d139" />
+            <edge id="d290" source="d106" target="d140" />
+            <edge id="d291" source="d106" target="d141" />
+            <edge id="d292" source="d141" target="d142" />
+            <edge id="d293" source="d141" target="d143" />
+            <edge id="d294" source="d106" target="d144" />
+            <edge id="d295" source="d106" target="d145" />
+            <edge id="d296" source="d106" target="d146" />
+            <edge id="d297" source="d106" target="d147" />
+            <edge id="d298" source="d106" target="d148" />
+            <edge id="d299" source="d88" target="d149" />
+            <edge id="d300" source="d3" target="d150" />
+            <edge id="d301" source="d150" target="d151" />
+            <edge id="d302" source="d150" target="d152" />
+        </tree>
+    </trees>
+</nex:nexml>
