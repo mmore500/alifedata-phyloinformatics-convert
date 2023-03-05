@@ -280,3 +280,55 @@ def test_fromalifedata_keepsuppress_unifurcations(output_schema):
                 f"alifedata.{output_schema}",
                 f'{tempdir}/{option}_unifurcations',
             )
+
+
+@pytest.mark.parametrize(
+    "input_schema",
+    [
+        "nexus",
+        "newick",
+    ],
+)
+@pytest.mark.parametrize(
+    "output_format",
+    [
+        "csv",
+        "json",
+    ],
+)
+def test_toalifedata_keepsuppress_unifurcations(input_schema, output_format):
+    runner = CliRunner()
+    scriptdir = dirname(realpath(__file__))
+    with tempfile.TemporaryDirectory() as tempdir:
+        result = runner.invoke(
+            cli.toalifedata,
+            f'--input-file {scriptdir}/assets/alifedata.{input_schema} '
+            f'--input-schema {input_schema} '
+            f'--output-file {tempdir}/keep_unifurcations '
+            f'--output-format {output_format} '
+            f'--keep-unifurcations'
+        )
+        assert result.exit_code == 0
+        result = runner.invoke(
+            cli.toalifedata,
+            f'--input-file {scriptdir}/assets/alifedata.{input_schema} '
+            f'--input-schema {input_schema} '
+            f'--output-file {tempdir}/suppress_unifurcations '
+            f'--output-format {output_format} '
+            f'--suppress-unifurcations'
+        )
+        assert result.exit_code == 0
+
+        assert getsize(
+            f'{tempdir}/keep_unifurcations'
+        ) > getsize(
+            f'{tempdir}/suppress_unifurcations'
+        )
+        for option in "keep", "suppress":
+            assert filecmp.cmp(
+                f"{scriptdir}/"
+                "converted_toalifedata/"
+                f"{option}-unifurcations/"
+                f"alifedata.{output_format}",
+                f'{tempdir}/{option}_unifurcations',
+            )

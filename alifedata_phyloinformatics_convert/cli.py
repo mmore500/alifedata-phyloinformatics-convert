@@ -39,17 +39,25 @@ def cli():
     help='alife data file format; default csv',
     default='csv',
 )
+@click.option(
+    '--suppress-unifurcations/--keep-unifurcations',
+    default=False,
+    help="Compress sequences of nodes with single descendants"
+)
 def toalifedata(
     input_file,
     input_schema,
     output_file,
     output_format,
+    suppress_unifurcations,
 ):
 
     tree = dendropy.Tree.get(
         file=input_file,
         schema=input_schema,
     )
+    if suppress_unifurcations:
+        tree.suppress_unifurcations()
 
     converted_df = dendropy_tree_to_alife_dataframe(tree)
 
