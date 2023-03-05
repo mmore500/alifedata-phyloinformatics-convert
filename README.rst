@@ -34,12 +34,17 @@ Use it as a command line tool to convert to alife standard phylogenetics data
     convert standard alife phylogeny data to phloinformatics format
 
   Options:
-    --input-file FILENAME   phyloinformatics data file path; default stdin
-    --input-schema TEXT     phyloinformatics data format schema; options include
-                            newick, nexml, and nexus  [required]
-    --output-file FILENAME  alife data file path; default stdout
-    --output-format TEXT    alife data file format; default csv
-    --help                  Show this message and exit.
+    --input-file FILENAME           phyloinformatics data file path; default
+                                    stdin
+    --input-schema TEXT             phyloinformatics data format schema; options
+                                    include newick, nexml, and nexus  [required]
+    --output-file FILENAME          alife data file path; default stdout
+    --output-format TEXT            alife data file format; default csv
+    --suppress-unifurcations / --keep-unifurcations
+                                    Compress sequences of nodes with single
+                                    descendants
+    --help                          Show this message and exit.
+
 
 
 Use it as a command line tool to convert from alife standard phylogenetics data
