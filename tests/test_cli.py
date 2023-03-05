@@ -7,7 +7,7 @@
 
 from click.testing import CliRunner
 import filecmp
-from os.path import dirname, realpath
+from os.path import dirname, getsize, realpath
 import tempfile
 
 from alifedata_phyloinformatics_convert import cli
@@ -234,3 +234,49 @@ def test_fromalifedata_minimal_nexus(unifurcations):
             f'{scriptdir}/converted_fromalifedata/{unifurcations}-unifurcations/alifedata_minimal.nexus',
             f'{tempdir}/alifedata_minimal.nexus',
         )
+
+
+@pytest.mark.parametrize(
+    "output_schema",
+    [
+        "nexml",
+        "nexus",
+        "newick",
+    ],
+)
+def test_fromalifedata_keepsuppress_unifurcations(output_schema):
+    runner = CliRunner()
+    scriptdir = dirname(realpath(__file__))
+    with tempfile.TemporaryDirectory() as tempdir:
+        result = runner.invoke(
+            cli.fromalifedata,
+            f'--input-file {scriptdir}/assets/alifedata.csv '
+            '--input-format csv '
+            f'--output-file {tempdir}/keep_unifurcations '
+            f'--output-schema {output_schema} '
+            f'--keep-unifurcations'
+        )
+        assert result.exit_code == 0
+        result = runner.invoke(
+            cli.fromalifedata,
+            f'--input-file {scriptdir}/assets/alifedata.csv '
+            '--input-format csv '
+            f'--output-file {tempdir}/suppress_unifurcations '
+            f'--output-schema {output_schema} '
+            f'--suppress-unifurcations'
+        )
+        assert result.exit_code == 0
+
+        assert getsize(
+            f'{tempdir}/keep_unifurcations'
+        ) > getsize(
+            f'{tempdir}/suppress_unifurcations'
+        )
+        for option in "keep", "suppress":
+            assert filecmp.cmp(
+                f"{scriptdir}/"
+                "converted_fromalifedata/"
+                f"{option}-unifurcations/"
+                f"alifedata.{output_schema}",
+                f'{tempdir}/{option}_unifurcations',
+            )
