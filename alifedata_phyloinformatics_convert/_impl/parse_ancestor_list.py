@@ -1,6 +1,7 @@
 import string
 import typing
 
+
 def parse_ancestor_list(raw: str) -> typing.List[int]:
     assert not any(
         c in raw for c in string.whitespace

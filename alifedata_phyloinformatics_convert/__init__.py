@@ -23,6 +23,7 @@ from .dendropy_tree_to_scipy_linkage_matrix \
     import dendropy_tree_to_scipy_linkage_matrix
 from .scipy_linkage_matrix_to_dendropy_tree \
     import scipy_linkage_matrix_to_dendropy_tree
+from .RosettaTree import RosettaTree
 
 # adapted from https://stackoverflow.com/a/31079085
 __all__ = [
@@ -36,4 +37,5 @@ __all__ = [
     'dendropy_tree_to_alife_dataframe',
     'dendropy_tree_to_scipy_linkage_matrix',
     'scipy_linkage_matrix_to_dendropy_tree',
+    'RosettaTree',
 ]
