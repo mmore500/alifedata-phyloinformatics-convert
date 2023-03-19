@@ -40,7 +40,9 @@ class RosettaTree:
             self._tree = dendropy_tree_to_alife_dataframe(tree)
         elif isinstance(tree, Bio.Phylo.BaseTree.Tree):
             # is a biopython tree
-            self._tree = biopython_tree_to_alife_dataframe(tree, {'name': 'taxon_label'})
+            self._tree = biopython_tree_to_alife_dataframe(
+                tree, {'name': 'taxon_label'}
+            )
         elif (
             isinstance(tree, pandas.DataFrame)
             and len(tree)
@@ -55,13 +57,17 @@ class RosettaTree:
     @lru_cache(maxsize=None)
     def as_biopython(self: "RosettaTree") -> Bio.Phylo.BaseTree.Tree:
         """Return stored tree as a BioPython tree."""
-        return alife_dataframe_to_biopython_tree(self._tree, setup_branch_lengths=True)
+        return alife_dataframe_to_biopython_tree(
+            self._tree, setup_branch_lengths=True
+        )
 
     @property
     @lru_cache(maxsize=None)
     def as_dendropy(self: "RosettaTree") -> dendropy.Tree:
         """Return stored tree as a DendroPy tree."""
-        return alife_dataframe_to_dendropy_tree(self._tree, setup_edge_lengths=True)
+        return alife_dataframe_to_dendropy_tree(
+            self._tree, setup_edge_lengths=True
+        )
 
     @property
     @lru_cache(maxsize=None)
