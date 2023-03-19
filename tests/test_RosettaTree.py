@@ -1,0 +1,151 @@
+#!/usr/bin/env python
+
+"""
+`RosettaTree` tests for `alifedata-phyloinformatics-convert` package.
+"""
+
+from os.path import dirname, realpath
+
+import anytree
+from Bio import Phylo as BioPhylo
+import dendropy as dp
+import pandas as pd
+import pytest
+
+import alifedata_phyloinformatics_convert as apc
+
+
+@pytest.mark.parametrize(
+    "original_df",
+    [
+        pd.read_csv(f"{dirname(realpath(__file__))}/assets/alifedata.csv"),
+        pd.read_csv(
+            f"{dirname(realpath(__file__))}/assets/alifedata_minimal.csv",
+        ),
+    ],
+)
+def test_alife_to_biopython(original_df):
+    expected_tree = apc.alife_dataframe_to_biopython_tree(
+        original_df, setup_branch_lengths=True
+    )
+    rosetta_tree = apc.RosettaTree(original_df)
+
+    # twice to test caching
+    for __ in range(2):
+        converted_tree = rosetta_tree.as_biopython
+        assert str(converted_tree) == str(expected_tree)
+
+
+@pytest.mark.parametrize(
+    "original_df",
+    [
+        pd.read_csv(f"{dirname(realpath(__file__))}/assets/alifedata.csv"),
+        pd.read_csv(
+            f"{dirname(realpath(__file__))}/assets/alifedata_minimal.csv",
+        ),
+    ],
+)
+def test_alife_to_dendropy(original_df):
+    expected_tree = apc.alife_dataframe_to_dendropy_tree(
+        original_df, setup_edge_lengths=True
+    )
+    rosetta_tree = apc.RosettaTree(original_df)
+
+    # twice to test caching
+    for __ in range(2):
+        converted_tree = rosetta_tree.as_dendropy
+        assert str(converted_tree) == str(expected_tree)
+
+
+@pytest.mark.parametrize(
+    "original_df",
+    [
+        pd.read_csv(f"{dirname(realpath(__file__))}/assets/alifedata.csv"),
+        pd.read_csv(
+            f"{dirname(realpath(__file__))}/assets/alifedata_minimal.csv",
+        ),
+    ],
+)
+def test_biopython_to_alife(original_df):
+    original_tree = apc.alife_dataframe_to_biopython_tree(
+        original_df, setup_branch_lengths=True
+    )
+    expected_df = apc.biopython_tree_to_alife_dataframe(
+        original_tree, {"name": "taxon_label"}
+    )
+    rosetta_tree = apc.RosettaTree(original_tree)
+
+    # twice to test caching
+    for __ in range(2):
+        converted_df = rosetta_tree.as_alife
+        assert converted_df.equals(expected_df)
+
+
+@pytest.mark.parametrize(
+    "original_df",
+    [
+        pd.read_csv(f"{dirname(realpath(__file__))}/assets/alifedata.csv"),
+        pd.read_csv(
+            f"{dirname(realpath(__file__))}/assets/alifedata_minimal.csv",
+        ),
+    ],
+)
+def test_biopython_to_dendropy(original_df):
+    original_tree = apc.alife_dataframe_to_biopython_tree(
+        original_df, setup_branch_lengths=True
+    )
+    expected_tree = apc.alife_dataframe_to_dendropy_tree(
+        original_df, setup_edge_lengths=True
+    )
+    rosetta_tree = apc.RosettaTree(original_tree)
+
+    # twice to test caching
+    for __ in range(2):
+        converted_tree = rosetta_tree.as_dendropy
+        assert str(converted_tree) == str(expected_tree)
+
+
+@pytest.mark.parametrize(
+    "original_df",
+    [
+        pd.read_csv(f"{dirname(realpath(__file__))}/assets/alifedata.csv"),
+        pd.read_csv(
+            f"{dirname(realpath(__file__))}/assets/alifedata_minimal.csv",
+        ),
+    ],
+)
+def test_dendropy_to_alife(original_df):
+    original_tree = apc.alife_dataframe_to_dendropy_tree(
+        original_df, setup_edge_lengths=True
+    )
+    expected_df = apc.dendropy_tree_to_alife_dataframe(original_tree)
+    rosetta_tree = apc.RosettaTree(original_tree)
+
+    # twice to test caching
+    for __ in range(2):
+        converted_df = rosetta_tree.as_alife
+        assert converted_df.equals(expected_df)
+
+
+@pytest.mark.parametrize(
+    "original_df",
+    [
+        pd.read_csv(f"{dirname(realpath(__file__))}/assets/alifedata.csv"),
+        pd.read_csv(
+            f"{dirname(realpath(__file__))}/assets/alifedata_minimal.csv",
+        ),
+    ],
+)
+def test_dendropy_to_biopython(original_df):
+    original_tree = apc.alife_dataframe_to_dendropy_tree(
+        original_df, setup_edge_lengths=True
+    )
+    expected_tree = apc.alife_dataframe_to_biopython_tree(
+        original_df, setup_branch_lengths=True
+    )
+    rosetta_tree = apc.RosettaTree(original_tree)
+
+    # twice to test caching
+    for __ in range(2):
+        converted_tree = rosetta_tree.as_biopython
+        assert str(converted_tree) == str(expected_tree)
