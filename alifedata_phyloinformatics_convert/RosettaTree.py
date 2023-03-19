@@ -55,7 +55,7 @@ class RosettaTree:
     @lru_cache(maxsize=None)
     def as_biopython(self: "RosettaTree") -> Bio.Phylo.BaseTree.Tree:
         """Return stored tree as a BioPython tree."""
-        return alife_dataframe_to_biopython_tree(self._tree, setup_edge_lengths=True)
+        return alife_dataframe_to_biopython_tree(self._tree, setup_branch_lengths=True)
 
     @property
     @lru_cache(maxsize=None)
