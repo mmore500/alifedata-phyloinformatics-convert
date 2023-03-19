@@ -17,10 +17,12 @@ from .dendropy_tree_to_alife_dataframe \
 
 
 class RosettaTree:
-    """Simple class for seamless interoperability between phylogenetic libraries.
-    Enables user to translate across tree implementations without repeatedly calling
-    the individual conversion functions. This allows users to accept any such tree
-    as an argument in a library-agnostic way.
+    """Simple class for seamless interoperability between phylogenetic
+    libraries.
+
+    Enables user to translate across tree implementations without repeatedly
+    calling the individual conversion functions. This allows users to accept
+    any such tree as an argument in a library-agnostic way.
     """
 
     _tree: pandas.DataFrame
