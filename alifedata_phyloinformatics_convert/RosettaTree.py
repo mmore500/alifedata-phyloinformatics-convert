@@ -33,11 +33,11 @@ class RosettaTree:
         Bio.Phylo.BaseTree.Tree
     ]) -> None:
         """Set up underlying data to be viewed, from any supported format."""
-         # convert any supported tree format to ALife format,
+        # convert any supported tree format to ALife format,
         # as this is our interal representation
         if isinstance(tree, dendropy.Tree):
             # is a Dendropy Tree
-            self._tree = dendropy_tree_to_alife_dataframe(tree) #, {'name': 'taxon_label'})
+            self._tree = dendropy_tree_to_alife_dataframe(tree)
         elif isinstance(tree, Bio.Phylo.BaseTree.Tree):
             # is a biopython tree
             self._tree = biopython_tree_to_alife_dataframe(tree, {'name': 'taxon_label'})
