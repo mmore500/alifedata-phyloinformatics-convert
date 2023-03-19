@@ -41,7 +41,11 @@ class RosettaTree:
         elif isinstance(tree, Bio.Phylo.BaseTree.Tree):
             # is a biopython tree
             self._tree = biopython_tree_to_alife_dataframe(tree, {'name': 'taxon_label'})
-        elif isinstance(tree, pandas.DataFrame) and _try_alifestd_validate(tree):
+        elif (
+            isinstance(tree, pandas.DataFrame)
+            and len(tree)
+            and _try_alifestd_validate(tree)
+        ):
             # is an Alife Dataframe
             self._tree = tree
         else:
