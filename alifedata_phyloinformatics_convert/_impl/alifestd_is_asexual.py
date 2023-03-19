@@ -5,7 +5,7 @@
 # Eventually, it should be migrated to a standalone library.
 import pandas as pd
 
-from ._alifestd_is_sexual import alifestd_is_sexual
+from .alifestd_is_sexual import alifestd_is_sexual
 
 
 def alifestd_is_asexual(phylogeny_df: pd.DataFrame) -> bool:
