@@ -81,7 +81,7 @@ class RosettaTree:
     @property
     @lru_cache(maxsize=None)
     def as_networkx(self: "RosettaTree") -> nx.DiGraph:
-        """Return stored tree as a NetWorkX DiGraph tree."""
+        """Return stored tree as a NetworkX DiGraph tree."""
         return alife_dataframe_to_networkx_digraph(
             self._tree, setup_edge_lengths=True
         )
