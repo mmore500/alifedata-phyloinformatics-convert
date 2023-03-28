@@ -14,7 +14,8 @@ def alife_dataframe_to_networkx_digraph(
     data format standards as a networkx directed graph.
 
     Directed edges point from child to parent. Clades that do not share a
-    common ancestor are supported.
+    common ancestor are supported. Call `.reverse()` to orient so directed
+    edges point from parent to child.
 
     If enabled, branch lengths will be set up based on the origin_time
     attribute.
