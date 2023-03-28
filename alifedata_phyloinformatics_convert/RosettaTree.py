@@ -88,6 +88,12 @@ class RosettaTree:
 
     @property
     @lru_cache(maxsize=None)
+    def as_newick(self: "RosettaTree") -> str:
+        """Return stored tree as a NetworkX DiGraph tree."""
+        return self.as_dendropy.as_string(schema="newick")
+
+    @property
+    @lru_cache(maxsize=None)
     def as_alife(self: "RosettaTree") -> pandas.DataFrame:
         """Return stored tree as a dataframe in alife standard format."""
         return self._tree

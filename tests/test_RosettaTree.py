@@ -246,3 +246,46 @@ def test_networkx_to_dendropy(original_df):
     for __ in range(2):
         converted_tree = rosetta_tree.as_dendropy
         assert str(converted_tree) == str(expected_tree)
+
+
+@pytest.mark.parametrize(
+    "original_df",
+    [
+        pd.read_csv(f"{dirname(realpath(__file__))}/assets/alifedata.csv"),
+        pd.read_csv(
+            f"{dirname(realpath(__file__))}/assets/alifedata_minimal.csv",
+        ),
+    ],
+)
+def test_dendropy_to_newick(original_df):
+    expected_tree = apc.alife_dataframe_to_dendropy_tree(
+        original_df, setup_edge_lengths=True
+    ).as_string(schema="newick")
+    rosetta_tree = apc.RosettaTree(original_df)
+
+    # twice to test caching
+    for __ in range(2):
+        converted_tree = rosetta_tree.as_newick
+        assert converted_tree == expected_tree
+
+
+@pytest.mark.parametrize(
+    "original_df",
+    [
+        pd.read_csv(f"{dirname(realpath(__file__))}/assets/alifedata.csv"),
+        pd.read_csv(
+            f"{dirname(realpath(__file__))}/assets/alifedata_minimal.csv",
+        ),
+    ],
+)
+def test_dendropy_to_newick(original_df):
+    source_tree = apc.alife_dataframe_to_dendropy_tree(
+        original_df, setup_edge_lengths=True
+    )
+    expected_tree = source_tree.as_string(schema="newick")
+    rosetta_tree = apc.RosettaTree(source_tree)
+
+    # twice to test caching
+    for __ in range(2):
+        converted_tree = rosetta_tree.as_newick
+        assert converted_tree == expected_tree
