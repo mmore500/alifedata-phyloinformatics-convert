@@ -1,6 +1,7 @@
 import Bio
 import dendropy
 from functools import lru_cache
+import networkx as nx
 import pandas
 import typing
 
@@ -10,10 +11,14 @@ from .alife_dataframe_to_biopython_tree \
     import alife_dataframe_to_biopython_tree
 from .alife_dataframe_to_dendropy_tree \
     import alife_dataframe_to_dendropy_tree
+from .alife_dataframe_to_networkx_digraph \
+    import alife_dataframe_to_networkx_digraph
 from .biopython_tree_to_alife_dataframe \
     import biopython_tree_to_alife_dataframe
 from .dendropy_tree_to_alife_dataframe \
     import dendropy_tree_to_alife_dataframe
+from .networkx_digraph_to_alife_dataframe \
+    import networkx_digraph_to_alife_dataframe
 
 
 class RosettaTree:
@@ -29,6 +34,7 @@ class RosettaTree:
 
     def __init__(self, tree: typing.Union[
         dendropy.Tree,
+        nx.DiGraph,
         pandas.DataFrame,
         Bio.Phylo.BaseTree.Tree
     ]) -> None:
@@ -43,6 +49,9 @@ class RosettaTree:
             self._tree = biopython_tree_to_alife_dataframe(
                 tree, {'name': 'taxon_label'}
             )
+        elif isinstance(tree, nx.DiGraph):
+            # is a networkx digraph
+            self._tree = networkx_digraph_to_alife_dataframe(tree)
         elif (
             isinstance(tree, pandas.DataFrame)
             and len(tree)
@@ -66,6 +75,14 @@ class RosettaTree:
     def as_dendropy(self: "RosettaTree") -> dendropy.Tree:
         """Return stored tree as a DendroPy tree."""
         return alife_dataframe_to_dendropy_tree(
+            self._tree, setup_edge_lengths=True
+        )
+
+    @property
+    @lru_cache(maxsize=None)
+    def as_networkx(self: "RosettaTree") -> nx.DiGraph:
+        """Return stored tree as a NetWorkX DiGraph tree."""
+        return alife_dataframe_to_networkx_digraph(
             self._tree, setup_edge_lengths=True
         )
 

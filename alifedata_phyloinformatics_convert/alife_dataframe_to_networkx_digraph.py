@@ -9,12 +9,13 @@ from .alife_dataframe_to_dict_of_lists import alife_dataframe_to_dict_of_lists
 def alife_dataframe_to_networkx_digraph(
     df: pd.DataFrame,
     setup_edge_lengths: bool = False,
-) -> nx.digraph:
+) -> nx.DiGraph:
     """Open a phylogeny dataframe formatted to the artificial life community
     data format standards as a networkx directed graph.
 
     Directed edges point from child to parent. Clades that do not share a
-    common ancestor are supported.
+    common ancestor are supported. Call `.reverse()` to orient so directed
+    edges point from parent to child.
 
     If enabled, branch lengths will be set up based on the origin_time
     attribute.
@@ -22,6 +23,8 @@ def alife_dataframe_to_networkx_digraph(
     The following column values will automatically be applied as node attributes, if available:
         * branch_length,
         * edge_length,
+        * length,
+        * weight,
         * label,
         * name,
         * origin_time, and
@@ -57,7 +60,8 @@ def alife_dataframe_to_networkx_digraph(
             for attr in (
                 "branch_length",
                 "edge_length",
-                "edge_length",
+                "length",
+                "weight",
                 "label",
                 "name",
                 "origin_time",
@@ -67,7 +71,10 @@ def alife_dataframe_to_networkx_digraph(
         ]].to_dict(orient="index"),
     )
 
-    if setup_edge_lengths and "edge_length" in df:
+    if setup_edge_lengths and "length" in df:
+        for from_, to in g.edges:
+            g[from_][to]["length"] = g.nodes[from_]["length"]
+    elif setup_edge_lengths and "edge_length" in df:
         for from_, to in g.edges:
             g[from_][to]["length"] = g.nodes[from_]["edge_length"]
     elif setup_edge_lengths and "branch_length" in df:
