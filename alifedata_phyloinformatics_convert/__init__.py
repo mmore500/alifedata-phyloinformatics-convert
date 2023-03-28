@@ -19,6 +19,8 @@ from .anytree_tree_to_alife_dataframe \
 from .biopython_tree_to_alife_dataframe \
     import biopython_tree_to_alife_dataframe
 from .dendropy_tree_to_alife_dataframe import dendropy_tree_to_alife_dataframe
+from .networkx_digraph_to_alife_dataframe \
+    import networkx_digraph_to_alife_dataframe
 from .dendropy_tree_to_scipy_linkage_matrix \
     import dendropy_tree_to_scipy_linkage_matrix
 from .scipy_linkage_matrix_to_dendropy_tree \
@@ -36,6 +38,7 @@ __all__ = [
     'biopython_tree_to_alife_dataframe',
     'dendropy_tree_to_alife_dataframe',
     'dendropy_tree_to_scipy_linkage_matrix',
+    'networkx_digraph_to_alife_dataframe',
     'scipy_linkage_matrix_to_dendropy_tree',
     'RosettaTree',
 ]
