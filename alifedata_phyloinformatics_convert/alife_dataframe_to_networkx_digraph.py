@@ -9,7 +9,7 @@ from .alife_dataframe_to_dict_of_lists import alife_dataframe_to_dict_of_lists
 def alife_dataframe_to_networkx_digraph(
     df: pd.DataFrame,
     setup_edge_lengths: bool = False,
-) -> nx.digraph:
+) -> nx.DiGraph:
     """Open a phylogeny dataframe formatted to the artificial life community
     data format standards as a networkx directed graph.
 

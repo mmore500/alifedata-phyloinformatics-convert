@@ -33,7 +33,7 @@ __all__ = [
     'alife_dataframe_to_biopython_trees',
     'alife_dataframe_to_dendropy_tree',
     'alife_dataframe_to_dendropy_trees',
-    'alife_dataframe_to_network_digraph',
+    'alife_dataframe_to_networkx_digraph',
     'anytree_tree_to_alife_dataframe',
     'biopython_tree_to_alife_dataframe',
     'dendropy_tree_to_alife_dataframe',
