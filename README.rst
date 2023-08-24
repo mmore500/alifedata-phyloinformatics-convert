@@ -83,6 +83,11 @@ Use it as a Python module
   # get a alife-standardized phylogeny pandas dataframe from a dendropy Tree
   reconverted_alife_df = apc.dendropy_tree_to_alife_dataframe(dendropy_tree)
 
+  # get an ete Tree from alife-standardized phylogeny pandas dataframe
+  ete_tree = apc.alife_dataframe_to_ete_tree(alife_df)
+
+  # get an alife-standardized phylogeny pandas dataframe from an ete Tree
+  reconverted_alife_df = apc.ete_tree_to_alife_dataframe(biopython_tree)
 
   # get a biopython Tree from alife-standardized phylogeny pandas dataframe
   biopython_tree = apc.alife_dataframe_to_biopython_tree(alife_df)
