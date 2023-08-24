@@ -80,7 +80,7 @@ Use it as a Python module
   # get a dendropy Tree from alife-standardized phylogeny pandas dataframe
   dendropy_tree = apc.alife_dataframe_to_dendropy_tree(alife_df)
 
-  # get a alife-standardized phylogeny pandas dataframe from a dendropy Tree
+  # get an alife-standardized phylogeny pandas dataframe from a dendropy Tree
   reconverted_alife_df = apc.dendropy_tree_to_alife_dataframe(dendropy_tree)
 
   # get an ete Tree from alife-standardized phylogeny pandas dataframe
@@ -92,14 +92,14 @@ Use it as a Python module
   # get a biopython Tree from alife-standardized phylogeny pandas dataframe
   biopython_tree = apc.alife_dataframe_to_biopython_tree(alife_df)
 
-  # get a alife-standardized phylogeny pandas dataframe from a biopython Tree
+  # get an alife-standardized phylogeny pandas dataframe from a biopython Tree
   reconverted_alife_df = apc.dendropy_tree_to_alife_dataframe(biopython_tree)
 
   # get a networkx DiGraph from alife-standardized phylogeny pandas dataframe
   networkx_digraph = apc.alife_dataframe_to_networkx_digraph(alife_df)
 
   # get adjacency lists from alife-standardized phylogeny pandas dataframe
-  adjjacency_lists = apc.alife_dataframe_to_dict_of_lists(alife_df)
+  adjacency_lists = apc.alife_dataframe_to_dict_of_lists(alife_df)
 
 Install from PyPi
 
