@@ -13,6 +13,7 @@ from .alife_dataframe_to_dendropy_tree import alife_dataframe_to_dendropy_tree
 from .alife_dataframe_to_dendropy_trees \
     import alife_dataframe_to_dendropy_trees
 from .alife_dataframe_to_ete_tree import alife_dataframe_to_ete_tree
+from .alife_dataframe_to_ete_trees import alife_dataframe_to_ete_trees
 from .alife_dataframe_to_networkx_digraph \
     import alife_dataframe_to_networkx_digraph
 from .anytree_tree_to_alife_dataframe \
