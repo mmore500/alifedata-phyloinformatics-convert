@@ -87,7 +87,7 @@ Use it as a Python module
   ete_tree = apc.alife_dataframe_to_ete_tree(alife_df)
 
   # get an alife-standardized phylogeny pandas dataframe from an ete Tree
-  reconverted_alife_df = apc.ete_tree_to_alife_dataframe(biopython_tree)
+  reconverted_alife_df = apc.ete_tree_to_alife_dataframe(ete_tree)
 
   # get a biopython Tree from alife-standardized phylogeny pandas dataframe
   biopython_tree = apc.alife_dataframe_to_biopython_tree(alife_df)
