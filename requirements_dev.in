@@ -24,3 +24,4 @@ opytional==0.1.0
 pandas==1.1.2
 sortedcontainers==2.4.0
 biopython==1.79
+ete3==3.1.3
