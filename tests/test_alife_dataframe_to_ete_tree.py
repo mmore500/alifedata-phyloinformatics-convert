@@ -101,3 +101,30 @@ def test_setattrs_mapping():
         assert isinstance(node.tot_orgs_, int)
         assert node.num_orgs_ >= 0
         assert node.tot_orgs_ >= 0
+
+    assert all(node.dist == 1.0 for node in converted_tree)
+
+
+def test_setup_dists():
+    original_df = pd.read_csv(
+        f'{dirname(realpath(__file__))}/assets/alifedata.csv',
+    )
+    converted_tree = apc.alife_dataframe_to_ete_tree(
+        original_df,
+        setattrs={
+            'num_orgs': 'num_orgs_',
+            'tot_orgs': 'tot_orgs_',
+        },
+        setup_dists=True,
+    )
+    for node in converted_tree:
+        assert hasattr(node, 'num_orgs_')
+        assert not hasattr(node, 'num_orgs')
+        assert hasattr(node, 'tot_orgs_')
+        assert not hasattr(node, 'tot_orgs')
+        assert isinstance(node.num_orgs_, int)
+        assert isinstance(node.tot_orgs_, int)
+        assert node.num_orgs_ >= 0
+        assert node.tot_orgs_ >= 0
+
+    assert any(node.dist != 1.0 for node in converted_tree)

@@ -90,7 +90,7 @@ def alife_dataframe_to_ete_trees(
     # set up edge lengths
     if setup_dists:
         for id, parent_node in nodes.items():
-            for child_node in parent_node.child_node_iter():
+            for child_node in parent_node.children:
                 if child_node.dist == 1.0 and None not in (
                     getattr(child_node, 'origin_time', None),
                     getattr(parent_node, 'origin_time', None),
