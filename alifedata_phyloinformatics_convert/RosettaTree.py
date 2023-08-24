@@ -1,5 +1,6 @@
 import Bio
 import dendropy
+import ete3
 from functools import lru_cache
 import networkx as nx
 import pandas
@@ -11,12 +12,16 @@ from .alife_dataframe_to_biopython_tree \
     import alife_dataframe_to_biopython_tree
 from .alife_dataframe_to_dendropy_tree \
     import alife_dataframe_to_dendropy_tree
+from .alife_dataframe_to_ete_tree \
+    import alife_dataframe_to_ete_tree
 from .alife_dataframe_to_networkx_digraph \
     import alife_dataframe_to_networkx_digraph
 from .biopython_tree_to_alife_dataframe \
     import biopython_tree_to_alife_dataframe
 from .dendropy_tree_to_alife_dataframe \
     import dendropy_tree_to_alife_dataframe
+from .ete_tree_to_alife_dataframe \
+    import ete_tree_to_alife_dataframe
 from .networkx_digraph_to_alife_dataframe \
     import networkx_digraph_to_alife_dataframe
 
@@ -34,6 +39,8 @@ class RosettaTree:
 
     def __init__(self, tree: typing.Union[
         dendropy.Tree,
+        ete3.Tree,
+        ete3.TreeNode,
         nx.DiGraph,
         pandas.DataFrame,
         Bio.Phylo.BaseTree.Tree
@@ -44,6 +51,9 @@ class RosettaTree:
         if isinstance(tree, dendropy.Tree):
             # is a Dendropy Tree
             self._tree = dendropy_tree_to_alife_dataframe(tree)
+        elif isinstance(tree, (ete3.Tree, ete3.TreeNode)):
+            # is a Dendropy Tree
+            self._tree = ete_tree_to_alife_dataframe(tree)
         elif isinstance(tree, Bio.Phylo.BaseTree.Tree):
             # is a biopython tree
             self._tree = biopython_tree_to_alife_dataframe(
@@ -76,6 +86,14 @@ class RosettaTree:
         """Return stored tree as a DendroPy tree."""
         return alife_dataframe_to_dendropy_tree(
             self._tree, setup_edge_lengths=True
+        )
+
+    @property
+    @lru_cache(maxsize=None)
+    def as_ete(self: "RosettaTree") -> dendropy.Tree:
+        """Return stored tree as an ete tree."""
+        return alife_dataframe_to_ete_tree(
+            self._tree, setup_dists=True
         )
 
     @property
