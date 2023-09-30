@@ -64,8 +64,9 @@ class RosettaTree:
             self._tree = networkx_digraph_to_alife_dataframe(tree)
         elif (
             isinstance(tree, pandas.DataFrame)
-            and len(tree)
-            and _try_alifestd_validate(tree)
+            and "id" in tree.columns
+            # i.e., ancestor_id or ancestor_list
+            and tree.columns.str.startswith("ancestor_").any()
         ):
             # is an Alife Dataframe
             self._tree = tree
