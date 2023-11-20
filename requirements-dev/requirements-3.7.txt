@@ -10,7 +10,7 @@ anytree==2.8.0
     # via -r requirements.in
 babel==2.13.1
     # via sphinx
-biopython==1.79
+biopython==1.81
     # via -r requirements.in
 bleach==6.0.0
     # via readme-renderer
