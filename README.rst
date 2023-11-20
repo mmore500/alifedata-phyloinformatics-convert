@@ -5,9 +5,11 @@ alifedata-phyloinformatics-convert
 
 .. image:: https://img.shields.io/pypi/v/alifedata-phyloinformatics-convert.svg
         :target: https://pypi.python.org/pypi/alifedata-phyloinformatics-convert
+        :alt: PyPI Status
 
-.. image:: https://img.shields.io/travis/mmore500/alifedata-phyloinformatics-convert.svg
-        :target: https://travis-ci.com/mmore500/alifedata-phyloinformatics-convert
+.. image:: https://github.com/mmore500/alifedata-phyloinformatics-convert/actions/workflows/CI.yml/badge.svg
+        :target: https://github.com/mmore500/alifedata-phyloinformatics-convert/actions/workflows/CI.yml
+        :alt: CI Status
 
 .. image:: https://readthedocs.org/projects/alifedata-phyloinformatics-convert/badge/?version=latest
         :target: https://alifedata-phyloinformatics-convert.readthedocs.io/en/latest/?badge=latest
