@@ -10,7 +10,6 @@ Welcome to alifedata-phyloinformatics-convert's documentation!
    modules
    contributing
    authors
-   history
 
 .. include:: ../README.rst
 
