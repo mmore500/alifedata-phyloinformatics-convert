@@ -1,5 +1,4 @@
-Welcome to alifedata-phyloinformatics-convert's documentation!
-======================================
+.. include:: ../README.rst
 
 .. toctree::
    :maxdepth: 2
@@ -10,8 +9,6 @@ Welcome to alifedata-phyloinformatics-convert's documentation!
    modules
    contributing
    authors
-
-.. include:: ../README.rst
 
 Indices and tables
 ==================
