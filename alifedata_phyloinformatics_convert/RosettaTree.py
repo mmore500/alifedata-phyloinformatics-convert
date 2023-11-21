@@ -57,7 +57,16 @@ class RosettaTree:
         Bio.Phylo.BaseTree.Tree,
         phytrack_Systematics,
     ]) -> None:
-        """Set up underlying data to be viewed, from any supported format."""
+        """Load phylogeny from any supported data structure.
+
+        Supported data structures include:
+        - `Bio.Phylo.BaseTree.Tree` (biopython)
+        - `dendropy.Tree`
+        - `ete3.Tree`
+        - `networkx.Digraph`
+        - `pandas.DataFrame` (alife standard format)
+        - `phylotrackpy.systematics.Systematics`
+        """
         # convert any supported tree format to ALife format,
         # as this is our interal representation
         if isinstance(tree, dendropy.Tree):
