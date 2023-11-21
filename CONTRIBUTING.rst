@@ -4,10 +4,16 @@
 Contributing
 ============
 
-Contributions are welcome, and they are greatly appreciated! Every little bit
-helps, and credit will always be given.
+Contributions are welcome, and they are greatly appreciated! Every little bit helps, and credit will always be given.
 
 You can contribute in many ways:
+
+First Time Contributor?
+-----------------------
+
+General information for first-time open source contributors can be found at <https://opensource.guide/how-to-contribute/> and <https://github.com/firstcontributions/first-contributions>.
+
+Filing a bug report or making a feature request — covered elsewhere in the documentation — can also be a great way to contribute to the project.
 
 Types of Contributions
 ----------------------
@@ -26,21 +32,17 @@ If you are reporting a bug, please include:
 Fix Bugs
 ~~~~~~~~
 
-Look through the GitHub issues for bugs. Anything tagged with "bug" and "help
-wanted" is open to whoever wants to implement it.
+Look through the GitHub issues for bugs. Anything tagged with "bug" and "help wanted" is open to whoever wants to implement it.
 
 Implement Features
 ~~~~~~~~~~~~~~~~~~
 
-Look through the GitHub issues for features. Anything tagged with "enhancement"
-and "help wanted" is open to whoever wants to implement it.
+Look through the GitHub issues for features. Anything tagged with "enhancement" and "help wanted" is open to whoever wants to implement it.
 
 Write Documentation
 ~~~~~~~~~~~~~~~~~~~
 
-alifedata-phyloinformatics-convert could always use more documentation, whether as part of the
-official alifedata-phyloinformatics-convert docs, in docstrings, or even on the web in blog posts,
-articles, and such.
+alifedata-phyloinformatics-convert could always use more documentation, whether as part of the official alifedata-phyloinformatics-convert docs, in docstrings, or even on the web in blog posts, articles, and such.
 
 Submit Feedback
 ~~~~~~~~~~~~~~~
@@ -51,8 +53,7 @@ If you are proposing a feature:
 
 * Explain in detail how it would work.
 * Keep the scope as narrow as possible, to make it easier to implement.
-* Remember that this is a volunteer-driven project, and that contributions
-  are welcome :)
+* Remember that this is a volunteer-driven project, and that contributions are welcome :)
 
 Get Started!
 ------------
@@ -99,12 +100,8 @@ Pull Request Guidelines
 Before you submit a pull request, check that it meets these guidelines:
 
 1. The pull request should include tests.
-2. If the pull request adds functionality, the docs should be updated. Put
-   your new functionality into a function with a docstring, and add the
-   feature to the list in README.rst.
-3. The pull request should work for Python 3.6, 3.7 and 3.8, and for PyPy. Check
-   https://travis-ci.com/mmore500/alifedata-phyloinformatics-convert/pull_requests
-   and make sure that the tests pass for all supported Python versions.
+2. If the pull request adds functionality, the docs should be updated. Put your new functionality into a function with a docstring, and add the feature to the list in README.rst.
+3. Make sure that the continuous integration passes for all supported Python versions at <https://github.com/mmore500/alifedata-phyloinformatics-convert/actions/workflows/CI.yml>.
 
 Tips
 ----
@@ -118,11 +115,11 @@ Deploying
 ---------
 
 A reminder for the maintainers on how to deploy.
-Make sure all your changes are committed (including an entry in HISTORY.rst).
+Make sure all your changes are committed.
 Then run::
 
 $ bump2version patch # possible: major / minor / patch
 $ git push
 $ git push --tags
 
-Travis will then deploy to PyPI if tests pass.
+GitHub Actions will then deploy to PyPI if tests pass.
