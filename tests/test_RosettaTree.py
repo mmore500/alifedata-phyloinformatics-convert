@@ -18,7 +18,6 @@ import pandas as pd
 import pytest
 
 import alifedata_phyloinformatics_convert as apc
-import alifedata_phyloinformatics_convert._impl.empty_schema as empty_schema
 
 
 @pytest.mark.parametrize(
@@ -384,7 +383,7 @@ def test_dendropy_as_newick(original_df):
     expected_tree = (
         source_tree.as_string(schema="newick")
         if source_tree is not None
-        else empty_schema.newick
+        else None
     )
     rosetta_tree = apc.RosettaTree(original_df)
 
@@ -413,7 +412,7 @@ def test_to_newick(original_df):
     expected_tree = (
         source_tree.as_string(schema="newick")
         if source_tree is not None
-        else empty_schema.newick
+        else None
     )
     rosetta_tree = apc.RosettaTree(original_df)
 
@@ -421,17 +420,27 @@ def test_to_newick(original_df):
     assert converted_tree == expected_tree
 
     with tempfile.NamedTemporaryFile("w") as fp:
-        rosetta_tree.to_newick(fp)
-        fp.flush()
-        assert (
-            pathlib.Path(fp.name).read_text().strip() == expected_tree.strip()
-        )
+        if expected_tree is not None:
+            rosetta_tree.to_newick(fp)
+            fp.flush()
+            assert (
+                pathlib.Path(fp.name).read_text().strip()
+                == expected_tree.strip()
+            )
+        else:
+            with pytest.raises(ValueError):
+                rosetta_tree.to_newick(fp)
 
     with tempfile.NamedTemporaryFile("w") as fp:
-        rosetta_tree.to_newick(fp.name)
-        assert (
-            pathlib.Path(fp.name).read_text().strip() == expected_tree.strip()
-        )
+        if expected_tree is not None:
+            rosetta_tree.to_newick(fp.name)
+            assert (
+                pathlib.Path(fp.name).read_text().strip()
+                == expected_tree.strip()
+            )
+        else:
+            with pytest.raises(ValueError):
+                rosetta_tree.to_newick(fp.name)
 
 
 @pytest.mark.parametrize(
@@ -453,7 +462,7 @@ def test_to_nexus(original_df):
     expected_tree = (
         source_tree.as_string(schema="nexus")
         if source_tree is not None
-        else empty_schema.nexus
+        else None
     )
     rosetta_tree = apc.RosettaTree(original_df)
 
@@ -461,17 +470,27 @@ def test_to_nexus(original_df):
     assert converted_tree == expected_tree
 
     with tempfile.NamedTemporaryFile("w") as fp:
-        rosetta_tree.to_nexus(fp)
-        fp.flush()
-        assert (
-            pathlib.Path(fp.name).read_text().strip() == expected_tree.strip()
-        )
+        if expected_tree is not None:
+            rosetta_tree.to_nexus(fp)
+            fp.flush()
+            assert (
+                pathlib.Path(fp.name).read_text().strip()
+                == expected_tree.strip()
+            )
+        else:
+            with pytest.raises(ValueError):
+                rosetta_tree.to_nexus(fp)
 
     with tempfile.NamedTemporaryFile("w") as fp:
-        rosetta_tree.to_nexus(fp.name)
-        assert (
-            pathlib.Path(fp.name).read_text().strip() == expected_tree.strip()
-        )
+        if expected_tree is not None:
+            rosetta_tree.to_nexus(fp.name)
+            assert (
+                pathlib.Path(fp.name).read_text().strip()
+                == expected_tree.strip()
+            )
+        else:
+            with pytest.raises(ValueError):
+                rosetta_tree.to_nexus(fp.name)
 
 
 @pytest.mark.parametrize(
@@ -493,7 +512,7 @@ def test_to_nexml(original_df):
     expected_tree = (
         source_tree.as_string(schema="nexml")
         if source_tree is not None
-        else empty_schema.nexml
+        else None
     )
     rosetta_tree = apc.RosettaTree(original_df)
 
@@ -501,14 +520,24 @@ def test_to_nexml(original_df):
     assert converted_tree == expected_tree
 
     with tempfile.NamedTemporaryFile("w") as fp:
-        rosetta_tree.to_nexml(fp)
-        fp.flush()
-        assert (
-            pathlib.Path(fp.name).read_text().strip() == expected_tree.strip()
-        )
+        if expected_tree is not None:
+            rosetta_tree.to_nexml(fp)
+            fp.flush()
+            assert (
+                pathlib.Path(fp.name).read_text().strip()
+                == expected_tree.strip()
+            )
+        else:
+            with pytest.raises(ValueError):
+                rosetta_tree.to_nexml(fp)
 
     with tempfile.NamedTemporaryFile("w") as fp:
-        rosetta_tree.to_nexml(fp.name)
-        assert (
-            pathlib.Path(fp.name).read_text().strip() == expected_tree.strip()
-        )
+        if expected_tree is not None:
+            rosetta_tree.to_nexml(fp.name)
+            assert (
+                pathlib.Path(fp.name).read_text().strip()
+                == expected_tree.strip()
+            )
+        else:
+            with pytest.raises(ValueError):
+                rosetta_tree.to_nexml(fp.name)
