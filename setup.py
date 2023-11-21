@@ -21,6 +21,7 @@ requirements = [
     "numpy>=1.21.5",
     "opytional>=0.1.0",
     "pandas>=1.1.0",
+    "phylotrackpy>=0.1.16",
     "sortedcontainers>=2.4.0",
     "validators>=0.20.0",
     "yarl>=1.9.3",

@@ -109,6 +109,8 @@ packaging==23.2
     #   tox
 pandas==1.5.3 ; python_version >= "3.9" and python_version < "3.12"
     # via -r requirements.in
+phylotrackpy==0.1.16
+    # via -r requirements.in
 pkginfo==1.9.6
     # via twine
 platformdirs==3.11.0
