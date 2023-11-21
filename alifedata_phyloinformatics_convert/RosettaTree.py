@@ -103,7 +103,9 @@ class RosettaTree:
             # is an Alife Dataframe
             self._tree = tree
         else:
-            raise ValueError("Unsupported tree format")
+            raise ValueError(
+                f"Unsupported tree format {tree=} of type {type(tree)}",
+            )
 
     @property
     @lru_cache(maxsize=None)
