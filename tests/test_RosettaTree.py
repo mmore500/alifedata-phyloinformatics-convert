@@ -18,6 +18,7 @@ import pandas as pd
 import pytest
 
 import alifedata_phyloinformatics_convert as apc
+import alifedata_phyloinformatics_convert._impl.empty_schema as empty_schema
 
 
 @pytest.mark.parametrize(
@@ -371,14 +372,21 @@ def test_dendropy_to_newick(original_df):
         pd.read_csv(
             f"{dirname(realpath(__file__))}/assets/alifedata_minimal.csv",
         ),
+        pd.read_csv(
+            f"{dirname(realpath(__file__))}/assets/alifedata_empty.csv",
+        ),
     ],
 )
 def test_dendropy_as_newick(original_df):
     source_tree = apc.alife_dataframe_to_dendropy_tree(
         original_df, setup_edge_lengths=True
     )
-    expected_tree = source_tree.as_string(schema="newick")
-    rosetta_tree = apc.RosettaTree(source_tree)
+    expected_tree = (
+        source_tree.as_string(schema="newick")
+        if source_tree is not None
+        else empty_schema.newick
+    )
+    rosetta_tree = apc.RosettaTree(original_df)
 
     # twice to test caching
     for __ in range(2):
@@ -393,14 +401,21 @@ def test_dendropy_as_newick(original_df):
         pd.read_csv(
             f"{dirname(realpath(__file__))}/assets/alifedata_minimal.csv",
         ),
+        pd.read_csv(
+            f"{dirname(realpath(__file__))}/assets/alifedata_empty.csv",
+        ),
     ],
 )
 def test_to_newick(original_df):
     source_tree = apc.alife_dataframe_to_dendropy_tree(
         original_df, setup_edge_lengths=True
     )
-    expected_tree = source_tree.as_string(schema="newick")
-    rosetta_tree = apc.RosettaTree(source_tree)
+    expected_tree = (
+        source_tree.as_string(schema="newick")
+        if source_tree is not None
+        else empty_schema.newick
+    )
+    rosetta_tree = apc.RosettaTree(original_df)
 
     converted_tree = rosetta_tree.to_newick()
     assert converted_tree == expected_tree
@@ -426,14 +441,21 @@ def test_to_newick(original_df):
         pd.read_csv(
             f"{dirname(realpath(__file__))}/assets/alifedata_minimal.csv",
         ),
+        pd.read_csv(
+            f"{dirname(realpath(__file__))}/assets/alifedata_empty.csv",
+        ),
     ],
 )
 def test_to_nexus(original_df):
     source_tree = apc.alife_dataframe_to_dendropy_tree(
         original_df, setup_edge_lengths=True
     )
-    expected_tree = source_tree.as_string(schema="nexus")
-    rosetta_tree = apc.RosettaTree(source_tree)
+    expected_tree = (
+        source_tree.as_string(schema="nexus")
+        if source_tree is not None
+        else empty_schema.nexus
+    )
+    rosetta_tree = apc.RosettaTree(original_df)
 
     converted_tree = rosetta_tree.to_nexus()
     assert converted_tree == expected_tree
@@ -459,14 +481,21 @@ def test_to_nexus(original_df):
         pd.read_csv(
             f"{dirname(realpath(__file__))}/assets/alifedata_minimal.csv",
         ),
+        pd.read_csv(
+            f"{dirname(realpath(__file__))}/assets/alifedata_empty.csv",
+        ),
     ],
 )
 def test_to_nexml(original_df):
     source_tree = apc.alife_dataframe_to_dendropy_tree(
         original_df, setup_edge_lengths=True
     )
-    expected_tree = source_tree.as_string(schema="nexml")
-    rosetta_tree = apc.RosettaTree(source_tree)
+    expected_tree = (
+        source_tree.as_string(schema="nexml")
+        if source_tree is not None
+        else empty_schema.nexml
+    )
+    rosetta_tree = apc.RosettaTree(original_df)
 
     converted_tree = rosetta_tree.to_nexml()
     assert converted_tree == expected_tree

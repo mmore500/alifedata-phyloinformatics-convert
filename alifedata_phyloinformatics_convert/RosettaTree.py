@@ -148,6 +148,8 @@ class RosettaTree:
         file: typing.Union[None, str, pathlib.Path, typing.IO] = None,
     ) -> typing.Optional[str]:
         """Serialize the stored tree to `schema` format."""
+        if len(self._tree) == 0:
+            return RosettaTree._to_schema_empty(schema, file)
         try:
             if file is None:
                 return self.as_dendropy.as_string(schema=schema)
@@ -160,6 +162,31 @@ class RosettaTree:
                 f"Exception '{e}' ocurred. If provided, argument {file=} "
                 "must be file path or stream handle.",
             )
+
+    @staticmethod
+    def _to_schema_empty(
+        schema: typing.Literal[
+            "newick",
+            "nexus",
+            "nexml",
+        ],
+        file: typing.Union[None, str, pathlib.Path, typing.IO],
+    ) -> typing.Optional[str]:
+        """Internal implementation helper to handle empty tree case."""
+        try:
+            content = _empty_schema.lookup[schema]
+        except KeyError:
+            raise ValueError(
+                f"Provided {schema=} must be 'newick', 'nexml', or 'nexus'",
+            )
+
+        if file is None:
+            return content
+        elif isinstance(file, (str, pathlib.Path)):
+            with open(file, "w") as fp:
+                fp.write(content)
+        else:
+            file.write(content)
 
     def to_newick(
         self: "RosettaTree",
