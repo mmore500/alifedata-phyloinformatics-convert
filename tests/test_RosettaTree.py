@@ -4,6 +4,8 @@
 `RosettaTree` tests for `alifedata-phyloinformatics-convert` package.
 """
 
+from contextlib import redirect_stdout
+import io
 from os.path import dirname, realpath
 
 import anytree
@@ -102,6 +104,34 @@ def test_alife_to_networkx(original_df):
         ) == "\n".join(
             nx.generate_gml(expected_tree)
         )
+
+
+@pytest.mark.parametrize(
+    "original_df",
+    [
+        pd.read_csv(f"{dirname(realpath(__file__))}/assets/alifedata.csv"),
+        pd.read_csv(
+            f"{dirname(realpath(__file__))}/assets/alifedata_minimal.csv",
+        ),
+    ],
+)
+def test_alife_to_phylotrack(original_df):
+    expected_tree = apc.alife_dataframe_to_phylotrack_systematics(original_df)
+    with io.StringIO() as buf, redirect_stdout(buf):
+        expected_tree.print_status()
+        expected_string = buf.getvalue()
+
+    rosetta_tree = apc.RosettaTree(original_df)
+
+    # twice to test caching
+    for __ in range(2):
+        converted_tree = rosetta_tree.as_phylotrack
+
+        with io.StringIO() as buf, redirect_stdout(buf):
+            converted_tree.print_status()
+            converted_string = buf.getvalue()
+
+        assert converted_string == expected_string
 
 
 @pytest.mark.parametrize(
@@ -235,6 +265,26 @@ def test_networkx_to_alife(original_df):
         original_df, setup_edge_lengths=True
     )
     expected_df = apc.networkx_digraph_to_alife_dataframe(original_tree)
+    rosetta_tree = apc.RosettaTree(original_tree)
+
+    # twice to test caching
+    for __ in range(2):
+        converted_df = rosetta_tree.as_alife
+        assert converted_df.equals(expected_df)
+
+
+@pytest.mark.parametrize(
+    "original_df",
+    [
+        pd.read_csv(f"{dirname(realpath(__file__))}/assets/alifedata.csv"),
+        pd.read_csv(
+            f"{dirname(realpath(__file__))}/assets/alifedata_minimal.csv",
+        ),
+    ],
+)
+def test_networkx_to_phylotrack(original_df):
+    original_tree = apc.alife_dataframe_to_phylotrack_systematics(original_df)
+    expected_df = apc.phylotrack_systematics_to_alife_dataframe(original_tree)
     rosetta_tree = apc.RosettaTree(original_tree)
 
     # twice to test caching

@@ -4,6 +4,7 @@ import ete3
 from functools import lru_cache
 import networkx as nx
 import pandas
+from phylotrackpy.systematics import Systematics as phytrack_Systematics
 import typing
 
 from ._impl import _try_alifestd_validate as _try_alifestd_validate
@@ -16,6 +17,8 @@ from .alife_dataframe_to_ete_tree \
     import alife_dataframe_to_ete_tree
 from .alife_dataframe_to_networkx_digraph \
     import alife_dataframe_to_networkx_digraph
+from .alife_dataframe_to_phylotrack_systematics \
+    import alife_dataframe_to_phylotrack_systematics
 from .biopython_tree_to_alife_dataframe \
     import biopython_tree_to_alife_dataframe
 from .dendropy_tree_to_alife_dataframe \
@@ -24,6 +27,8 @@ from .ete_tree_to_alife_dataframe \
     import ete_tree_to_alife_dataframe
 from .networkx_digraph_to_alife_dataframe \
     import networkx_digraph_to_alife_dataframe
+from .phylotrack_systematics_to_alife_dataframe \
+    import phylotrack_systematics_to_alife_dataframe
 
 
 class RosettaTree:
@@ -43,7 +48,8 @@ class RosettaTree:
         ete3.TreeNode,
         nx.DiGraph,
         pandas.DataFrame,
-        Bio.Phylo.BaseTree.Tree
+        Bio.Phylo.BaseTree.Tree,
+        phytrack_Systematics,
     ]) -> None:
         """Set up underlying data to be viewed, from any supported format."""
         # convert any supported tree format to ALife format,
@@ -62,6 +68,9 @@ class RosettaTree:
         elif isinstance(tree, nx.DiGraph):
             # is a networkx digraph
             self._tree = networkx_digraph_to_alife_dataframe(tree)
+        elif isinstance(tree, phytrack_Systematics):
+            # is a phylotrack Systematics object
+            self._tree = phylotrack_systematics_to_alife_dataframe(tree)
         elif (
             isinstance(tree, pandas.DataFrame)
             and "id" in tree.columns
@@ -104,6 +113,12 @@ class RosettaTree:
         return alife_dataframe_to_networkx_digraph(
             self._tree, setup_edge_lengths=True
         )
+
+    @property
+    @lru_cache(maxsize=None)
+    def as_phylotrack(self: "RosettaTree") -> phytrack_Systematics:
+        """Return stored tree as a phylotrack Systematics object."""
+        return alife_dataframe_to_phylotrack_systematics(self._tree)
 
     @property
     @lru_cache(maxsize=None)
