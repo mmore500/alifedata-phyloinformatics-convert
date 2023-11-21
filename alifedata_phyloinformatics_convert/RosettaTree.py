@@ -145,7 +145,7 @@ class RosettaTree:
             "nexus",
             "nexml",
         ],
-        file: typing.Union[None, str, pathlib.Path, typing.IO],
+        file: typing.Union[None, str, pathlib.Path, typing.IO] = None,
     ) -> typing.Optional[str]:
         """Serialize the stored tree to `schema` format."""
         try:
