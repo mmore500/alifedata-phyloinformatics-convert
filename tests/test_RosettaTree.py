@@ -373,7 +373,7 @@ def test_dendropy_to_newick(original_df):
         ),
     ],
 )
-def test_dendropy_to_newick(original_df):
+def test_dendropy_as_newick(original_df):
     source_tree = apc.alife_dataframe_to_dendropy_tree(
         original_df, setup_edge_lengths=True
     )
@@ -395,7 +395,7 @@ def test_dendropy_to_newick(original_df):
         ),
     ],
 )
-def test_dendropy_to_newick(original_df):
+def test_to_newick(original_df):
     source_tree = apc.alife_dataframe_to_dendropy_tree(
         original_df, setup_edge_lengths=True
     )
@@ -428,7 +428,7 @@ def test_dendropy_to_newick(original_df):
         ),
     ],
 )
-def test_dendropy_to_nexus(original_df):
+def test_to_nexus(original_df):
     source_tree = apc.alife_dataframe_to_dendropy_tree(
         original_df, setup_edge_lengths=True
     )
@@ -461,7 +461,7 @@ def test_dendropy_to_nexus(original_df):
         ),
     ],
 )
-def test_dendropy_to_nexml(original_df):
+def test_to_nexml(original_df):
     source_tree = apc.alife_dataframe_to_dendropy_tree(
         original_df, setup_edge_lengths=True
     )
