@@ -28,6 +28,8 @@ decorator==5.1.1
     # via networkx
 dendropy==4.5.2
     # via -r requirements.in
+deprecated==1.2.13
+    # via -r requirements.in
 distlib==0.3.7
     # via virtualenv
 docutils==0.20.1
@@ -186,6 +188,8 @@ watchdog==3.0.0
     # via mkdocs
 wheel==0.33.6
     # via -r requirements.in
+wrapt==1.16.0
+    # via deprecated
 zipp==3.17.0
     # via importlib-metadata
 

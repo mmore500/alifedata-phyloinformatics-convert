@@ -12,6 +12,7 @@ requirements = [
     "biopython>=1.79",
     "click>=7.0",
     "dendropy>=4.5.2",
+    "Deprecated>=1.2.13",
     "ete3>=3.0.0",
     "iterpop>=0.4.0",
     "lyncs-utils>=0.3.2",

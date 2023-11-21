@@ -121,13 +121,58 @@ class RosettaTree:
         return alife_dataframe_to_phylotrack_systematics(self._tree)
 
     @property
+    @deprecated(version="0.15.0", reason="Use to_newick instead.")
     @lru_cache(maxsize=None)
     def as_newick(self: "RosettaTree") -> str:
         """Return stored tree as a Newick string."""
-        return self.as_dendropy.as_string(schema="newick")
+        return self.to_newick()
 
     @property
     @lru_cache(maxsize=None)
     def as_alife(self: "RosettaTree") -> pandas.DataFrame:
         """Return stored tree as a dataframe in alife standard format."""
         return self._tree
+
+    def to_schema(
+        self: "RosettaTree",
+        schema: typing.Literal[
+            "newick",
+            "nexus",
+            "nexml",
+        ],
+        file: typing.Union[None, str, pathlib.Path, typing.IO],
+    ) -> typing.Optional[str]:
+        """Serialize the stored tree to `schema` format."""
+        try:
+            if file is None:
+                return self.as_dendropy.as_string(schema=schema)
+            elif isinstance(file, (str, pathlib.Path)):
+                self.as_dendropy.write_to_path(dest=file, schema=schema)
+            else:
+                self.as_dendropy.write_to_stream(dest=file, schema=schema)
+        except Exception as e:
+            raise ValueError(
+                f"Exception '{e}' ocurred. If provided, argument {file=} "
+                "must be file path or stream handle.",
+            )
+
+    def to_newick(
+        self: "RosettaTree",
+        file: typing.Union[None, str, pathlib.Path, typing.IO] = None,
+    ) -> typing.Optional[str]:
+        """Convert the stored tree to Newick format."""
+        return self.to_schema(schema="newick", file=file)
+
+    def to_nexus(
+        self: "RosettaTree",
+        file: typing.Union[None, str, pathlib.Path, typing.IO] = None,
+    ) -> typing.Optional[str]:
+        """Convert the stored tree to Nexus format."""
+        return self.to_schema(schema="nexus", file=file)
+
+    def to_nexml(
+        self: "RosettaTree",
+        file: typing.Union[None, str, pathlib.Path, typing.IO] = None,
+    ) -> typing.Optional[str]:
+        """Convert the stored tree to Nexml format."""
+        return self.to_schema(schema="nexml", file=file)

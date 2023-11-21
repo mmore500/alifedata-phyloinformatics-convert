@@ -7,6 +7,8 @@
 from contextlib import redirect_stdout
 import io
 from os.path import dirname, realpath
+import pathlib
+import tempfile
 
 import anytree
 from Bio import Phylo as BioPhylo
@@ -382,3 +384,102 @@ def test_dendropy_to_newick(original_df):
     for __ in range(2):
         converted_tree = rosetta_tree.as_newick
         assert converted_tree == expected_tree
+
+
+@pytest.mark.parametrize(
+    "original_df",
+    [
+        pd.read_csv(f"{dirname(realpath(__file__))}/assets/alifedata.csv"),
+        pd.read_csv(
+            f"{dirname(realpath(__file__))}/assets/alifedata_minimal.csv",
+        ),
+    ],
+)
+def test_dendropy_to_newick(original_df):
+    source_tree = apc.alife_dataframe_to_dendropy_tree(
+        original_df, setup_edge_lengths=True
+    )
+    expected_tree = source_tree.as_string(schema="newick")
+    rosetta_tree = apc.RosettaTree(source_tree)
+
+    converted_tree = rosetta_tree.to_newick()
+    assert converted_tree == expected_tree
+
+    with tempfile.NamedTemporaryFile("w") as fp:
+        rosetta_tree.to_newick(fp)
+        fp.flush()
+        assert (
+            pathlib.Path(fp.name).read_text().strip() == expected_tree.strip()
+        )
+
+    with tempfile.NamedTemporaryFile("w") as fp:
+        rosetta_tree.to_newick(fp.name)
+        assert (
+            pathlib.Path(fp.name).read_text().strip() == expected_tree.strip()
+        )
+
+
+@pytest.mark.parametrize(
+    "original_df",
+    [
+        pd.read_csv(f"{dirname(realpath(__file__))}/assets/alifedata.csv"),
+        pd.read_csv(
+            f"{dirname(realpath(__file__))}/assets/alifedata_minimal.csv",
+        ),
+    ],
+)
+def test_dendropy_to_nexus(original_df):
+    source_tree = apc.alife_dataframe_to_dendropy_tree(
+        original_df, setup_edge_lengths=True
+    )
+    expected_tree = source_tree.as_string(schema="nexus")
+    rosetta_tree = apc.RosettaTree(source_tree)
+
+    converted_tree = rosetta_tree.to_nexus()
+    assert converted_tree == expected_tree
+
+    with tempfile.NamedTemporaryFile("w") as fp:
+        rosetta_tree.to_nexus(fp)
+        fp.flush()
+        assert (
+            pathlib.Path(fp.name).read_text().strip() == expected_tree.strip()
+        )
+
+    with tempfile.NamedTemporaryFile("w") as fp:
+        rosetta_tree.to_nexus(fp.name)
+        assert (
+            pathlib.Path(fp.name).read_text().strip() == expected_tree.strip()
+        )
+
+
+@pytest.mark.parametrize(
+    "original_df",
+    [
+        pd.read_csv(f"{dirname(realpath(__file__))}/assets/alifedata.csv"),
+        pd.read_csv(
+            f"{dirname(realpath(__file__))}/assets/alifedata_minimal.csv",
+        ),
+    ],
+)
+def test_dendropy_to_nexml(original_df):
+    source_tree = apc.alife_dataframe_to_dendropy_tree(
+        original_df, setup_edge_lengths=True
+    )
+    expected_tree = source_tree.as_string(schema="nexml")
+    rosetta_tree = apc.RosettaTree(source_tree)
+
+    converted_tree = rosetta_tree.to_nexml()
+    assert converted_tree == expected_tree
+
+    with tempfile.NamedTemporaryFile("w") as fp:
+        rosetta_tree.to_nexml(fp)
+        fp.flush()
+        assert (
+            pathlib.Path(fp.name).read_text().strip() == expected_tree.strip()
+        )
+
+    with tempfile.NamedTemporaryFile("w") as fp:
+        rosetta_tree.to_nexml(fp.name)
+        assert (
+            pathlib.Path(fp.name).read_text().strip() == expected_tree.strip()
+        )
