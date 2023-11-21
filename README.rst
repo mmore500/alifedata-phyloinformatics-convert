@@ -65,7 +65,7 @@ Command Line Interface
 
 Use :code:`apc`'s CLI :code:`toalifedata` command to convert newick, nexml, and nexus data to alife standard phylogenetics data
 
-.. code-block::
+.. code-block:: bash
 
   Usage: alifedata-phyloinformatics-convert toalifedata [OPTIONS]
 
@@ -87,7 +87,7 @@ Use :code:`apc`'s CLI :code:`toalifedata` command to convert newick, nexml, and 
 
 Use the :code:`fromalifedata` command to convert to other formats from alife standard phylogenetics data
 
-.. code-block::
+.. code-block:: bash
 
   Usage: alifedata-phyloinformatics-convert fromalifedata [OPTIONS]
 
