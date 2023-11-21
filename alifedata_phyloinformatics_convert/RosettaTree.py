@@ -123,7 +123,7 @@ class RosettaTree:
     @property
     @lru_cache(maxsize=None)
     def as_newick(self: "RosettaTree") -> str:
-        """Return stored tree as a NetworkX DiGraph tree."""
+        """Return stored tree as a Newick string."""
         return self.as_dendropy.as_string(schema="newick")
 
     @property
