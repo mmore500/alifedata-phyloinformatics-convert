@@ -64,7 +64,7 @@ class RosettaTree:
             # is a Dendropy Tree
             self._tree = dendropy_tree_to_alife_dataframe(tree)
         elif isinstance(tree, (ete3.Tree, ete3.TreeNode)):
-            # is a Dendropy Tree
+            # is a ete Tree
             self._tree = ete_tree_to_alife_dataframe(tree)
         elif isinstance(tree, Bio.Phylo.BaseTree.Tree):
             # is a biopython tree
