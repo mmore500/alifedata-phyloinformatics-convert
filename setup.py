@@ -7,9 +7,6 @@ from setuptools import setup, find_packages
 with open('README.rst') as readme_file:
     readme = readme_file.read()
 
-with open('HISTORY.rst') as history_file:
-    history = history_file.read()
-
 requirements = [
     "anytree>=2.8.0",
     "biopython>=1.79",
@@ -43,6 +40,9 @@ setup(
         'Programming Language :: Python :: 3.7',
         'Programming Language :: Python :: 3.8',
         'Programming Language :: Python :: 3.9',
+        'Programming Language :: Python :: 3.10',
+        'Programming Language :: Python :: 3.11',
+        'Programming Language :: Python :: 3.12',
     ],
     description="alifedata-phyloinformatics-convert helps apply traditional phyloinformatics software to alife standardized data",
     entry_points='''
@@ -51,7 +51,7 @@ setup(
     ''',
     install_requires=requirements,
     license="MIT license",
-    long_description=readme + '\n\n' + history,
+    long_description=readme,
     include_package_data=True,
     keywords='alifedata-phyloinformatics-convert',
     name='alifedata-phyloinformatics-convert',
