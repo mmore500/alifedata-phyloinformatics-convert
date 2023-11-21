@@ -6,12 +6,11 @@
 
    installation
    usage
-   modules
+   api
    contributing
    authors
 
 Indices and tables
 ==================
 * :ref:`genindex`
-* :ref:`modindex`
 * :ref:`search`
