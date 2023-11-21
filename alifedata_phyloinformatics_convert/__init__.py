@@ -40,6 +40,7 @@ __all__ = [
     'alife_dataframe_to_biopython_trees',
     'alife_dataframe_to_dendropy_tree',
     'alife_dataframe_to_dendropy_trees',
+    'alife_dataframe_to_dict_of_lists',
     'alife_dataframe_to_ete_tree',
     'alife_dataframe_to_ete_trees',
     'alife_dataframe_to_networkx_digraph',
