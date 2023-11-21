@@ -27,7 +27,7 @@ alifedata-phyloinformatics-convert helps apply traditional phyloinformatics soft
 Usage
 ----
 
-Use :code:`apc` as a Python module
+Use :code:`apc`'s functional interface to convert between alife format other libraries' tree objects.
 
 .. code-block:: python3
 
@@ -35,30 +35,31 @@ Use :code:`apc` as a Python module
 
   alife_df = pd.read_csv('alifedata.csv')
 
+  # biopython
+  tree = apc.alife_dataframe_tobiopython_tree(alife_df)
+  frame = apc.biopython_tree_to_alife_dataframe(tree)
 
-  # get a dendropy Tree from alife-standardized phylogeny pandas dataframe
-  dendropy_tree = apc.alife_dataframe_to_dendropy_tree(alife_df)
+  # dendropy
+  tree = apc.alife_dataframe_to_dendropy_tree(alife_df)
+  frame = apc.dendropy_tree_to_alife_dataframe(tree)
 
-  # get an alife-standardized phylogeny pandas dataframe from a dendropy Tree
-  reconverted_alife_df = apc.dendropy_tree_to_alife_dataframe(dendropy_tree)
-
-  # get an ete Tree from alife-standardized phylogeny pandas dataframe
+  # ete
   ete_tree = apc.alife_dataframe_to_ete_tree(alife_df)
+  frame = apc.ete_tree_to_alife_dataframe(tree)
 
-  # get an alife-standardized phylogeny pandas dataframe from an ete Tree
-  reconverted_alife_df = apc.ete_tree_to_alife_dataframe(ete_tree)
+  # networkx
+  digraph = apc.alife_dataframe_to_networkx_digraph(alife_df)
+  frame = apc.networkx_digraph_to_alife_dataframe(digraph)
 
-  # get a biopython Tree from alife-standardized phylogeny pandas dataframe
-  biopython_tree = apc.alife_dataframe_to_biopython_tree(alife_df)
+  # phylotrackpy
+  systematics = apc.alife_dataframe_to_phylotrack_systematics(alife_df)
+  frame = apc.phylotrack_systematics_to_alife_dataframe(systematics)
 
-  # get an alife-standardized phylogeny pandas dataframe from a biopython Tree
-  reconverted_alife_df = apc.dendropy_tree_to_alife_dataframe(biopython_tree)
-
-  # get a networkx DiGraph from alife-standardized phylogeny pandas dataframe
-  networkx_digraph = apc.alife_dataframe_to_networkx_digraph(alife_df)
-
-  # get adjacency lists from alife-standardized phylogeny pandas dataframe
-  adjacency_lists = apc.alife_dataframe_to_dict_of_lists(alife_df)
+  # partial support is also included for,
+  # - adjacency lists
+  # - anytree trees
+  # - scipy linkage matrices
+  # ... see API documentation for details
 
 Command Line Interface
 ----------------------
