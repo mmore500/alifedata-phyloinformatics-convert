@@ -10,6 +10,7 @@ from phylotrackpy.systematics import Systematics as phytrack_Systematics
 import typing
 
 from ._impl import _try_alifestd_validate as _try_alifestd_validate
+from ._impl import empty_schema as _empty_schema
 
 from .alife_dataframe_to_biopython_tree \
     import alife_dataframe_to_biopython_tree
@@ -86,7 +87,9 @@ class RosettaTree:
 
     @property
     @lru_cache(maxsize=None)
-    def as_biopython(self: "RosettaTree") -> Bio.Phylo.BaseTree.Tree:
+    def as_biopython(
+        self: "RosettaTree",
+    ) -> typing.Optional[Bio.Phylo.BaseTree.Tree]:
         """Return stored tree as a BioPython tree."""
         return alife_dataframe_to_biopython_tree(
             self._tree, setup_branch_lengths=True
@@ -94,7 +97,7 @@ class RosettaTree:
 
     @property
     @lru_cache(maxsize=None)
-    def as_dendropy(self: "RosettaTree") -> dendropy.Tree:
+    def as_dendropy(self: "RosettaTree") -> typing.Optional[dendropy.Tree]:
         """Return stored tree as a DendroPy tree."""
         return alife_dataframe_to_dendropy_tree(
             self._tree, setup_edge_lengths=True
@@ -102,7 +105,7 @@ class RosettaTree:
 
     @property
     @lru_cache(maxsize=None)
-    def as_ete(self: "RosettaTree") -> dendropy.Tree:
+    def as_ete(self: "RosettaTree") -> typing.Optional[ete3.Tree]:
         """Return stored tree as an ete tree."""
         return alife_dataframe_to_ete_tree(
             self._tree, setup_dists=True
