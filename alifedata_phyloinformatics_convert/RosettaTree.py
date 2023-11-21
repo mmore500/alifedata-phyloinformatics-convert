@@ -1,3 +1,4 @@
+import anytree
 import Bio
 import dendropy
 import contextlib
@@ -25,6 +26,8 @@ from .alife_dataframe_to_networkx_digraph \
     import alife_dataframe_to_networkx_digraph
 from .alife_dataframe_to_phylotrack_systematics \
     import alife_dataframe_to_phylotrack_systematics
+from .anytree_tree_to_alife_dataframe \
+    import anytree_tree_to_alife_dataframe
 from .biopython_tree_to_alife_dataframe \
     import biopython_tree_to_alife_dataframe
 from .dendropy_tree_to_alife_dataframe \
@@ -49,6 +52,7 @@ class RosettaTree:
     _tree: pandas.DataFrame
 
     def __init__(self, tree: typing.Union[
+        anytree.NodeMixin,
         dendropy.Tree,
         ete3.Tree,
         ete3.TreeNode,
@@ -60,6 +64,7 @@ class RosettaTree:
         """Load phylogeny from any supported data structure.
 
         Supported data structures include:
+        - `anytree.NodeMixin`
         - `Bio.Phylo.BaseTree.Tree` (biopython)
         - `dendropy.Tree`
         - `ete3.Tree`
@@ -69,7 +74,10 @@ class RosettaTree:
         """
         # convert any supported tree format to ALife format,
         # as this is our interal representation
-        if isinstance(tree, dendropy.Tree):
+        if isinstance(tree, anytree.node.NodeMixin):
+            # is an AnyTree tree
+            self._tree = anytree_tree_to_alife_dataframe(tree)
+        elif isinstance(tree, dendropy.Tree):
             # is a Dendropy Tree
             self._tree = dendropy_tree_to_alife_dataframe(tree)
         elif isinstance(tree, (ete3.Tree, ete3.TreeNode)):
