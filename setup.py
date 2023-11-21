@@ -22,6 +22,8 @@ requirements = [
     "opytional>=0.1.0",
     "pandas>=1.1.0",
     "sortedcontainers>=2.4.0",
+    "validators>=0.20.0",
+    "yarl>=1.9.3",
 ]
 
 setup_requirements = ['pytest-runner', ]

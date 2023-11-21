@@ -1,5 +1,6 @@
 import Bio
 import dendropy
+import contextlib
 from deprecated.sphinx import deprecated
 import ete3
 from functools import lru_cache
@@ -8,6 +9,9 @@ import pandas
 import pathlib
 from phylotrackpy.systematics import Systematics as phytrack_Systematics
 import typing
+import validators
+import warnings
+import yarl
 
 from ._impl import _try_alifestd_validate as _try_alifestd_validate
 
@@ -187,3 +191,67 @@ class RosettaTree:
     ) -> typing.Optional[str]:
         """Convert the stored tree to Nexml format."""
         return self.to_schema(schema="nexml", file=file)
+
+    @classmethod
+    def from_schema(
+        self: "RosettaTree",
+        schema: typing.Literal[
+            "newick",
+            "nexus",
+            "nexml",
+        ],
+        source: typing.Union[None, str, pathlib.Path, yarl.URL, typing.IO],
+    ) -> "RosettaTree":
+        """Serialize the stored tree to `schema` format."""
+
+        def safe_is_file() -> bool:
+            with contextlib.suppress(Exception):
+                return pathlib.Path(source).is_file()
+            return False
+
+        if isinstance(source, pathlib.Path):
+            tree = dendropy.Tree.get(path=str(source), schema=schema)
+        elif isinstance(source, yarl.URL):
+            tree = dendropy.Tree.get(url=str(source), schema=schema)
+        elif isinstance(source, str) and safe_is_file():
+            warnings.warn(
+                f"String source {source=} is ambiguous, interpreting as path. "
+                "Pass argument as pathlib.Path object to suppress warning."
+            )
+            tree = dendropy.Tree.get(path=source, schema=schema)
+        elif isinstance(source, str) and validators.url(source):
+            warnings.warn(
+                f"String source {source=} is ambiguous, interpreting as url. "
+                "Pass argument as yarl.URL object to suppress warning."
+            )
+            tree = dendropy.Tree.get(url=source, schema=schema)
+        elif isinstance(source, str):
+            tree = dendropy.Tree.get(data=source, schema=schema)
+        else:
+            tree = dendropy.Tree.get(file=source, schema=schema)
+
+        return RosettaTree(tree)
+
+    @classmethod
+    def from_newick(
+        cls: typing.Type,
+        source: typing.Union[None, str, pathlib.Path, yarl.URL, typing.IO],
+    ) -> "RosettaTree":
+        """Open data in Newick format."""
+        return cls.from_schema(schema="newick", source=source)
+
+    @classmethod
+    def from_nexus(
+        cls: typing.Type,
+        source: typing.Union[None, str, pathlib.Path, yarl.URL, typing.IO],
+    ) -> "RosettaTree":
+        """Open data in Nexus format."""
+        return cls.from_schema(schema="nexus", source=source)
+
+    @classmethod
+    def from_nexml(
+        cls: typing.Type,
+        source: typing.Union[None, str, pathlib.Path, yarl.URL, typing.IO],
+    ) -> "RosettaTree":
+        """Open data in Nexml format."""
+        return cls.from_schema(schema="nexml", source=source)

@@ -16,6 +16,7 @@ import dendropy as dp
 import networkx as nx
 import pandas as pd
 import pytest
+import yarl
 
 import alifedata_phyloinformatics_convert as apc
 
@@ -541,3 +542,60 @@ def test_to_nexml(original_df):
         else:
             with pytest.raises(ValueError):
                 rosetta_tree.to_nexml(fp.name)
+
+
+def test_from_newick():
+    path = pathlib.Path(
+        f"{dirname(realpath(__file__))}/assets/APG_Angiosperms.newick",
+    )
+    url = yarl.URL(
+        "https://raw.githubusercontent.com/mmore500/alifedata-phyloinformatics-convert/master/tests/assets/APG_Angiosperms.newick",
+    )
+    data = path.read_text()
+    expected = apc.RosettaTree(
+        dp.Tree.get(data=data, schema="newick"),
+    ).to_newick()
+
+    assert apc.RosettaTree.from_newick(path).to_newick() == expected
+    assert apc.RosettaTree.from_newick(str(path)).to_newick() == expected
+    assert apc.RosettaTree.from_newick(url).to_newick() == expected
+    assert apc.RosettaTree.from_newick(str(url)).to_newick() == expected
+    assert apc.RosettaTree.from_newick(data).to_newick() == expected
+
+
+def test_from_nexml():
+    path = pathlib.Path(
+        f"{dirname(realpath(__file__))}/assets/pythonidae.annotated.nexml",
+    )
+    url = yarl.URL(
+        "https://raw.githubusercontent.com/mmore500/alifedata-phyloinformatics-convert/master/tests/assets/pythonidae.annotated.nexml",
+    )
+    data = path.read_text()
+    expected = apc.RosettaTree(
+        dp.Tree.get(data=data, schema="nexml"),
+    ).to_nexml()
+
+    assert apc.RosettaTree.from_nexml(path).to_nexml() == expected
+    assert apc.RosettaTree.from_nexml(str(path)).to_nexml() == expected
+    assert apc.RosettaTree.from_nexml(url).to_nexml() == expected
+    assert apc.RosettaTree.from_nexml(str(url)).to_nexml() == expected
+    assert apc.RosettaTree.from_nexml(data).to_nexml() == expected
+
+
+def test_from_nexus():
+    path = pathlib.Path(
+        f"{dirname(realpath(__file__))}/assets/alifedata.nexus",
+    )
+    url = yarl.URL(
+        "https://raw.githubusercontent.com/mmore500/alifedata-phyloinformatics-convert/master/tests/assets/alifedata.nexus",
+    )
+    data = path.read_text()
+    expected = apc.RosettaTree(
+        dp.Tree.get(data=data, schema="nexus"),
+    ).to_nexus()
+
+    assert apc.RosettaTree.from_nexus(path).to_nexus() == expected
+    assert apc.RosettaTree.from_nexus(str(path)).to_nexus() == expected
+    assert apc.RosettaTree.from_nexus(url).to_nexus() == expected
+    assert apc.RosettaTree.from_nexus(str(url)).to_nexus() == expected
+    assert apc.RosettaTree.from_nexus(data).to_nexus() == expected
