@@ -104,7 +104,7 @@ class RosettaTree:
             self._tree = tree
         else:
             raise ValueError(
-                f"Unsupported tree format {tree=} of type {type(tree)}",
+                f"Unsupported tree format tree={tree} of type {type(tree)}",
             )
 
     @property
@@ -186,7 +186,7 @@ class RosettaTree:
                 self.as_dendropy.write_to_stream(dest=file, schema=schema)
         except Exception as e:
             raise ValueError(
-                f"Exception '{e}' ocurred. If provided, argument {file=} "
+                f"Exception '{e}' ocurred. If provided, argument file={file} "
                 "must be file path or stream handle.",
             )
 
@@ -234,13 +234,13 @@ class RosettaTree:
             tree = dendropy.Tree.get(url=str(source), schema=schema)
         elif isinstance(source, str) and safe_is_file():
             warnings.warn(
-                f"String source {source=} is ambiguous, interpreting as path. "
+                f"String source={source} is ambiguous, interpreting as path. "
                 "Pass argument as pathlib.Path object to suppress warning."
             )
             tree = dendropy.Tree.get(path=source, schema=schema)
         elif isinstance(source, str) and validators.url(source):
             warnings.warn(
-                f"String source {source=} is ambiguous, interpreting as url. "
+                f"String source={source} is ambiguous, interpreting as url. "
                 "Pass argument as yarl.URL object to suppress warning."
             )
             tree = dendropy.Tree.get(url=source, schema=schema)
