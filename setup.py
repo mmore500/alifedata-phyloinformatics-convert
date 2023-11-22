@@ -65,6 +65,6 @@ setup(
     test_suite='tests',
     tests_require=test_requirements,
     url='https://github.com/mmore500/alifedata-phyloinformatics-convert',
-    version='0.14.2',
+    version='0.15.0',
     zip_safe=False,
 )
