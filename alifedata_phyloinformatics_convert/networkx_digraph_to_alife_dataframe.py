@@ -47,6 +47,9 @@ def networkx_digraph_to_alife_dataframe(
             label_attribute="label",
         )
 
+    if len(graph.nodes) == 0:
+        return pd.DataFrame({"id": [], "ancestor_list": []})
+
     records = []
     visited_nodes = set(graph.nodes)
     for from_, to, edge_data in it.chain(
