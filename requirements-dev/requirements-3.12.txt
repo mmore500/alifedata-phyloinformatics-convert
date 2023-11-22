@@ -192,6 +192,8 @@ tqdm==4.66.1
     # via twine
 twine==1.14.0
     # via -r requirements.in
+typing-extensions==4.7.1
+    # via -r requirements.in
 tzdata==2023.3
     # via pandas
 urllib3==2.1.0

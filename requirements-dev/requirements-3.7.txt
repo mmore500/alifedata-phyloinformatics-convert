@@ -203,6 +203,7 @@ twine==1.14.0
     # via -r requirements.in
 typing-extensions==4.7.1
     # via
+    #   -r requirements.in
     #   gitpython
     #   importlib-metadata
     #   platformdirs

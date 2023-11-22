@@ -23,6 +23,7 @@ requirements = [
     "pandas>=1.1.0",
     "phylotrackpy>=0.1.16",
     "sortedcontainers>=2.4.0",
+    "typing-extensions>=4.7.1",
     "validators>=0.20.0",
     "yarl>=1.9.3",
 ]

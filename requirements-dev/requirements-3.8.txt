@@ -196,6 +196,8 @@ tqdm==4.66.1
     # via twine
 twine==1.14.0
     # via -r requirements.in
+typing-extensions==4.7.1
+    # via -r requirements.in
 urllib3==2.1.0
     # via requests
 validators==0.20.0

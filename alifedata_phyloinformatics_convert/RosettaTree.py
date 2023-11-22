@@ -10,6 +10,7 @@ import pandas
 import pathlib
 from phylotrackpy.systematics import Systematics as phytrack_Systematics
 import typing
+import typing_extensions
 import validators
 import warnings
 import yarl
@@ -162,7 +163,7 @@ class RosettaTree:
 
     def to_schema(
         self: "RosettaTree",
-        schema: typing.Literal[
+        schema: typing_extensions.Literal[
             "newick",
             "nexus",
             "nexml",
@@ -214,7 +215,7 @@ class RosettaTree:
     @classmethod
     def from_schema(
         self: "RosettaTree",
-        schema: typing.Literal[
+        schema: typing_extensions.Literal[
             "newick",
             "nexus",
             "nexml",
