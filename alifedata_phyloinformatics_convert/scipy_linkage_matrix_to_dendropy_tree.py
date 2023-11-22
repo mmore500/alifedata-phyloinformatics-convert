@@ -11,7 +11,10 @@ def scipy_linkage_matrix_to_dendropy_tree(
     label_leaf_nodes: bool = True,
     label_leaf_taxa: bool = True,
 ) -> dendropy.Tree:
-    """
+    """Create a DendroPy Tree object from a SciPy linkage matrix.
+
+    See <https://docs.scipy.org/doc/scipy/reference/generated/scipy.cluster.hierarchy.linkage.html>.
+
     Parameters
     ----------
     leaf_labels: list, optional

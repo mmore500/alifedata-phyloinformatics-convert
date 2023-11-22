@@ -7,6 +7,10 @@ from sortedcontainers import SortedSet
 
 
 def dendropy_tree_to_scipy_linkage_matrix(tree: dendropy.Tree) -> np.array:
+    """Create a SciPy linkage matrix from a DendroPy Tree object.
+
+    See <https://docs.scipy.org/doc/scipy/reference/generated/scipy.cluster.hierarchy.linkage.html>.
+    """
     # scipy linkage format
     # http://docs.scipy.org/doc/scipy/reference/generated/scipy.cluster.hierarchy.linkage.html#scipy.cluster.hierarchy.linkage
 
