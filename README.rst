@@ -25,7 +25,7 @@ alifedata-phyloinformatics-convert helps apply traditional phyloinformatics soft
 * Documentation: https://alifedata-phyloinformatics-convert.readthedocs.io.
 
 Usage
-----
+-----
 
 Use :code:`apc`'s :code:`RosettaTree` interface for flexible conversion between phylogenetic data structures and schemas.
 First, create a :code:`RosettaTree` object from any supported structure/schema
