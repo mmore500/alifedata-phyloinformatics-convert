@@ -27,13 +27,75 @@ alifedata-phyloinformatics-convert helps apply traditional phyloinformatics soft
 Usage
 ----
 
-Use :code:`apc`'s functional interface to convert between alife format other libraries' tree objects.
+Use :code:`apc`'s :code:`RosettaTree` interface for flexible conversion between phylogenetic data structures and schemas.
+First, create a :code:`RosettaTree` object from any supported structure/schema
+
+.. code-block:: python3
+
+  import io
+  import pathlib
+
+  import alifedata_phyloinformatics_convert as apc
+  import anytree
+  import Bio
+  import dendropy
+  import ete3 as ete
+  import networkx
+  import pandas
+  import phylotrackpy
+
+  newickstr = "((A,B),(C,D));"
+
+  for obj in [
+    anytree.AnyNode(),
+    Bio.Phylo.read(io.StringIO(newickstr), "newick"),
+    dendropy.Tree.get(data=newickstr, schema="newick"),
+    ete.Tree(newickstr),
+    networkx.DiGraph(),
+    pandas.DataFrame({"id": [0], "ancestor_list": "[None]"}),  # alife standard
+    phylotrackpy.systematics.Systematics(lambda x: x),
+  ]:
+    rt = apc.RosettaTree(obj)
+
+  # from phyloinformatics schema
+  # ... nexml and nexus also supported!
+  rt = apc.RosettaTree.from_newick(newickstr)
+  rt = apc.RosettaTree.from_newick(pathlib.Path("read.newick"))
+  with open("read.newick", "r") as fp:
+    rt = apc.RosettaTree.from_newick(fp)
+
+  # from alife standard data via Pandas
+  rt = apc.RosettaTree(pandas.read_csv("read-alifestd.csv"))
+
+Then, convert or serialize data
+
+.. code-block:: python3
+
+  # ... rt created as above
+  rt.as_alife  # pandas DataFrame
+  rt.as_biopython
+  rt.as_dendropy
+  rt.as_ete
+  rt.as_networkx
+  rt.as_phylotrack
+
+  # serialization, nexml and nexus schemata also supported
+  rt.to_newick()  # returns newick string
+  rt.to_newick(pathlib.Path("write.newick"))  # writes to path
+  with open("write.newick", "w") as fp:  # writes to file object
+    rt.to_newick(fp)
+
+  # alifestd serialization
+  rt.as_alife.to_csv("write-alifestd.csv", index=False)
+
+Use :code:`apc`'s functional interface to convert between alife format other libraries' tree objects
 
 .. code-block:: python3
 
   import alifedata_phyloinformatics_convert as apc
+  import pandas
 
-  alife_df = pd.read_csv('alifedata.csv')
+  alife_df = pandas.read_csv('alifedata.csv')
 
   # biopython
   tree = apc.alife_dataframe_tobiopython_tree(alife_df)
