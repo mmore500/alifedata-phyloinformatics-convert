@@ -55,38 +55,38 @@ First, create a :code:`RosettaTree` object from any supported structure/schema
     pandas.DataFrame({"id": [0], "ancestor_list": "[None]"}),  # alife standard
     phylotrackpy.systematics.Systematics(lambda x: x),
   ]:
-    rt = apc.RosettaTree(obj)
+    converter = apc.RosettaTree(obj)
 
   # from phyloinformatics schema
   # ... nexml and nexus also supported!
-  rt = apc.RosettaTree.from_newick(newickstr)
-  rt = apc.RosettaTree.from_newick(pathlib.Path("read.newick"))
+  converter = apc.RosettaTree.from_newick(newickstr)
+  converter = apc.RosettaTree.from_newick(pathlib.Path("read.newick"))
   with open("read.newick", "r") as fp:
-    rt = apc.RosettaTree.from_newick(fp)
+    converter = apc.RosettaTree.from_newick(fp)
 
   # from alife standard data via Pandas
-  rt = apc.RosettaTree(pandas.read_csv("read-alifestd.csv"))
+  converter = apc.RosettaTree(pandas.read_csv("read-alifestd.csv"))
 
 Then, convert or serialize data
 
 .. code-block:: python3
 
-  # ... rt created as above
-  rt.as_alife  # pandas DataFrame
-  rt.as_biopython
-  rt.as_dendropy
-  rt.as_ete
-  rt.as_networkx
-  rt.as_phylotrack
+  # ... converter created as above
+  converter.as_alife  # pandas DataFrame
+  converter.as_biopython
+  converter.as_dendropy
+  converter.as_ete
+  converter.as_networkx
+  converter.as_phylotrack
 
   # serialization, nexml and nexus schemata also supported
-  rt.to_newick()  # returns newick string
-  rt.to_newick(pathlib.Path("write.newick"))  # writes to path
+  converter.to_newick()  # returns newick string
+  converter.to_newick(pathlib.Path("write.newick"))  # writes to path
   with open("write.newick", "w") as fp:  # writes to file object
-    rt.to_newick(fp)
+    converter.to_newick(fp)
 
   # alifestd serialization
-  rt.as_alife.to_csv("write-alifestd.csv", index=False)
+  converter.as_alife.to_csv("write-alifestd.csv", index=False)
 
 Use :code:`apc`'s functional interface to convert between alife format other libraries' tree objects
 
