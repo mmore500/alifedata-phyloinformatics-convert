@@ -35,9 +35,9 @@ def _validate_ancestors_asexual(
             "str"
         ).str.lower().replace(
             "[]", "[none]"
-        ) == alifestd_make_ancestor_list_col(
+        ).to_numpy() == alifestd_make_ancestor_list_col(
             phylogeny_df["id"], phylogeny_df["ancestor_id"]
-        )
+        ).to_numpy()
         if not (ok_ancestor_list_mask).all():
             example_row1 = phylogeny_df[~ok_ancestor_list_mask].iloc[0]
             example_row2 = phylogeny_df[~ok_ancestor_list_mask].sample(n=1)
