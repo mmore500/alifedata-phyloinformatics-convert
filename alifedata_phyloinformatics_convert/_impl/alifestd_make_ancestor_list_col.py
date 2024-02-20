@@ -16,4 +16,4 @@ def alifestd_make_ancestor_list_col(
     res = ancestor_ids.map("[{}]".format)
     res[ids == ancestor_ids] = "[none]"
 
-    return
+    return res
