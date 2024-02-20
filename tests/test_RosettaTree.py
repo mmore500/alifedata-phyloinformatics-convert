@@ -52,6 +52,31 @@ def test_anytree_simple_tree_origin_times():
     assert converted_df.equals(expected_df)
 
 
+def test_anytree_simple_tree_invalid():
+    expected_df = pd.DataFrame(
+        {
+            "id": [0, 1111, 333, 2222, 444, 555, 666],
+            "ancestor_list": [
+                "[None]",
+                "[191]",
+                "[0]",
+                "[1111]",
+                "[333]",
+                "[333]",
+                "[333]",
+            ],
+            "edge_length": [1, 1, 2, 1, 4, 5, 6],
+            "name": ["Udo", "Marc", "Dan", "Lian", "Jet", "Jan", "Joe"],
+            "origin_time": [1, 2, 3, 3, 7, 8, 9],
+        }
+    )
+    with pytest.raises(ValueError):
+        apc.RosettaTree(expected_df, validate="error")
+    with pytest.warns(UserWarning):
+        apc.RosettaTree(expected_df, validate="warn")
+    apc.RosettaTree(expected_df, validate="ignore")
+
+
 @pytest.mark.parametrize(
     "original_df",
     [

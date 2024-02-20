@@ -2,7 +2,7 @@ from .alifestd_is_asexual import alifestd_is_asexual
 from .alifestd_is_sexual import alifestd_is_sexual
 from .alifestd_make_ancestor_id_col import alifestd_make_ancestor_id_col
 from .alifestd_make_ancestor_list_col import alifestd_make_ancestor_list_col
-from .try_alifestd_validate import _try_alifestd_validate
+from .alifestd_validate import alifestd_validate
 from .all_unique import all_unique
 from .is_subset import is_subset
 from .parse_ancestor_list import parse_ancestor_list

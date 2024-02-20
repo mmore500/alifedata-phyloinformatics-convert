@@ -15,7 +15,7 @@ import validators
 import warnings
 import yarl
 
-from ._impl import _try_alifestd_validate as _try_alifestd_validate
+from ._impl import alifestd_validate as alifestd_validate
 
 from .alife_dataframe_to_biopython_tree \
     import alife_dataframe_to_biopython_tree
@@ -52,16 +52,20 @@ class RosettaTree:
 
     _tree: pandas.DataFrame
 
-    def __init__(self, tree: typing.Union[
-        anytree.NodeMixin,
-        dendropy.Tree,
-        ete3.Tree,
-        ete3.TreeNode,
-        nx.DiGraph,
-        pandas.DataFrame,
-        Bio.Phylo.BaseTree.Tree,
-        phytrack_Systematics,
-    ]) -> None:
+    def __init__(
+        self,
+        tree: typing.Union[
+            anytree.NodeMixin,
+            dendropy.Tree,
+            ete3.Tree,
+            ete3.TreeNode,
+            nx.DiGraph,
+            pandas.DataFrame,
+            Bio.Phylo.BaseTree.Tree,
+            phytrack_Systematics,
+        ],
+        validate: typing.Literal["warn", "error", "ignore"] = "warn",
+    ) -> None:
         """Load phylogeny from any supported data structure.
 
         Supported data structures include:
@@ -101,7 +105,17 @@ class RosettaTree:
             # i.e., ancestor_id or ancestor_list
             and tree.columns.str.startswith("ancestor_").any()
         ):
-            # is an Alife Dataframe
+            if validate == "ignore":
+                pass
+            elif not alifestd_validate(tree):
+                if validate == "error":
+                    raise ValueError(
+                        "Tree does not comply with alife data standards.",
+                    )
+                elif validate == "warn":
+                    warnings.warn(
+                        "Tree does not comply with alife data standards.",
+                    )
             self._tree = tree
         else:
             raise ValueError(
