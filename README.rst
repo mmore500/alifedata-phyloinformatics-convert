@@ -15,7 +15,8 @@ alifedata-phyloinformatics-convert
         :target: https://alifedata-phyloinformatics-convert.readthedocs.io/en/latest/?badge=latest
         :alt: Documentation Status
 
-
+.. image:: https://zenodo.org/badge/466241441.svg
+  :target: https://zenodo.org/doi/10.5281/zenodo.10701178
 
 
 alifedata-phyloinformatics-convert helps apply traditional phyloinformatics software to alife standardized data
@@ -177,6 +178,26 @@ Install from PyPi
 
   pip3 install alifedata-phyloinformatics-convert
 
+Citing
+------
+
+If alifedata-phyloinformatics-convert is used in scientific publication, please cite it as
+
+    Matthew Andres Moreno and Santiago Rodriguez Papa. (2024). mmore500/alifedata-phyloinformatics-convert. Zenodo. https://doi.org/10.5281/zenodo.10701178
+
+.. code:: bibtex
+
+    @software{moreno2024apc,
+      author = {Matthew Andres Moreno AND Santiago Rodriguez Papa},
+      title = {mmore500/alifedata-phyloinformatics-convert},
+      month = feb,
+      year = 2024,
+      publisher = {Zenodo},
+      doi = {10.5281/zenodo.10701178},
+      url = {https://doi.org/10.5281/zenodo.10701178}
+    }
+
+And don't forget to leave a `star on GitHub <https://github.com/mmore500/alifedata-phyloinformatics-convert/stargazers>`__!
 
 Credits
 -------
