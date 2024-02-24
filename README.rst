@@ -113,7 +113,6 @@ If alifedata-phyloinformatics-convert is used in scientific publication, please 
       url = {https://doi.org/10.5281/zenodo.10701178}
     }
 
-Consider also citing `matplotlib <https://matplotlib.org/stable/users/project/citing.html>`__ and `seaborn <https://seaborn.pydata.org/citing.html>`__ .
 And don't forget to leave a `star on GitHub <https://github.com/mmore500/alifedata-phyloinformatics-convert/stargazers>`__!
 
 Credits
