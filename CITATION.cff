@@ -1,0 +1,17 @@
+cff-version: 1.1.0
+message: "If you use this software, please cite it as below."
+title: 'alifedata-phyloinformatics-convert: a Python library for phylogeny data conversion'
+abstract: "alifedata-phyloinformatics-convert helps apply traditional phyloinformatics software to alife standardized data."
+authors:
+- family-names: Moreno
+  given-names: Matthew Andres
+  orcid: 0000-0003-4726-4479
+- affiliation: Michigan State University
+  family-names: Rodriguez Papa
+  given-names: Santiago
+  orcid: 'https://orcid.org/0000-0003-0994-2718'
+date-released: 2024-02-24
+doi: 10.5281/zenodo.10701178
+license: MIT
+repository-code: https://github.com/mmore500/alifedata-phyloinformatics-convert
+url: "https://github.com/mmore500/alifedata-phyloinformatics-convert"
