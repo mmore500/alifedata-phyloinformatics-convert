@@ -188,7 +188,7 @@ If alifedata-phyloinformatics-convert is used in scientific publication, please 
 .. code:: bibtex
 
     @software{moreno2024apc,
-      author = {Matthew Andres Moreno AND Santiago Rodriguez Papa},
+      author = {Matthew Andres Moreno AND Santiago {Rodriguez Papa}},
       title = {mmore500/alifedata-phyloinformatics-convert},
       month = feb,
       year = 2024,
