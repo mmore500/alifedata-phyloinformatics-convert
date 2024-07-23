@@ -186,11 +186,11 @@ sphinxcontrib-qthelp==1.0.6
     # via sphinx
 sphinxcontrib-serializinghtml==1.1.5
     # via sphinx
-toml==0.10.2
-    # via tox
 tomli==2.0.1
-    # via pytest
-tox==3.24.5
+    # via
+    #   pytest
+    #   tox
+tox==3.28.0
     # via -r requirements.in
 tqdm==4.66.1
     # via twine

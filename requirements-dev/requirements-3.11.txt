@@ -34,7 +34,7 @@ deprecated==1.2.13
     # via -r requirements.in
 distlib==0.3.7
     # via virtualenv
-docutils==0.20.1
+docutils==0.19
     # via
     #   readme-renderer
     #   sphinx
@@ -109,7 +109,7 @@ packaging==23.2
     #   tox
 pandas==1.5.3 ; python_version >= "3.9" and python_version < "3.12"
     # via -r requirements.in
-phylotrackpy==0.1.16
+phylotrackpy==0.1.17
     # via -r requirements.in
 pkginfo==1.9.6
     # via twine
@@ -158,7 +158,6 @@ six==1.16.0
     # via
     #   anytree
     #   python-dateutil
-    #   sphinx
     #   tox
 smmap==5.0.1
     # via gitdb
@@ -166,19 +165,27 @@ snowballstemmer==2.2.0
     # via sphinx
 sortedcontainers==2.4.0
     # via -r requirements.in
-sphinx==1.8.5
+sphinx==5.3.0
     # via -r requirements.in
-sphinxcontrib-serializinghtml==1.1.5
-    # via sphinxcontrib-websupport
-sphinxcontrib-websupport==1.2.4
+sphinxcontrib-applehelp==1.0.8
     # via sphinx
-toml==0.10.2
-    # via tox
-tox==3.24.5
+sphinxcontrib-devhelp==1.0.6
+    # via sphinx
+sphinxcontrib-htmlhelp==2.0.6
+    # via sphinx
+sphinxcontrib-jsmath==1.0.1
+    # via sphinx
+sphinxcontrib-qthelp==1.0.8
+    # via sphinx
+sphinxcontrib-serializinghtml==1.1.5
+    # via sphinx
+tox==3.28.0
     # via -r requirements.in
 tqdm==4.66.1
     # via twine
 twine==1.14.0
+    # via -r requirements.in
+typing-extensions==4.7.1
     # via -r requirements.in
 urllib3==2.1.0
     # via requests
