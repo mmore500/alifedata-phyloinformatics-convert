@@ -15,7 +15,6 @@ requirements = [
     "Deprecated>=1.2.13",
     "ete3>=3.0.0",
     "iterpop>=0.4.0",
-    "lyncs-utils>=0.3.2",
     "nanto>=0.1.1",
     "networkx>=2.5",
     "numpy>=1.21.5",
