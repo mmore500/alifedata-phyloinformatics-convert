@@ -5,5 +5,6 @@ from .alifestd_make_ancestor_list_col import alifestd_make_ancestor_list_col
 from .alifestd_validate import alifestd_validate
 from .all_unique import all_unique
 from .is_subset import is_subset
+from .keydefaultdict import keydefaultdict
 from .parse_ancestor_list import parse_ancestor_list
 from .rgetattr import rgetattr

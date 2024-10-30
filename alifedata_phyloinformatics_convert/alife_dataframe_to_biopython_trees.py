@@ -1,13 +1,12 @@
 from Bio import Phylo
 from iterpop import iterpop as ip
-from lyncs_utils import keydefaultdict
 from nanto import isanan, nantonone
 import pandas as pd
 import string
 import typing
 
 from ._impl import parse_ancestor_list as _parse_ancestor_list
-
+from ._impl import keydefaultdict
 
 def alife_dataframe_to_biopython_trees(
     df: pd.DataFrame,
