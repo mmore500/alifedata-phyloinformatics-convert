@@ -8,7 +8,6 @@ from functools import lru_cache
 import networkx as nx
 import pandas
 import pathlib
-from phylotrackpy.systematics import Systematics as phytrack_Systematics
 import typing
 import typing_extensions
 import validators
@@ -16,6 +15,7 @@ import warnings
 import yarl
 
 from ._impl import alifestd_validate as alifestd_validate
+from ._impl import phytrack_Systematics
 
 from .alife_dataframe_to_biopython_tree \
     import alife_dataframe_to_biopython_tree
