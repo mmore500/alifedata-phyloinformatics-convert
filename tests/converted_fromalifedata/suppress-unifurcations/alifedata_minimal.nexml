@@ -12,7 +12,7 @@
     </otus>
     <trees id="d1" otus="d0">
         <tree id="d2" xsi:type="nex:FloatTree">
-            <node id="d3" />
+            <node id="d3" root="true" />
             <node id="d4" />
             <node id="d5" />
             <node id="d6" />

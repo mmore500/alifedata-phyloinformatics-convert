@@ -254,6 +254,7 @@ def test_dendropy_to_alife(original_df):
     original_tree = apc.alife_dataframe_to_dendropy_tree(
         original_df, setup_edge_lengths=True
     )
+    original_tree.is_rooted = True
     expected_df = apc.dendropy_tree_to_alife_dataframe(original_tree)
     rosetta_tree = apc.RosettaTree(original_tree)
 

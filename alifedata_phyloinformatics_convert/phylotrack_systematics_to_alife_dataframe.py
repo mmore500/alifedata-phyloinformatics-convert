@@ -1,7 +1,8 @@
 import tempfile
 
 import pandas as pd
-from phylotrackpy.systematics import Systematics as phytrack_Systematics
+
+from ._impl import phytrack_Systematics
 
 
 def phylotrack_systematics_to_alife_dataframe(

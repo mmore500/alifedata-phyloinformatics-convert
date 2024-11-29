@@ -19,6 +19,7 @@ def test_newick1():
         path=f'{dirname(realpath(__file__))}/assets/APG_Angiosperms.newick',
         schema='newick',
     )
+    original_tree.is_rooted = True
 
     converted_df = apc.dendropy_tree_to_alife_dataframe(original_tree)
     reconverted_tree = apc.alife_dataframe_to_dendropy_tree(converted_df)
@@ -34,7 +35,7 @@ def test_newick1():
     assert len(reconverted_tree.leaf_nodes()) \
         == len(original_tree.leaf_nodes())
     assert original_tree.as_ascii_plot() == reconverted_tree.as_ascii_plot()
-    assert str(original_tree) == str(reconverted_tree)
+    assert str(original_tree).strip() == reconverted_tree.as_string('newick').strip()
 
 
 def test_newick2():
@@ -46,6 +47,7 @@ def test_newick2():
     original_tree.resolve_polytomies()
     original_tree.suppress_unifurcations()
     original_tree.collapse_basal_bifurcation()
+    original_tree.is_rooted = True
 
     converted_df = apc.dendropy_tree_to_alife_dataframe(original_tree)
     reconverted_tree = apc.alife_dataframe_to_dendropy_tree(converted_df)
@@ -60,7 +62,7 @@ def test_newick2():
     reconverted_tree.migrate_taxon_namespace(original_tree.taxon_namespace)
 
     assert original_tree.as_ascii_plot() == reconverted_tree.as_ascii_plot()
-    assert str(original_tree) == str(reconverted_tree)
+    assert str(original_tree).strip() == str(reconverted_tree).strip()
     assert treecompare.symmetric_difference(
         original_tree,
         reconverted_tree,
@@ -74,6 +76,7 @@ def test_nexml():
         path=f'{script_directory}/assets/pythonidae.annotated.nexml',
         schema='nexml',
     )
+    original_tree.is_rooted = True
     converted_df = apc.dendropy_tree_to_alife_dataframe(original_tree)
     reconverted_tree = apc.alife_dataframe_to_dendropy_tree(
         converted_df,
@@ -95,6 +98,7 @@ def test_exportattrs_iterable():
         path=f'{script_directory}/assets/pythonidae.annotated.nexml',
         schema='nexml',
     )
+    original_tree.is_rooted = True
 
     for node in original_tree.leaf_node_iter():
         node.fish = 'Salmon'
@@ -121,6 +125,7 @@ def test_exportattrs_mapping():
         path=f'{script_directory}/assets/pythonidae.annotated.nexml',
         schema='nexml',
     )
+    original_tree.is_rooted = True
     for i, node in enumerate(original_tree):
         if node.taxon is None:
             node.taxon = original_tree.taxon_namespace.new_taxon(str(i))

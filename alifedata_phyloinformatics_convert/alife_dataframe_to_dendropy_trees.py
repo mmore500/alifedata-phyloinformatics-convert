@@ -109,7 +109,10 @@ def alife_dataframe_to_dendropy_trees(
                 assert not isanan(root_node.origin_time)
                 root_node.edge_length = root_node.origin_time
 
-    return([
+    res = [
         dendropy.Tree(seed_node=root_node)
         for root_node in root_nodes
-    ])
+    ]
+    for tree in res:
+        tree.is_rooted = True
+    return res

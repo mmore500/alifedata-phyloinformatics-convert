@@ -10,7 +10,7 @@ for python in \
     3.11 \
     3.12 \
 ; do
-    python3 -m uv pip compile --python-version=$python --allow-unsafe "requirements.in" -o "requirements-${python}.txt"
+    python3 -m uv pip compile --python-version=$python --allow-unsafe ../setup.py --extra test --extra docs -o "requirements-${python}.txt"
 done
 
 wait
