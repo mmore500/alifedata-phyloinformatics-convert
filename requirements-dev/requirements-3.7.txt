@@ -24,7 +24,7 @@ decorator==5.1.1
     # via
     #   networkx
     #   validators
-dendropy==4.5.2
+dendropy==5.0.1
     # via alifedata-phyloinformatics-convert (../setup.py)
 deprecated==1.2.13
     # via alifedata-phyloinformatics-convert (../setup.py)
