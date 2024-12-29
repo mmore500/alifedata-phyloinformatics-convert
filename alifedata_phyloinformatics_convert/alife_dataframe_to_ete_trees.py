@@ -16,6 +16,8 @@ def alife_dataframe_to_ete_trees(
         typing.Mapping[str, str],
     ]] = None,
     setup_dists: bool = False,
+    *,
+    progress_wrap: typing.Callable = lambda x, **_: x,
 ) -> typing.List[ete3.TreeNode]:
     """Open a phylogeny dataframe formatted to the artificial life community
     data format standards as zero or more ete trees, depending on the number
@@ -55,7 +57,7 @@ def alife_dataframe_to_ete_trees(
 
     root_nodes = []
 
-    for __, row in df.iterrows():
+    for __, row in progress_wrap(df.iterrows(), total=len(df)):
         node = nodes[row['id']]
 
         if setattrs is not None:
@@ -89,7 +91,7 @@ def alife_dataframe_to_ete_trees(
 
     # set up edge lengths
     if setup_dists:
-        for id, parent_node in nodes.items():
+        for id, parent_node in progress_wrap(nodes.items(), total=len(nodes)):
             for child_node in parent_node.children:
                 if child_node.dist == 1.0 and None not in (
                     getattr(child_node, 'origin_time', None),

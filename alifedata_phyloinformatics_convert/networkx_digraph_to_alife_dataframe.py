@@ -17,6 +17,8 @@ from ._impl import rgetattr as _rgetattr
 
 def networkx_digraph_to_alife_dataframe(
     graph: nx.Graph,
+    *,
+    progress_wrap: typing.Callable = lambda x, **_: x,
 ) -> pd.DataFrame:
     """Convert a networkx digraph to a dataframe formatted to the artificial
     life community data format standards.
@@ -52,13 +54,13 @@ def networkx_digraph_to_alife_dataframe(
 
     records = []
     visited_nodes = set(graph.nodes)
-    for from_, to, edge_data in it.chain(
+    for from_, to, edge_data in progress_wrap(it.chain(
         graph.edges(data=True),
         (
             (ip.popsingleton(visited_nodes), None, {})
             for __ in range(1)
         ),
-    ):
+    )):
         attrs = graph.nodes[from_]
         def try_get_attr(attr):
             return opyt.or_else(

@@ -14,6 +14,8 @@ def alife_dataframe_to_dendropy_tree(
         typing.Mapping[str, str],
     ]] = None,
     setup_edge_lengths: bool = False,
+    *,
+    progress_wrap: typing.Callable = lambda x, **_: x,
 ) -> typing.Optional[dendropy.Tree]:
     """Open a phylogeny dataframe formatted to the artificial life community
     data format standards as a dendropy tree.
@@ -33,5 +35,6 @@ def alife_dataframe_to_dendropy_tree(
             df,
             setattrs=setattrs,
             setup_edge_lengths=setup_edge_lengths,
+            progress_wrap=progress_wrap,
         ),
     )
