@@ -8,6 +8,7 @@ from functools import lru_cache
 import networkx as nx
 import pandas
 import pathlib
+import treeswift
 import typing
 import typing_extensions
 import validators
@@ -23,6 +24,8 @@ from .alife_dataframe_to_dendropy_tree \
     import alife_dataframe_to_dendropy_tree
 from .alife_dataframe_to_ete_tree \
     import alife_dataframe_to_ete_tree
+from .alife_dataframe_to_treeswift_tree \
+    import alife_dataframe_to_treeswift_tree
 from .alife_dataframe_to_networkx_digraph \
     import alife_dataframe_to_networkx_digraph
 from .alife_dataframe_to_phylotrack_systematics \
@@ -39,6 +42,8 @@ from .networkx_digraph_to_alife_dataframe \
     import networkx_digraph_to_alife_dataframe
 from .phylotrack_systematics_to_alife_dataframe \
     import phylotrack_systematics_to_alife_dataframe
+from .treeswift_tree_to_alife_dataframe \
+    import treeswift_tree_to_alife_dataframe
 
 
 class RosettaTree:
@@ -63,6 +68,7 @@ class RosettaTree:
             pandas.DataFrame,
             Bio.Phylo.BaseTree.Tree,
             phytrack_Systematics,
+            treeswift.Tree
         ],
         validate: typing.Literal["warn", "error", "ignore"] = "warn",
     ) -> None:
@@ -161,6 +167,12 @@ class RosettaTree:
     def as_phylotrack(self: "RosettaTree") -> phytrack_Systematics:
         """Return stored tree as a phylotrack Systematics object."""
         return alife_dataframe_to_phylotrack_systematics(self._tree)
+
+    @property
+    @lru_cache(maxsize=None)
+    def as_treeswift(self: "RosettaTree") -> phytrack_Systematics:
+        """Return stored tree as a treeswift object."""
+        return alife_dataframe_to_treeswift_tree(self._tree)
 
     @property
     @deprecated(version="0.15.0", reason="Use to_newick instead.")

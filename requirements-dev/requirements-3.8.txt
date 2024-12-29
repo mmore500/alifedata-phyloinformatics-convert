@@ -151,6 +151,8 @@ tomli==2.0.1
     # via pytest
 tqdm==4.67.1
     # via twine
+treeswift==1.1.45
+    # via alifedata-phyloinformatics-convert (../setup.py)
 twine==1.14.0
     # via alifedata-phyloinformatics-convert (../setup.py)
 typing-extensions==4.7.1
