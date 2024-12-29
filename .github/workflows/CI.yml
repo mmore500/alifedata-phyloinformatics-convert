@@ -28,7 +28,7 @@ jobs:
       run: python -m pip install .
     - name: Install dependencies for Python 3.13
       run: |
-        python -m pip install -r requirements-dev/requirements-3.13.txt --upgrade
+        python -m pip install -r requirements-dev/requirements-3.13.txt --upgrade --force-reinstall
       if: ${{ matrix.python-version  == '3.13' }}
     - name: Test CLI
       run: |
