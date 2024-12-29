@@ -38,14 +38,14 @@ def treeswift_tree_to_alife_dataframe(
 
     # set up node origin times if any edge lengths set
     if any(node.edge_length is not None for node in tree.traverse_postorder()):
-        if not hasattr(tree.seed_node, 'origin_time'):
-            tree.seed_node.origin_time = opyt.or_value(
-                tree.seed_node.edge_length,
+        if not hasattr(tree.root, 'origin_time'):
+            tree.root.origin_time = opyt.or_value(
+                tree.root.edge_length,
                 0
             )
         else:
-            assert tree.seed_node.origin_time is not None
-        for node in tree:
+            assert tree.root.origin_time is not None
+        for node in tree.traverse_postorder():
             parent = node.parent
             if parent is not None and not hasattr(node, 'origin_time'):
                 if None not in (

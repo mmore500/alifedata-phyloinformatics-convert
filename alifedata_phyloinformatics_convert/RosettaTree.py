@@ -105,6 +105,9 @@ class RosettaTree:
         elif isinstance(tree, phytrack_Systematics):
             # is a phylotrack Systematics object
             self._tree = phylotrack_systematics_to_alife_dataframe(tree)
+        elif isinstance(tree, treeswift.Tree):
+            # is a phylotrack Systematics object
+            self._tree = treeswift_tree_to_alife_dataframe(tree)
         elif (
             isinstance(tree, pandas.DataFrame)
             and "id" in tree.columns
@@ -172,7 +175,9 @@ class RosettaTree:
     @lru_cache(maxsize=None)
     def as_treeswift(self: "RosettaTree") -> phytrack_Systematics:
         """Return stored tree as a treeswift object."""
-        return alife_dataframe_to_treeswift_tree(self._tree)
+        return alife_dataframe_to_treeswift_tree(
+            self._tree, setup_edge_lengths=True
+        )
 
     @property
     @deprecated(version="0.15.0", reason="Use to_newick instead.")

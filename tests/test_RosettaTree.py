@@ -158,7 +158,7 @@ def test_alife_to_treeswift(original_df):
     # twice to test caching
     for __ in range(2):
         converted_tree = rosetta_tree.as_treeswift
-        assert converted_tree.get_ascii() == expected_tree.get_ascii()
+        assert converted_tree.newick() == expected_tree.newick()
 
 
 @pytest.mark.parametrize(
