@@ -3,7 +3,6 @@ import Bio
 import dendropy
 import contextlib
 from deprecated.sphinx import deprecated
-import ete3
 from functools import lru_cache
 import networkx as nx
 import pandas
@@ -16,6 +15,7 @@ import warnings
 import yarl
 
 from ._impl import alifestd_validate as alifestd_validate
+from ._impl import ete3
 from ._impl import phytrack_Systematics
 
 from .alife_dataframe_to_biopython_tree \

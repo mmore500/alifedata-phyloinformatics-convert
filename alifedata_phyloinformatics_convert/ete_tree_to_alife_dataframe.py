@@ -1,11 +1,10 @@
 from collections.abc import Mapping
-import ete3
-import functools
 from nanto import isanan
 import opytional as opyt
 import pandas as pd
 import typing
 
+from ._impl import ete3
 from ._impl import rgetattr as _rgetattr
 
 

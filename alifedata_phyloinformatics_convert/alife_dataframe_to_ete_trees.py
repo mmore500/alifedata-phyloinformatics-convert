@@ -1,10 +1,10 @@
-import ete3
 from iterpop import iterpop as ip
 from nanto import isanan, nantonone, nantozero
 import pandas as pd
 import string
 import typing
 
+from ._impl import ete3
 from ._impl import keydefaultdict
 from ._impl import parse_ancestor_list as _parse_ancestor_list
 

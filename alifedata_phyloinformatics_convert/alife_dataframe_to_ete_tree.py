@@ -1,9 +1,9 @@
-import ete3
 from iterpop import iterpop as ip
 import pandas as pd
 import typing
 
 from .alife_dataframe_to_ete_trees import alife_dataframe_to_ete_trees
+from ._impl import ete3
 
 
 def alife_dataframe_to_ete_tree(
