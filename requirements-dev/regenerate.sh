@@ -9,6 +9,7 @@ for python in \
     3.10 \
     3.11 \
     3.12 \
+    3.13 \
 ; do
     python3 -m uv pip compile --python-version=$python --allow-unsafe ../setup.py --extra test --extra docs -o "requirements-${python}.txt"
 done

@@ -46,6 +46,7 @@ setup(
         'Programming Language :: Python :: 3.10',
         'Programming Language :: Python :: 3.11',
         'Programming Language :: Python :: 3.12',
+        'Programming Language :: Python :: 3.13',
     ],
     description="alifedata-phyloinformatics-convert helps apply traditional phyloinformatics software to alife standardized data",
     entry_points='''
