@@ -44,6 +44,7 @@ First, create a :code:`RosettaTree` object from any supported structure/schema
   import networkx
   import pandas
   import phylotrackpy
+  import treeswift
 
   newickstr = "((A,B),(C,D));"
 
@@ -52,6 +53,7 @@ First, create a :code:`RosettaTree` object from any supported structure/schema
     Bio.Phylo.read(io.StringIO(newickstr), "newick"),
     dendropy.Tree.get(data=newickstr, schema="newick"),
     ete.Tree(newickstr),
+    treeswift.Tree.read_tree_newick(newickstr),
     networkx.DiGraph(),
     pandas.DataFrame({"id": [0], "ancestor_list": "[None]"}),  # alife standard
     phylotrackpy.systematics.Systematics(lambda x: x),
@@ -79,6 +81,7 @@ Then, convert or serialize data
   converter.as_ete
   converter.as_networkx
   converter.as_phylotrack
+  converter.as_treeswift
 
   # serialization, nexml and nexus schemata also supported
   converter.to_newick()  # returns newick string
@@ -117,6 +120,10 @@ Use :code:`apc`'s functional interface to convert between alife format other lib
   # phylotrackpy
   systematics = apc.alife_dataframe_to_phylotrack_systematics(alife_df)
   frame = apc.phylotrack_systematics_to_alife_dataframe(systematics)
+
+  # treeswift
+  treeswift_tree = apc.alife_dataframe_to_treeswift_tree(alife_df)
+  frame = apc.treeswift_tree_to_alife_dataframe(tree)
 
   # partial support is also included for,
   # - adjacency lists

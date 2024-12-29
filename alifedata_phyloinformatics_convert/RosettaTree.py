@@ -3,11 +3,11 @@ import Bio
 import dendropy
 import contextlib
 from deprecated.sphinx import deprecated
-import ete3
 from functools import lru_cache
 import networkx as nx
 import pandas
 import pathlib
+import treeswift
 import typing
 import typing_extensions
 import validators
@@ -15,6 +15,7 @@ import warnings
 import yarl
 
 from ._impl import alifestd_validate as alifestd_validate
+from ._impl import ete3
 from ._impl import phytrack_Systematics
 
 from .alife_dataframe_to_biopython_tree \
@@ -23,6 +24,8 @@ from .alife_dataframe_to_dendropy_tree \
     import alife_dataframe_to_dendropy_tree
 from .alife_dataframe_to_ete_tree \
     import alife_dataframe_to_ete_tree
+from .alife_dataframe_to_treeswift_tree \
+    import alife_dataframe_to_treeswift_tree
 from .alife_dataframe_to_networkx_digraph \
     import alife_dataframe_to_networkx_digraph
 from .alife_dataframe_to_phylotrack_systematics \
@@ -39,6 +42,8 @@ from .networkx_digraph_to_alife_dataframe \
     import networkx_digraph_to_alife_dataframe
 from .phylotrack_systematics_to_alife_dataframe \
     import phylotrack_systematics_to_alife_dataframe
+from .treeswift_tree_to_alife_dataframe \
+    import treeswift_tree_to_alife_dataframe
 
 
 class RosettaTree:
@@ -63,6 +68,7 @@ class RosettaTree:
             pandas.DataFrame,
             Bio.Phylo.BaseTree.Tree,
             phytrack_Systematics,
+            treeswift.Tree
         ],
         validate: typing.Literal["warn", "error", "ignore"] = "warn",
     ) -> None:
@@ -99,6 +105,9 @@ class RosettaTree:
         elif isinstance(tree, phytrack_Systematics):
             # is a phylotrack Systematics object
             self._tree = phylotrack_systematics_to_alife_dataframe(tree)
+        elif isinstance(tree, treeswift.Tree):
+            # is a phylotrack Systematics object
+            self._tree = treeswift_tree_to_alife_dataframe(tree)
         elif (
             isinstance(tree, pandas.DataFrame)
             and "id" in tree.columns
@@ -161,6 +170,14 @@ class RosettaTree:
     def as_phylotrack(self: "RosettaTree") -> phytrack_Systematics:
         """Return stored tree as a phylotrack Systematics object."""
         return alife_dataframe_to_phylotrack_systematics(self._tree)
+
+    @property
+    @lru_cache(maxsize=None)
+    def as_treeswift(self: "RosettaTree") -> phytrack_Systematics:
+        """Return stored tree as a treeswift object."""
+        return alife_dataframe_to_treeswift_tree(
+            self._tree, setup_edge_lengths=True
+        )
 
     @property
     @deprecated(version="0.15.0", reason="Use to_newick instead.")

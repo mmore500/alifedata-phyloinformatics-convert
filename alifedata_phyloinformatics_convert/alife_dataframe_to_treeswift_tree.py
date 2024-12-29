@@ -1,21 +1,22 @@
+import treeswift
 from iterpop import iterpop as ip
 import pandas as pd
 import typing
 
-from .alife_dataframe_to_ete_trees import alife_dataframe_to_ete_trees
-from ._impl import ete3
+from .alife_dataframe_to_treeswift_trees \
+    import alife_dataframe_to_treeswift_trees
 
 
-def alife_dataframe_to_ete_tree(
+def alife_dataframe_to_treeswift_tree(
     df: pd.DataFrame,
     setattrs: typing.Optional[typing.Union[
         typing.Iterable[str],
         typing.Mapping[str, str],
     ]] = None,
-    setup_dists: bool = False,
-) -> typing.Optional[ete3.Tree]:
+    setup_edge_lengths: bool = False,
+) -> typing.Optional[treeswift.Tree]:
     """Open a phylogeny dataframe formatted to the artificial life community
-    data format standards as a ete tree.
+    data format standards as a treeswift tree.
 
     Returns None if df is empty.
 
@@ -24,13 +25,13 @@ def alife_dataframe_to_ete_tree(
 
     See Also
     ----------
-    alife_dataframe_to_ete_trees
+    alife_dataframe_to_treeswift_trees
     """
 
     return ip.poursingleton(
-        alife_dataframe_to_ete_trees(
+        alife_dataframe_to_treeswift_trees(
             df,
             setattrs=setattrs,
-            setup_dists=setup_dists,
+            setup_edge_lengths=setup_edge_lengths,
         ),
     )

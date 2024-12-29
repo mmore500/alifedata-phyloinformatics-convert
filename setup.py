@@ -21,6 +21,7 @@ requirements = [
     "opytional>=0.1.0",
     "pandas>=1.1.0",
     "sortedcontainers>=2.4.0",
+    "treeswift",
     "typing-extensions>=4.7.1",
     "validators>=0.20.0",
     "yarl>=1.9.3",
@@ -45,6 +46,7 @@ setup(
         'Programming Language :: Python :: 3.10',
         'Programming Language :: Python :: 3.11',
         'Programming Language :: Python :: 3.12',
+        'Programming Language :: Python :: 3.13',
     ],
     description="alifedata-phyloinformatics-convert helps apply traditional phyloinformatics software to alife standardized data",
     entry_points='''

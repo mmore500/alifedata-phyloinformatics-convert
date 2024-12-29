@@ -149,6 +149,27 @@ def test_alife_to_ete(original_df):
         ),
     ],
 )
+def test_alife_to_treeswift(original_df):
+    expected_tree = apc.alife_dataframe_to_treeswift_tree(
+        original_df, setup_edge_lengths=True
+    )
+    rosetta_tree = apc.RosettaTree(original_df)
+
+    # twice to test caching
+    for __ in range(2):
+        converted_tree = rosetta_tree.as_treeswift
+        assert converted_tree.newick() == expected_tree.newick()
+
+
+@pytest.mark.parametrize(
+    "original_df",
+    [
+        pd.read_csv(f"{dirname(realpath(__file__))}/assets/alifedata.csv"),
+        pd.read_csv(
+            f"{dirname(realpath(__file__))}/assets/alifedata_minimal.csv",
+        ),
+    ],
+)
 def test_alife_to_networkx(original_df):
     expected_tree = apc.alife_dataframe_to_networkx_digraph(
         original_df, setup_edge_lengths=True
@@ -278,6 +299,28 @@ def test_ete_to_alife(original_df):
         original_df, setup_dists=True
     )
     expected_df = apc.ete_tree_to_alife_dataframe(original_tree)
+    rosetta_tree = apc.RosettaTree(original_tree)
+
+    # twice to test caching
+    for __ in range(2):
+        converted_df = rosetta_tree.as_alife
+        assert converted_df.equals(expected_df)
+
+
+@pytest.mark.parametrize(
+    "original_df",
+    [
+        pd.read_csv(f"{dirname(realpath(__file__))}/assets/alifedata.csv"),
+        pd.read_csv(
+            f"{dirname(realpath(__file__))}/assets/alifedata_minimal.csv",
+        ),
+    ],
+)
+def test_treeswift_to_alife(original_df):
+    original_tree = apc.alife_dataframe_to_treeswift_tree(
+        original_df, setup_edge_lengths=True
+    )
+    expected_df = apc.treeswift_tree_to_alife_dataframe(original_tree)
     rosetta_tree = apc.RosettaTree(original_tree)
 
     # twice to test caching
