@@ -18,4 +18,6 @@ wait
 
 ln -sf requirements-3.9.txt requirements.txt
 
+sed -i -e 's|ete3==3.1.3|ete3 @ git+https://github.com/mmore500/ete@ete3|g' requirements-3.13.txt
+
 echo "fin"
