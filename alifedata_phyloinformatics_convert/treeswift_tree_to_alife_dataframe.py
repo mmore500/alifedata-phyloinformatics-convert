@@ -14,6 +14,8 @@ def treeswift_tree_to_alife_dataframe(
         typing.Iterable[str],
         typing.Mapping[str, str],
     ]] = None,
+    *,
+    progress_wrap: typing.Callable = lambda x, **_: x,
 ) -> pd.DataFrame:
     """Convert a treeswift phylogenetic tree to a dataframe formatted to the
     artificial life communit data format standards.
@@ -88,5 +90,5 @@ def treeswift_tree_to_alife_dataframe(
                 for attr_name in opyt.or_value(exportattrs, [])
             },
         }
-        for node in tree.traverse_postorder()
+        for node in progress_wrap(tree.traverse_postorder())
     ])

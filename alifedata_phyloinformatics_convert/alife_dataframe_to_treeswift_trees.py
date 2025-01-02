@@ -21,6 +21,8 @@ def alife_dataframe_to_treeswift_trees(
         typing.Mapping[str, str],
     ]] = None,
     setup_edge_lengths: bool = False,
+    *,
+    progress_wrap: typing.Callable = lambda x, **_: x,
 ) -> typing.List[treeswift.Tree]:
     """Open a phylogeny dataframe formatted to the artificial life community
     data format standards as zero or more treeswift trees, depending on the
@@ -62,7 +64,7 @@ def alife_dataframe_to_treeswift_trees(
     # maps id to origin time
     root_nodes = []
 
-    for __, row in df.iterrows():
+    for __, row in progress_wrap(df.iterrows(), total=len(df)):
         node = nodes[row['id']]
 
         if setattrs is not None:
@@ -99,7 +101,7 @@ def alife_dataframe_to_treeswift_trees(
 
     # set up edge lengths
     if setup_edge_lengths:
-        for id, parent_node in nodes.items():
+        for id, parent_node in progress_wrap(nodes.items(), total=len(nodes)):
             for child_node in parent_node.children:
                 if child_node.edge_length is None and None not in (
                     getattr(child_node, 'origin_time', None),

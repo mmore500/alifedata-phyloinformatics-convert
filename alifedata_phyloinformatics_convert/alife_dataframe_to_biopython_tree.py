@@ -14,6 +14,8 @@ def alife_dataframe_to_biopython_tree(
         typing.Mapping[str, str],
     ]] = None,
     setup_branch_lengths: bool = False,
+    *,
+    progress_wrap: typing.Callable = lambda x, **_: x,
 ) -> typing.Optional[Phylo.BaseTree.Tree]:
     """Open a phylogeny dataframe formatted to the artificial life community
     data format standards as a biopython tree.
@@ -32,5 +34,6 @@ def alife_dataframe_to_biopython_tree(
             df,
             setattrs=setattrs,
             setup_branch_lengths=setup_branch_lengths,
+            progress_wrap=progress_wrap,
         ),
     )

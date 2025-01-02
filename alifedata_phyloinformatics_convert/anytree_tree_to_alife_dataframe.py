@@ -11,6 +11,8 @@ from ._impl import rgetattr as _rgetattr
 
 def anytree_tree_to_alife_dataframe(
     tree: anytree.AnyNode,
+    *,
+    progress_wrap: typing.Callable = lambda x, **_: x,
 ) -> pd.DataFrame:
     """Convert a anytree tree to a dataframe formatted to the
     artificial life community data format standards.
@@ -71,5 +73,5 @@ def anytree_tree_to_alife_dataframe(
             'origin_time': getattr(node, 'origin_time', None),
             'taxon_label': getattr(node, 'taxon_label', None),
         }
-        for node in anytree.LevelOrderIter(tree)
+        for node in progress_wrap(anytree.LevelOrderIter(tree))
     ]).dropna(axis=1, how="all")
