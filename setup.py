@@ -35,7 +35,7 @@ requirements = [
 
 setup_requirements = ['pytest-runner', 'tox' ]
 
-test_requirements = ['pytest>=3', 'phylotrackpy>=0.1.16' ]
+test_requirements = ['pytest>=3', 'phylotrackpy>=0.1.16', 'pypandoc_binary' ]
 
 setup(
     author="Matthew Andres Moreno",
@@ -62,7 +62,7 @@ setup(
     install_requires=requirements,
     extras_require={
         'test': test_requirements,
-        'docs': ['sphinx', 'alabaster', 'twine==1.14.0', 'mkdocs==1.2.3', 'jinja2==3.0.0', 'pypandoc'],
+        'docs': ['sphinx', 'alabaster', 'twine==1.14.0', 'mkdocs==1.2.3', 'jinja2==3.0.0', 'pypandoc_binary'],
     },
     license="MIT license",
     long_description=readme,
