@@ -3,9 +3,10 @@
 """The setup script."""
 
 from setuptools import setup, find_packages
+import pypandoc
 
 with open('README.rst') as readme_file:
-    readme = readme_file.read()
+    readme = pypandoc.convert_text(readme_file.read(), to='md', format='rst')
 
 requirements = [
     "anytree>=2.8.0",
@@ -56,10 +57,11 @@ setup(
     install_requires=requirements,
     extras_require={
         'test': test_requirements,
-        'docs': ['sphinx', 'alabaster', 'twine==1.14.0', 'mkdocs==1.2.3', 'jinja2==3.0.0'],
+        'docs': ['sphinx', 'alabaster', 'twine==1.14.0', 'mkdocs==1.2.3', 'jinja2==3.0.0', 'pypandoc'],
     },
     license="MIT license",
     long_description=readme,
+    long_description_content_type="text/markdown",
     include_package_data=True,
     keywords='alifedata-phyloinformatics-convert',
     name='alifedata-phyloinformatics-convert',

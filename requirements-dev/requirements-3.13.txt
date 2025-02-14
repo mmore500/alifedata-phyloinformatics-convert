@@ -89,6 +89,8 @@ pygments==2.18.0
     # via
     #   readme-renderer
     #   sphinx
+pypandoc==1.15
+    # via alifedata-phyloinformatics-convert (../setup.py)
 pytest==8.3.4
     # via alifedata-phyloinformatics-convert (../setup.py)
 python-dateutil==2.9.0.post0
