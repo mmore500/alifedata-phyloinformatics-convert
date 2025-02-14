@@ -93,7 +93,7 @@ pygments==2.18.0
     # via
     #   readme-renderer
     #   sphinx
-pypandoc==1.15
+pypandoc-binary==1.15
     # via alifedata-phyloinformatics-convert (../setup.py)
 pytest==7.4.3
     # via alifedata-phyloinformatics-convert (../setup.py)
