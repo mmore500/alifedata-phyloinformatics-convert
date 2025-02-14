@@ -17,6 +17,7 @@ import yarl
 from ._impl import alifestd_validate as alifestd_validate
 from ._impl import ete3
 from ._impl import phytrack_Systematics
+from ._impl import robust_isinstance
 
 from .alife_dataframe_to_biopython_tree \
     import alife_dataframe_to_biopython_tree
@@ -85,31 +86,31 @@ class RosettaTree:
         """
         # convert any supported tree format to ALife format,
         # as this is our interal representation
-        if isinstance(tree, anytree.node.NodeMixin):
+        if robust_isinstance(tree, anytree.node.NodeMixin):
             # is an AnyTree tree
             self._tree = anytree_tree_to_alife_dataframe(tree)
-        elif isinstance(tree, dendropy.Tree):
+        elif robust_isinstance(tree, dendropy.Tree):
             # is a Dendropy Tree
             self._tree = dendropy_tree_to_alife_dataframe(tree)
-        elif isinstance(tree, (ete3.Tree, ete3.TreeNode)):
+        elif robust_isinstance(tree, (ete3.Tree, ete3.TreeNode)):
             # is a ete Tree
             self._tree = ete_tree_to_alife_dataframe(tree)
-        elif isinstance(tree, Bio.Phylo.BaseTree.Tree):
+        elif robust_isinstance(tree, Bio.Phylo.BaseTree.Tree):
             # is a biopython tree
             self._tree = biopython_tree_to_alife_dataframe(
                 tree, {'name': 'taxon_label'}
             )
-        elif isinstance(tree, nx.DiGraph):
+        elif robust_isinstance(tree, nx.DiGraph):
             # is a networkx digraph
             self._tree = networkx_digraph_to_alife_dataframe(tree)
-        elif isinstance(tree, phytrack_Systematics):
+        elif robust_isinstance(tree, phytrack_Systematics):
             # is a phylotrack Systematics object
             self._tree = phylotrack_systematics_to_alife_dataframe(tree)
-        elif isinstance(tree, treeswift.Tree):
+        elif robust_isinstance(tree, treeswift.Tree):
             # is a phylotrack Systematics object
             self._tree = treeswift_tree_to_alife_dataframe(tree)
         elif (
-            isinstance(tree, pandas.DataFrame)
+            robust_isinstance(tree, pandas.DataFrame)
             and "id" in tree.columns
             # i.e., ancestor_id or ancestor_list
             and tree.columns.str.startswith("ancestor_").any()
