@@ -9,8 +9,7 @@ try:
     with open('README.rst') as readme_file:
         readme = pypandoc.convert_text(readme_file.read(), to='md', format='rst')
 except ImportError:
-    with open('README.rst') as readme_file:
-        readme = 0
+    readme = 0
 
 
 requirements = [
